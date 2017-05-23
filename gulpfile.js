@@ -12,6 +12,8 @@ let gulp = require('gulp')
 
 
 gulp.task('build-css', function () {
+
+
     return gulp.src('./public/CSS/*')
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -42,3 +44,9 @@ gulp.task('build', ['build-css', 'build-js', 'watch'], function () {
 gulp.task('watch', function () {
     return gulp.watch(['./index.html', './partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
 });
+
+
+
+gulp.task('default' , ['watch' , 'build']);
+
+
