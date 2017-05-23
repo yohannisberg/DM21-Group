@@ -1,3 +1,15 @@
+.outer {
+  border: 1px solid orange; }
+
+.inner {
+  border: 1px solid red; }
+
+.box .title {
+  border: 1px solid green; }
+
+.box .item {
+  border: 1px solid fuchsia; }
+
 .navBarWrapper {
   height: 60px;
   width: 100%;
