@@ -19,7 +19,7 @@ angular.module('vimeoApp').directive('footerDir', function () {
 
     return {
         restrict: "AE",
-        templateUrl: "../../views/footerDir.html"
+        templateUrl: "./views/footerDir.html"
     };
 });
 'use strict';
