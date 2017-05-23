@@ -12,17 +12,19 @@ let gulp = require('gulp')
 
 
 gulp.task('build-css', function () {
-    return gulp.src('./public/styles/*')
+
+
+    return gulp.src('./public/CSS/*')
         .pipe(sourcemaps.init())
         .pipe(sass())
-        .pipe(cachebust.resources())
-        .pipe(concat('public/styles.css'))
+        // .pipe(cachebust.resources())
+        // .pipe(concat('./public/styles.css'))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('build-js', function () {
-    return gulp.src('public/JS/**/*.js')
+    return gulp.src('./public/JS/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(print())
         .pipe(babel({presets: ['es2015']}))
@@ -43,4 +45,8 @@ gulp.task('watch', function () {
     return gulp.watch(['./index.html', './partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
 });
 
+
+
 gulp.task('default' , ['watch' , 'build']);
+
+
