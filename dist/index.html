@@ -1,41 +1,30 @@
-<div class="outer">
-    <div class="inner">
-
-
-        <div class="box">
-            <ul class="title">Vimeo</ul>
-            <li class="item">About Vimeo</li>
-            <li class="item">Vimeo Blog</li>
-            <li class="item">Vimeo Guidelines</li>
-            <li class="item">Developers</li>
-            <li class="item">Jobs</li>
-        </div>
-    </div>
-
-    <div class="box">
-        <ul class="title">Help</ul>
-        <li class="item">Help Center</li>
-        <li class="item">Video School</li>
-        <li class="item">FAQ</li>
-        <li class="item">Forums</li>
-    </div>
-
-    <div class="box"> n
-        <ul class="title">More</ul>
-        <li class="item">On Demand</li>
-        <li class="item">Everywhere</li>
-        <li class="item">Upload</li>
-        <li class="item">Site Map</li>
-    </div>
-
-    <div class="box">
-        <ul class="title">Upgrade</ul>
-        <li class="item">Vimeo Plus</li>
-        <li class="item">Vimeo PRO</li>
-        <li class="item">Vimeo Business</li>
-        <li class="item">Refer a friend</li>
-    </div>
+<!DOCTYPE html>
+<html ng-app = "vimeoApp">
+  <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href='./css/styles.css'></link>
+    <title></title>
+  </head>
+  <body ng-controller = "mainCtrl">
 
 
 
-</div>
+<nav-bar></nav-bar> 
+<ui-view></ui-view>
+<footer-dir></footer-dir>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+
+
+    <script src="./js/bundle.js"></script>
+  </body>
+</html>
