@@ -3,7 +3,9 @@
 angular.module('vimeoApp', []);
 'use strict';
 
-angular.module('huluApp').controller('mainCtrl', ["$scope", function ($scope) {}]);
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", function ($scope) {
+  console.log('test');
+}]);
 "use strict";
 'use strict';
 
