@@ -7,7 +7,7 @@ let gulp = require('gulp')
     , print = require('gulp-print')
     , babel = require('gulp-babel')
     , es2015 = require('babel-preset-es2015')
-    // , uglify = require('gulp-uglify')
+    , uglify = require('gulp-uglify')
     , ngAnnotate = require('gulp-ng-annotate')
 
 gulp.task('views' , function (){
@@ -34,7 +34,7 @@ gulp.task('build-js', function () {
         .pipe(babel({presets: ['es2015']}))
         .pipe(concat('bundle.js'))
         .pipe(ngAnnotate())
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist/js'));
 });
