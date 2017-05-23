@@ -1,3 +1,3 @@
-angular.module('huluApp').controller('mainCtrl', function ($scope) {
+angular.module('vimeoApp').controller('mainCtrl', function ($scope) {
 
 });

@@ -5,10 +5,8 @@ angular.module('vimeoApp')
     restrict: 'E',
     templateUrl: './views/navBar.html',
     link: function(scope){
-      scope.showDropdown=function(){
 
       }
     }
-  }
 
 })
