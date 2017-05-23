@@ -14,13 +14,21 @@ const express = require('express'),
 let corsOptions = {
     origin: 'http://localhost:3001'
 }
-
+app.use(session({
+    secret: config.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    rolling: true
+}))
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/api/videos', vimeoCtrl.getVideos);
 app.get('/api/videos/:id', vimeoCtrl.getVideoById);
+app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
+app.post('/api/upload', vimeoCtrl.uploadVideo);
+app.post('/api/comments/:id', vimeoCtrl.addComents);
 
 
 app.listen(config.port, () => {
