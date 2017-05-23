@@ -1,6 +1,6 @@
 const app = require('./server'),
     axios = require('axios'),
-    db = app.get('db'),
+    // db = app.get('db'),
     bcrypt = require('bcryptjs'),
     hashPass = (password) => {
         let salt = bcrypt.genSaltSync(10);
