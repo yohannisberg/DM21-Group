@@ -1,6 +1,15 @@
 'use strict';
 
-angular.module('vimeoApp', []);
+angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider.state('home', {
+        url: '/',
+        templateUrl: 'views/home.html',
+        controller: 'mainCtrl'
+    });
+}]);
 'use strict';
 
 angular.module('vimeoApp').controller('mainCtrl', ["$scope", function ($scope) {}]);
@@ -10,7 +19,7 @@ angular.module('vimeoApp').directive('footerDir', function () {
 
     return {
         restrict: "AE",
-        templateUrl: "..views/footerDir.html"
+        templateUrl: "../../views/footerDir.html"
     };
 });
 'use strict';

@@ -1,0 +1,20 @@
+.outer{
+    border: 1px solid orange;
+}
+
+.inner{
+    border:1px solid red;
+}
+
+
+.box{
+
+    .title{
+        border: 1px solid green
+    }
+
+    .item{
+        border: 1px solid fuchsia
+    }
+}
+
