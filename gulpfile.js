@@ -12,13 +12,13 @@ let gulp = require('gulp')
 
 
 gulp.task('build-css', function () {
-    return gulp.src('./client/styles/*')
+    return gulp.src('./public/styles/*')
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(cachebust.resources())
         .pipe(concat('public/styles.css'))
         .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest('./public/dist/css'));
+        .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('build-js', function () {
@@ -30,7 +30,7 @@ gulp.task('build-js', function () {
         .pipe(ngAnnotate())
         // .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./public/dist/js'));
+        .pipe(gulp.dest('./dist/js'));
 });
 
 gulp.task('build', ['build-css', 'build-js', 'watch'], function () {
@@ -42,3 +42,5 @@ gulp.task('build', ['build-css', 'build-js', 'watch'], function () {
 gulp.task('watch', function () {
     return gulp.watch(['./index.html', './partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
 });
+
+gulp.task('default' , ['watch' , 'build']);
