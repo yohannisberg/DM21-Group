@@ -1,23 +1,72 @@
-.outer-container{
-    border: 1px solid orange;
+*{
+    text-decoration: none;
+    list-style:none;
 }
 
-.inner-container{
-    border:1px solid purple
-    ;
-}
+.main-footer{
+    width: 100%;
+    margin:0 auto;
+    // max-width: 1260px;
+    // text-align:left;
+    display:flex;
+    flex-direction: column;
+    padding:40px;
+    margin-top:50px;
+    background: blue;
 
-// .vimeo .help .more .upgrade{
-//         border: 1px solid green;
-// }
+
+    ul {
+        padding: 0;
+        background:silver;
+        // background:black;
+    }   
+
+
+}
+    li{
+        color:orange;
+    }
+
+.upper-footer{
+    width:100%;
+
+
+}
 
 .title{
-    border:1px solid red;
+    font-size:25px;
+    padding-bottom: 10px;
 }
 
-.link{
-        border: 1px solid fuchsia;
-        background: yellow;
-        color:white;
+
+.subtitle{
+    color: black;
+    font-size:18px;
+    padding-bottom:15px;
 }
+.footer-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-linklist {
+    float: left;
+    width: calc(100% / 3);
+    // background: yellow;
+
+}
+.listlink-box {
+    width:60%;
+
+
+}
+
+.bottom-footer{
+    clear:left;
+    text-align: center;
+}
+
+
+
+
 
