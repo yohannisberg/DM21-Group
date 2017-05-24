@@ -8,7 +8,9 @@ const express = require('express'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     app = express(),
-    vimeoCtrl = require('./vimeoCtrl')
+    axios = require('axios'),
+    vimeoCtrl = require('./vimeoCtrl'),
+    auth = require('./login');
 
 
 let corsOptions = {
@@ -29,7 +31,7 @@ app.get('/api/videos/:id', vimeoCtrl.getVideoById);
 app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/upload', vimeoCtrl.uploadVideo);
 app.post('/api/comments/:id', vimeoCtrl.addComents);
-
+app.get('/api/login', auth.login);
 
 app.listen(config.port, () => {
     console.log('listening on port 3001')
