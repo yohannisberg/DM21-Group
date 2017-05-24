@@ -1,3 +1,17 @@
+.outer-container {
+  border: 1px solid orange; }
+
+.inner-container {
+  border: 1px solid purple; }
+
+.title {
+  border: 1px solid red; }
+
+.link {
+  border: 1px solid fuchsia;
+  background: yellow;
+  color: white; }
+
 .navBarWrapper {
   height: 60px;
   width: 100%;

@@ -1,20 +1,23 @@
-.outer{
+.outer-container{
     border: 1px solid orange;
 }
 
-.inner{
+.inner-container{
+    border:1px solid purple
+    ;
+}
+
+// .vimeo .help .more .upgrade{
+//         border: 1px solid green;
+// }
+
+.title{
     border:1px solid red;
 }
 
-
-.box{
-
-    .title{
-        border: 1px solid green
-    }
-
-    .item{
-        border: 1px solid fuchsia
-    }
+.link{
+        border: 1px solid fuchsia;
+        background: yellow;
+        color:white;
 }
 
