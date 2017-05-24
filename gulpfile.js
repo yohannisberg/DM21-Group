@@ -34,7 +34,7 @@ gulp.task('build-js', function () {
         .pipe(babel({presets: ['es2015']}))
         .pipe(concat('bundle.js'))
         .pipe(ngAnnotate())
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist/js'));
 });
@@ -46,7 +46,7 @@ gulp.task('build', ['views', 'build-css', 'build-js'], function () {
 });
 
 gulp.task('watch', function () {
-    return gulp.watch(['./public/index', './public/CSS/**/*', './public/js/**/*', './public/views/**/*'], ['build']);
+    return gulp.watch(['./public/index.html', './public/CSS/**/*', './public/js/**/*', './public/views/**/*'], ['build']);
 });
 
 
