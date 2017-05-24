@@ -18,7 +18,7 @@ gulp.task('views' , function (){
 
 
 gulp.task('build-css', function () {
-    return gulp.src('./public/CSS/**/*.scss')
+    return gulp.src('./public/CSS/**/*')
         .pipe(sourcemaps.init())
         .pipe(sass())
         // .pipe(cachebust.resources())
@@ -46,11 +46,11 @@ gulp.task('build', ['views', 'build-css', 'build-js'], function () {
 });
 
 gulp.task('watch', function () {
-    return gulp.watch(['./public/index.html', './public/CSS/**/*.css', './public/js/**/*.js', './public/views/**/*.html'], ['build']);
+    return gulp.watch(['./public/index', './public/CSS/**/*', './public/js/**/*', './public/views/**/*'], ['build']);
 });
 
 
-gulp.task('default' , ['build', 'watch']);
+gulp.task('default' , ['watch' , 'build']);
 
 
 

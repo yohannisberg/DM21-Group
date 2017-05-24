@@ -9,13 +9,13 @@
   flex-direction: column;
   padding: 40px;
   margin-top: 50px;
-  background: purple; }
+  background: blue; }
   .main-footer ul {
     padding: 0;
-    background: greenyellow; }
+    background: silver; }
 
 li {
-  color: black; }
+  color: orange; }
 
 .upper-footer {
   width: 100%; }
