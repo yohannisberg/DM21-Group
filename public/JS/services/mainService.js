@@ -1,9 +1,16 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
     let serverUrl = 'http://localhost:3001'
-    this.searchVideos = () => {
+    // this.searchVideos = () => {
+    //     return $http({
+    //         method: 'GET',
+    //         url: serverUrl + '/api/videos/'
+    //     })
+    // };
+
+    this.searchVideos = (query) => {
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/'
+            url: serverUrl + '/api/videos?search=' + query
         })
     };
 
@@ -29,9 +36,11 @@ angular.module('vimeoApp').service('mainService', function ($http) {
 
     this.login = () => {
         return $http({
+
             method: 'GET',
             url: serverUrl + '/api/login'
         })
     }
 
 });
+

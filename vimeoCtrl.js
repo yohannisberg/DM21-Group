@@ -1,16 +1,27 @@
 const vimeo_module = require('./lib/vimeo'),
     Vimeo = vimeo_module.Vimeo,
     config = require('./config'),
+
     lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET, config.access_token);
 
-// Here we have to build the vimeo library using the client_id, client_secret and an access token
-// For the request we make below (/channels) the access token can be a client access token instead of a user access token.
 
 module.exports = {
 
+    generateToken: (req, res) => {
+        // res.send(axios.post(options.url1, options.headers).then(response => {
+        //     console.log(response);
+        //     // axios.post(`${options.url2} + &code=${response.data}` , options.headers).then(response2 => {
+        //     //     console.log(response2);
+        //     // });
+        // }));
+    },
+    exchangeToken: (req, res) => {
+        res.send();
+    },
+
+
     getVideos: (req, res) => {
         let makeRequest = function (lib) {
-
             return lib.request({
                 path: `/videos?query=${req.query.search}`,
                 query: {
@@ -21,14 +32,14 @@ module.exports = {
                     console.log('error');
                     console.log(error);
                 } else {
-                    console.log('body');
-                    console.log(body);
+                    // console.log('body');
+                    // console.log(body);
                     return res.status(200).send(body);
                 }
-                console.log('status code');
-                console.log(status_code);
-                console.log('headers');
-                console.log(headers);
+                // console.log('status code');
+                // console.log(status_code);
+                // console.log('headers');
+                // console.log(headers);
             })
 
         }
@@ -228,4 +239,3 @@ module.exports = {
         }
     }
 }
-
