@@ -1,9 +1,10 @@
 .total-container {
-    background: purple;
-    // color:white;
+    background: grey;
     width:80%;
-    display:flex;
     justify-content: center;
+    text-align: center;
+    // color:white;
+
     }
 
 .top-banner {
@@ -30,6 +31,8 @@
 .main-container {
 
     .top-menu {
+        width:50%;
+        
         ul {
             background:yellow;
             // color:white;

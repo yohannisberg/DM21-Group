@@ -1,3 +1,28 @@
+.total-container {
+  background: grey;
+  width: 80%;
+  justify-content: center;
+  text-align: center; }
+
+.top-banner {
+  background: yellowgreen; }
+  .top-banner .title {
+    background: lightgreen; }
+    .top-banner .title .subtitle {
+      background: teal; }
+
+.main-container .top-menu {
+  width: 50%; }
+  .main-container .top-menu ul {
+    background: yellow; }
+  .main-container .top-menu li {
+    background: pink; }
+
+.main-container .sort-container ul {
+  background: red; }
+
+.main-container .sort-container li {
+  background: orange; }
 
 .main-footer {
   width: 100%;
