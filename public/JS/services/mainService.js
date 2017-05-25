@@ -26,4 +26,12 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/comments/' + id
         })
     };
+
+    this.login = () => {
+        return $http({
+            method: 'POST',
+            url: serverUrl + '/api/login'
+        })
+    }
+
 });

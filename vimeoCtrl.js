@@ -6,7 +6,7 @@ const vimeo_module = require('./lib/vimeo'),
     headers = "Authorization : basic " + (config.CLIENT_ID + ":" + config.CLIENT_SECRET),
     options = {
         url1: `https://api.vimeo.com/oauth/authorize/?client_id=${config.CLIENT_ID}&response_type=code&redirect_uri=home.html&state=dude`,
-        url2: `https://api.vimeo.com/oauth/access_token?grant_type=authorization_code`,
+        url2: `https://api.vimeo.com/oauth/access_token?grant_type=authorization_code&redirect_uri=home.html`,
         method: 'POST',
         headers: headers,
     }
@@ -18,14 +18,14 @@ const vimeo_module = require('./lib/vimeo'),
 module.exports = {
     generateToken: (req, res) => {
         res.send(axios.post(options.url1, options.headers).then(response => {
-
             console.log(response);
+            // axios.post(`${options.url2} + &code=${response.data}` , options.headers).then(response2 => {
+            //     console.log(response2);
+            // });
         }));
     },
     exchangeToken: (req, res) => {
-        res.send(axios.post(options.url2, options.headers).then(response => {
-            console.log(response);
-        }));
+        res.send();
     },
 
 
