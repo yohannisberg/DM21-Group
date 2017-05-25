@@ -6,13 +6,14 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 
     $stateProvider.state('home', {
         url: '/',
-        templateUrl: 'views/home.html',
+        templateUrl: '../views/home.html',
         controller: 'mainCtrl'
+    }).state('edit', {
+        url: '/edit',
+        templateUrl: '../views/editvideo.html',
+        controller: 'editCtrl'
     });
 }]);
-'use strict';
-
-angular.module('vimeoApp').controller('mainCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
 angular.module('vimeoApp').directive('footerDir', function () {
@@ -32,6 +33,12 @@ angular.module('vimeoApp').directive('navBar', function () {
     link: function link(scope) {}
   };
 });
+'use strict';
+
+angular.module('vimeoApp').controller('editCtrl', ["$scope", function ($scope) {}]);
+'use strict';
+
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
