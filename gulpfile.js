@@ -39,8 +39,14 @@ gulp.task('build-js', function () {
         .pipe(gulp.dest('./dist/js'));
 });
 
+gulp.task('images', () => {
+  gulp.src('./public/IMAGES/**/*')
+  .pipe(gulp.dest('./dist/images'));
+});
 
-gulp.task('build', ['views', 'build-css', 'build-js'], function () {
+gulp.task('build', ['views', 'build-css', 'build-js', 'images'], function () {
+
+
     return gulp.src('./public/index.html')
         .pipe(cachebust.references())
         .pipe(gulp.dest('dist'));
@@ -56,8 +62,12 @@ gulp.task('default' , ['watch' , 'build']);
 
 
 
+<<<<<<< HEAD
 //This is the last time I commited --- End of day 6-24-17
 
 
 
 
+=======
+//This is the last time I commited --- End of day 6-23-17
+>>>>>>> 1f63f62ac6d614b9811a265a1a0d8dfbccc2ae1d

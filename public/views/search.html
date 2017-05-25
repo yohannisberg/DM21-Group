@@ -1,0 +1,12 @@
+<nav-bar></nav-bar>
+
+
+
+<div class="searchVideosWrapper" ng-repeat="stuff in videos">
+<img class='searchImage' ng-src='{{stuff.pictures.sizes[3].link}}'>
+<div>{{stuff.name}}</div>
+<div>{{stuff.user.name}}</div>
+<div>{{stuff.stats.plays}}</div>
+</div>
+
+<footer-dir></footer-dir>
