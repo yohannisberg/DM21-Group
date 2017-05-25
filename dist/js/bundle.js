@@ -16,19 +16,17 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('editCtrl', ["$scope", function ($scope) {}]);
+angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
-angular.module('vimeoApp').controller('mainCtrl', ["$scope", function ($scope) {}]);
-'use strict';
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
 
-angular.module('vimeoApp').directive('editvideo', function () {
-
-    return {
-        restrict: "AE",
-        templateUrl: "./views/editvideo.html"
+    $scope.login = function () {
+        mainService.login().then(function (res) {
+            console.log(res);
+        });
     };
-});
+}]);
 'use strict';
 
 angular.module('vimeoApp').directive('footerDir', function () {
@@ -76,6 +74,13 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             method: 'POST',
             data: '',
             url: serverUrl + '/api/comments/' + id
+        });
+    };
+
+    this.login = function () {
+        return $http({
+            method: 'POST',
+            url: serverUrl + '/api/login'
         });
     };
 }]);
