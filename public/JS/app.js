@@ -19,44 +19,11 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: 'views/search.html',
                 controller: 'searchCtrl'
             })
-            .state('edit' ,{
-                url: '/edit',
-                templateUrl: '../views/editvideo.html',
-                controller: 'editCtrl'
+            .state('settings', {
+                url: '/settings',
+                templateUrl: '../views/settings.html',
+                controller: 'settingsCtrl'
             });
-
-            .state('edit' ,{
-                url: '/edit',
-                templateUrl: '../views/editvideo.html',
-                controller: 'editCtrl'
-            });
-
+        
 
           });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    });
->>>>>>> master
