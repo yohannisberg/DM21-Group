@@ -1,5 +1,5 @@
 angular.module('vimeoApp', ["ui.router"])
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/');
 
@@ -19,44 +19,36 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: 'views/search.html',
                 controller: 'searchCtrl'
             })
-            .state('edit' ,{
+            .state('edit', {
                 url: '/edit',
                 templateUrl: '../views/editvideo.html',
                 controller: 'editCtrl'
             });
-
-            .state('edit' ,{
-                url: '/edit',
-                templateUrl: '../views/editvideo.html',
-                controller: 'editCtrl'
-            });
-
-
-          });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     });
->>>>>>> master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

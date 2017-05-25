@@ -6,13 +6,54 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 
     $stateProvider.state('home', {
         url: '/',
-        templateUrl: 'views/home.html',
+        templateUrl: '../views/home.html',
         controller: 'mainCtrl'
+    }).state('userVideos', {
+        url: '/userVideos',
+        templateUrl: 'views/userVideos.html',
+        controller: 'userVideosCtrl'
+    }).state('search', {
+        url: '/search',
+        templateUrl: 'views/search.html',
+        controller: 'searchCtrl'
+    }).state('edit', {
+        url: '/edit',
+        templateUrl: '../views/editvideo.html',
+        controller: 'editCtrl'
     });
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('mainCtrl', ["$scope", function ($scope) {}]);
+angular.module('vimeoApp').controller('editCtrl', ["$scope", function ($scope) {}]);
+'use strict';
+
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
+
+    $scope.login = function () {
+        mainService.login().then(function (res) {
+
+            $scope.data = res.data;
+            console.log($scope.data);
+        });
+    };
+    $scope.login();
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", function ($scope, mainService) {
+
+  function test() {
+    mainService.searchVideos('cat').then(function (response) {
+      console.log(response.data.data);
+      $scope.videos = response.data.data;
+    });
+  }
+
+  test();
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
 angular.module('vimeoApp').directive('footerDir', function () {
@@ -36,10 +77,17 @@ angular.module('vimeoApp').directive('navBar', function () {
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var serverUrl = 'http://localhost:3001';
-    this.searchVideos = function () {
+    // this.searchVideos = () => {
+    //     return $http({
+    //         method: 'GET',
+    //         url: serverUrl + '/api/videos/'
+    //     })
+    // };
+
+    this.searchVideos = function (query) {
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/'
+            url: serverUrl + '/api/videos?search=' + query
         });
     };
 
@@ -60,6 +108,14 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             method: 'POST',
             data: '',
             url: serverUrl + '/api/comments/' + id
+        });
+    };
+
+    this.login = function () {
+        return $http({
+
+            method: 'GET',
+            url: serverUrl + '/api/login'
         });
     };
 }]);

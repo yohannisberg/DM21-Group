@@ -62,12 +62,3 @@ gulp.task('default' , ['watch' , 'build']);
 
 
 
-<<<<<<< HEAD
-//This is the last time I commited --- End of day 6-24-17
-
-
-
-
-=======
-//This is the last time I commited --- End of day 6-23-17
->>>>>>> 1f63f62ac6d614b9811a265a1a0d8dfbccc2ae1d
