@@ -25,6 +25,12 @@ angular.module('vimeoApp', ["ui.router"])
                 controller: 'editCtrl'
             });
 
+            .state('edit' ,{
+                url: '/edit',
+                templateUrl: '../views/editvideo.html',
+                controller: 'editCtrl'
+            });
+
 
           });
 
