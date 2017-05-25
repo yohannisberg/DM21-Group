@@ -39,6 +39,7 @@ gulp.task('build-js', function () {
         .pipe(gulp.dest('./dist/js'));
 });
 
+
 gulp.task('build', ['views', 'build-css', 'build-js'], function () {
     return gulp.src('./public/index.html')
         .pipe(cachebust.references())
