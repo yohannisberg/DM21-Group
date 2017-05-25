@@ -31,6 +31,7 @@ app.get('/api/videos/:id', vimeoCtrl.getVideoById);
 app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/upload', vimeoCtrl.uploadVideo);
 app.post('/api/comments/:id', vimeoCtrl.addComents);
+app.post('/api/login', vimeoCtrl.generateToken);
 // app.get('/api/login', auth.login);
 
 app.listen(config.port, () => {
