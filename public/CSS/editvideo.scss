@@ -1,1 +1,53 @@
-8
+.total-container {
+    background: purple;
+    // color:white;
+    width:80%;
+    display:flex;
+    justify-content: center;
+    }
+
+.top-banner {
+    background:yellowgreen;
+    // color:white;
+
+    .title {
+        background: lightgreen;
+        // color:white;
+
+        .subtitle {
+            background:teal;
+            // color:white;
+
+
+        }
+    }
+}
+
+
+
+
+
+.main-container {
+
+    .top-menu {
+        ul {
+            background:yellow;
+            // color:white;
+        }
+        li {
+            background:pink;
+            // color:white;
+        }
+}
+
+    .sort-container {
+        ul {
+            background:red;
+            // color:white;
+        }
+        li {
+            background:orange;
+            // color:white;
+            }
+    }
+}
