@@ -31,7 +31,6 @@ module.exports = {
 
     getVideos: (req, res) => {
         let makeRequest = function (lib) {
-
             return lib.request({
                 path: `/videos?query=${req.query.search}`,
                 query: {
@@ -42,14 +41,14 @@ module.exports = {
                     console.log('error');
                     console.log(error);
                 } else {
-                    console.log('body');
-                    console.log(body);
+                    // console.log('body');
+                    // console.log(body);
                     return res.status(200).send(body);
                 }
-                console.log('status code');
-                console.log(status_code);
-                console.log('headers');
-                console.log(headers);
+                // console.log('status code');
+                // console.log(status_code);
+                // console.log('headers');
+                // console.log(headers);
             })
 
         }
@@ -249,4 +248,3 @@ module.exports = {
         }
     }
 }
-
