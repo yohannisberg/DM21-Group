@@ -1,24 +1,26 @@
-* {
-  text-decoration: none;
-  list-style: none; }
-
 .main-footer {
   width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 0;
   margin-top: 50px;
-  background: blue; }
+  background: #F2F4F5; }
   .main-footer ul {
-    padding: 0;
-    background: silver; }
-
-li {
-  color: orange; }
+    background: #F2F4F5; }
+    .main-footer ul li {
+      list-style: none;
+      margin-bottom: 10px; }
+      .main-footer ul li a {
+        text-decoration: none;
+        color: black; }
 
 .upper-footer {
-  width: 100%; }
+  width: 100%;
+  padding: 25px 30px;
+  background-color: #F2F4F5;
+  border-top: 1px solid #D0D8DB;
+  border-bottom: 1px solid #D0D8DB;
+  box-sizing: border-box; }
 
 .title {
   font-size: 25px;
@@ -31,18 +33,70 @@ li {
 
 .footer-left {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  padding: 0; }
 
 .footer-linklist {
   float: left;
-  width: calc(100% / 3); }
+  width: 25%; }
 
 .listlink-box {
-  width: 60%; }
+  width: 40%; }
 
 .bottom-footer {
   clear: left;
   text-align: center; }
+
+.footer-box {
+  position: relative;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  float: right;
+  width: 340px;
+  min-height: 147px;
+  margin: 2%;
+  background-color: #F2F4F5;
+  border-top: 1px solid #D0D8DB;
+  border-bottom: 1px solid #D0D8DB;
+  box-sizing: border-box; }
+  .footer-box .footer-title {
+    margin: 15px; }
+  .footer-box .footer-subtitle {
+    margin: 15px; }
+
+.lower-outer-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row; }
+
+.lower-bar-left {
+  width: 50%;
+  margin: 0px; }
+
+.lower-link-left {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  font-size: 10px;
+  padding: 5px;
+  width: 70%; }
+  .lower-link-left a {
+    display: flex; }
+
+.lower-bar-right {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%; }
+
+.lower-link-right {
+  display: flex;
+  justify-content: space-around;
+  width: 25%;
+  margin: 10px;
+  font-size: 10px;
+  padding: 5px; }
 
 * {
   list-style: none;

@@ -1,10 +1,7 @@
 const vimeo_module = require('./lib/vimeo'),
     Vimeo = vimeo_module.Vimeo,
     config = require('./config'),
-    lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET);
-
-
-
+    lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET, config.access_token);
 
 // Here we have to build the vimeo library using the client_id, client_secret and an access token
 // For the request we make below (/channels) the access token can be a client access token instead of a user access token.
