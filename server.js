@@ -31,7 +31,10 @@ app.get('/api/videos/:id', vimeoCtrl.getVideoById);
 app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/upload', vimeoCtrl.uploadVideo);
 app.post('/api/comments/:id', vimeoCtrl.addComents);
-// app.get('/api/login', auth.login);
+
+app.post('/api/login', auth.login);
+
+
 
 app.listen(config.port, () => {
     console.log('listening on port 3001')
