@@ -1,33 +1,11 @@
 const vimeo_module = require('./lib/vimeo'),
     Vimeo = vimeo_module.Vimeo,
     config = require('./config'),
-    lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET),
     axios = require('axios'),
-    headers = "Authorization : basic " + (config.CLIENT_ID + ":" + config.CLIENT_SECRET),
-    options = {
-        url1: `https://api.vimeo.com/oauth/authorize/?client_id=${config.CLIENT_ID}&response_type=code&redirect_uri=home.html&state=dude`,
-        url2: `https://api.vimeo.com/oauth/access_token?grant_type=authorization_code&redirect_uri=home.html`,
-        method: 'POST',
-        headers: headers,
-    }
+    lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET, config.access_token);
 
-
-// Here we have to build the vimeo library using the client_id, client_secret and an access token
-// For the request we make below (/channels) the access token can be a client access token instead of a user access token.
 
 module.exports = {
-    generateToken: (req, res) => {
-        res.send(axios.post(options.url1, options.headers).then(response => {
-            console.log(response);
-            // axios.post(`${options.url2} + &code=${response.data}` , options.headers).then(response2 => {
-            //     console.log(response2);
-            // });
-        }));
-    },
-    exchangeToken: (req, res) => {
-        res.send();
-    },
-
 
     getVideos: (req, res) => {
         let makeRequest = function (lib) {
@@ -38,17 +16,10 @@ module.exports = {
                 }
             }, function (error, body, status_code, headers) {
                 if (error) {
-                    console.log('error');
                     console.log(error);
                 } else {
-                    // console.log('body');
-                    // console.log(body);
                     return res.status(200).send(body);
                 }
-                // console.log('status code');
-                // console.log(status_code);
-                // console.log('headers');
-                // console.log(headers);
             })
 
         }
@@ -62,7 +33,6 @@ module.exports = {
                 if (err) {
                     res.status(404).send(err);
                 }
-                // Assign the access token to the library
                 lib.access_token = access_token.access_token;
                 makeRequest(lib);
 
@@ -112,9 +82,29 @@ module.exports = {
             });
         }
 
-    },
-    uploadVideo: (req, res) => {
 
+
+
+        // var file_path = process.argv[2];
+        // var prev_percentage = -1;
+        // lib.access_token = config.access_token;
+        // lib.streamingUpload(file_path,
+        //     function (err, body, status, headers) {
+        //         if (err) {
+        //             return console.log(err);
+        //         }
+        //         console.log(status);
+        //         console.log(headers.location);
+        //     },
+        //     function (uploaded_size, file_size) {
+        //         var percentage = Math.round((uploaded_size/file_size) * 100);
+        //
+        //         if (percentage != prev_percentage) {
+        //             console.log(percentage + '%' + ' uploaded\n');
+        //             prev_percentage = percentage;
+        //         }
+        //     }
+        // );
     },
     getComments: (req, res) => {
         let makeRequest = function (lib) {

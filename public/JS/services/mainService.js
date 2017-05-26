@@ -43,9 +43,11 @@ angular.module('vimeoApp').service('mainService', function ($http) {
 
     this.login = () => {
         return $http({
-            method: 'POST',
+
+            method: 'GET',
             url: serverUrl + '/api/login'
         })
     }
 
 });
+

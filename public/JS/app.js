@@ -1,5 +1,5 @@
 angular.module('vimeoApp', ["ui.router"])
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/');
 
@@ -30,5 +30,30 @@ angular.module('vimeoApp', ["ui.router"])
                 controller: 'playVideoCtrl'
             })
 
+    });
 
-          });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> master
