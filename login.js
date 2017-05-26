@@ -5,12 +5,10 @@ const vimeo_module = require('./lib/vimeo'),
     state = 'test',
     axios = require('axios'),
     redirect_uri = config.redirect_uri,
-    lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET, config.access_token),
-    scopes = ['public', 'private', 'edit', 'interact'],
+    lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET),
+    scopes = ['public', 'private', 'purchased', 'create', 'edit', 'delete', 'interact', 'upload'],
     url = lib.buildAuthorizationEndpoint(redirect_uri, scopes, state),
     base64 = require('base-64').encode;
-
-console.log(base64);
 
 module.exports = {
 
@@ -24,17 +22,39 @@ module.exports = {
             data: {
                 grant_type: 'authorization_code',
                 code: req.query.code,
-                redirect_uri: redirect_uri,
+                redirect_uri: redirect_uri
             },
             headers: {Authorization : "basic " + base64(config.CLIENT_ID + ":" + config.CLIENT_SECRET)}
         }).then(function(response) {
-            // console.log('response:\n\n',response);
+             // console.log('response:\n\n',response);
+             console.log(response.data.access_token);
             res.redirect('http://localhost:3001');
-
         }).catch(function (error) {
                  console.log('error:\n\n', error);
             });
-    }
+    },
+    // uploadVideo: (req, res) => {
+    //     axios({
+    //         method: 'post',
+    //         url: 'https://api.vimeo.com/me/videos',
+    //         data: {
+    //             type: 'pull',
+    //             link: 'https://www.youtube.com/watch?v=HzgCub_7cA8',
+    //             access_token: token
+    //         }
+    //     }).then(res => {
+    //         console.log(res);
+    //     }).catch(function (error) {
+    //         console.log('error:\n\n', error);
+    //     });
+    // }
+    // uploadVideo: (req, res) => {
+    //     axios({
+    //         method: 'get',
+    //         url: `https://api.vimeo.com/tokens`
+    //     })
+    // }
+
 }
 
 
