@@ -16,15 +16,19 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         url: '/search',
         templateUrl: 'views/search.html',
         controller: 'searchCtrl'
-    }).state('edit', {
-        url: '/edit',
-        templateUrl: '../views/editvideo.html',
-        controller: 'editCtrl'
+    }).state('settings', {
+        url: '/settings',
+        templateUrl: '../views/settings.html',
+        controller: 'settingsCtrl'
+    }).state('play', {
+        url: '/playvideo',
+        templateUrl: '../views/playVid.html',
+        controller: 'playVidCtrl'
     });
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('editCtrl', ["$scope", function ($scope) {}]);
+angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
 angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
@@ -40,6 +44,12 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
 }]);
 'use strict';
 
+angular.module('vimeoApp').controller('playVidCtrl', ["$scope", "mainService", function ($scope, mainService) {
+
+  $scope.videos = [1, 2];
+}]);
+'use strict';
+
 angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", function ($scope, mainService) {
 
   function test() {
@@ -51,6 +61,7 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", fu
 
   test();
 }]);
+"use strict";
 'use strict';
 
 angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", function ($scope) {}]);

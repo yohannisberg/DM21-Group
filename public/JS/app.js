@@ -23,7 +23,13 @@ angular.module('vimeoApp', ["ui.router"])
                 url: '/settings',
                 templateUrl: '../views/settings.html',
                 controller: 'settingsCtrl'
+            })
+            .state('play', {
+                url: '/playvideo',
+                templateUrl: '../views/playVid.html',
+                controller: 'playVidCtrl'
             });
+          
         
-
-          });
+    
+});
