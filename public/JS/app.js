@@ -56,4 +56,4 @@ angular.module('vimeoApp', ["ui.router"])
 
 
 
->>>>>>> master
+

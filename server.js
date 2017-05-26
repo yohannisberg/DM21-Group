@@ -32,9 +32,8 @@ app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/comments/:id', vimeoCtrl.addComents);
 app.get('/api/login', auth.login);
 app.get('/api/callback', auth.callback);
-// app.get('/api/currentuser', auth.uploadVideo);
-// app.get('/api/currentuser', auth.getUser);
-//  app.post('/api/upload', vimeoCtrl.uploadVideo);
+app.get('/api/currentuser', auth.getUser);
+app.get('/api/upload', vimeoCtrl.uploadVideo);
 
 
 // app.get('/api/info', (req, res) => {
@@ -43,8 +42,6 @@ app.get('/api/callback', auth.callback);
 //         url: ''
 //     })
 // })
-
-
 
 
 app.listen(config.port, () => {

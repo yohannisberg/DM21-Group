@@ -10,11 +10,12 @@ module.exports = {
     getVideos: (req, res) => {
         let makeRequest = function (lib) {
             return lib.request({
-                path: `/videos?query=${req.query.search}`,
+                path: `/videos`,
                 query: {
-                    per_page: 10
+                    per_page: 10,
+                    query: req.query.search
                 }
-            }, function (error, body, status_code, headers) {
+            }, function (error, body) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -51,17 +52,10 @@ module.exports = {
                 }
             }, function (error, body, status_code, headers) {
                 if (error) {
-                    console.log('error');
                     console.log(error);
                 } else {
-                    console.log('body');
-                    console.log(body);
                     return res.status(200).send(body);
                 }
-                console.log('status code');
-                console.log(status_code);
-                console.log('headers');
-                console.log(headers);
             })
 
         }
@@ -70,41 +64,30 @@ module.exports = {
             makeRequest(lib);
         }
         else {
-            // Unauthenticated api requests must request an access token. You should not request a new access token for each request, you should request an access token once and use it over and over.
             lib.generateClientCredentials('public', function (err, access_token) {
                 if (err) {
                     res.status(404).send(err);
                 }
-                // Assign the access token to the library
                 lib.access_token = access_token.access_token;
                 makeRequest(lib);
 
             });
         }
-
-
-
-
-        // var file_path = process.argv[2];
-        // var prev_percentage = -1;
-        // lib.access_token = config.access_token;
-        // lib.streamingUpload(file_path,
-        //     function (err, body, status, headers) {
-        //         if (err) {
-        //             return console.log(err);
-        //         }
-        //         console.log(status);
-        //         console.log(headers.location);
-        //     },
-        //     function (uploaded_size, file_size) {
-        //         var percentage = Math.round((uploaded_size/file_size) * 100);
-        //
-        //         if (percentage != prev_percentage) {
-        //             console.log(percentage + '%' + ' uploaded\n');
-        //             prev_percentage = percentage;
-        //         }
-        //     }
-        // );
+    },
+    uploadVideo: (req, res) => {
+        axios({
+            method: 'post',
+            url: 'https://api.vimeo.com/me/videos',
+            data: {
+                type: 'pull',
+                link: 'https://www.youtube.com/watch?v=HzgCub_7cA8',
+                headers: {Authorization: `Bearer ${req.session.access_token}`}
+            }
+        }).then(res => {
+            console.log(res);
+        }).catch(function (error) {
+            console.log('error:\n\n', error);
+        });
     },
     getComments: (req, res) => {
         let makeRequest = function (lib) {

@@ -3,18 +3,22 @@ angular.module('vimeoApp').service('mainService', function ($http) {
 
     this.videoData='';
 
-    this.searchedVideo=function(data){
-      this.videoData=data;
+    this.searchedVideo = function(data){
+      this.videoData = data;
+    }
+    this.id = '';
+
+    this.getId = (id) => {
+        this.id = id;
     }
 
     this.video='';
 
-    this.clickedVideo=function(videoLink){
-      this.video=videoLink;
+    this.clickedVideo = function(videoLink){
+      this.video = videoLink;
     }
 
     this.searchVideos = (query) => {
-      console.log(query)
         return $http({
             method: 'GET',
             url: serverUrl + '/api/videos?search=' + query
@@ -43,11 +47,11 @@ angular.module('vimeoApp').service('mainService', function ($http) {
 
     this.login = () => {
         return $http({
-
             method: 'GET',
             url: serverUrl + '/api/login'
         })
     }
+
 
 });
 

@@ -3,40 +3,40 @@
 <!-- <iframe src="https://player.vimeo.com/video/130695665" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
 
 <div class='searchPageWrapper'>
-<div class='searchLeftWrapper'>
+	<div class='searchLeftWrapper'>
 
-  <div class='searchleftTitles'>Show results for</div>
-  <form>
-    <input type="radio" name="chooseone" value="HTML">
-    <label class='searchLeftList' for="Videos"> Videos</label>
-    <br>
-    <input type="radio" name="chooseone" value="CSS">
-    <label class='searchLeftList' for="On Demand"> On Demand</label>
-    <br>
-    <input type="radio" name="chooseone" value="JS">
-    <label class='searchLeftList' for="People"> People</label>
-    <br>
-    <input type="radio" name="chooseone" value="PHP">
-    <label class='searchLeftList' for="Channels"> Channels</label>
-    <br>
-    <input type="radio" name="chooseone" value="Ruby">
-    <label class='searchLeftList' for="Groups"> Groups</label>
-  </form>
-  <div class='searchBorder'></div>
-
-
-</div>
+		<div class='searchleftTitles'>Show results for</div>
+		<form>
+			<input type="radio" name="chooseone" value="HTML">
+			<label class='searchLeftList' for="Videos"> Videos</label>
+			<br>
+			<input type="radio" name="chooseone" value="CSS">
+			<label class='searchLeftList' for="On Demand"> On Demand</label>
+			<br>
+			<input type="radio" name="chooseone" value="JS">
+			<label class='searchLeftList' for="People"> People</label>
+			<br>
+			<input type="radio" name="chooseone" value="PHP">
+			<label class='searchLeftList' for="Channels"> Channels</label>
+			<br>
+			<input type="radio" name="chooseone" value="Ruby">
+			<label class='searchLeftList' for="Groups"> Groups</label>
+		</form>
+		<div class='searchBorder'></div>
 
 
-<div class='searchRightWrapper'>
+	</div>
 
-<div class="searchVideos" ng-repeat="stuff in videos" ng-click="playVideo(stuff.embed.html)">
-<img class='searchImage' ng-src='{{stuff.pictures.sizes[3].link}}'>
-<div class='vidName'>{{stuff.name}}</div>
-<div>{{stuff.user.name}}</div>
-<div>{{stuff.stats.plays}}</div>
-</div>
-</div>
+
+	<div class='searchRightWrapper'>
+
+		<div class="searchVideos" ng-repeat="stuff in videos" ng-click="playVideo(stuff.embed.html); getVideoID(stuff.uri)">
+			<img class='searchImage' ng-src='{{stuff.pictures.sizes[3].link}}'>
+			<div class='vidName'>{{stuff.name}}</div>
+			<div>{{stuff.user.name}}</div>
+			<div>{{stuff.stats.plays}}</div>
+		</div>
+	</div>
 
 </div>
 
