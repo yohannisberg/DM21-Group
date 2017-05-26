@@ -1,13 +1,20 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
     let serverUrl = 'http://localhost:3001'
-    // this.searchVideos = () => {
-    //     return $http({
-    //         method: 'GET',
-    //         url: serverUrl + '/api/videos/'
-    //     })
-    // };
+
+    this.videoData='';
+
+    this.searchedVideo=function(data){
+      this.videoData=data;
+    }
+
+    this.video='';
+
+    this.clickedVideo=function(videoLink){
+      this.video=videoLink;
+    }
 
     this.searchVideos = (query) => {
+      console.log(query)
         return $http({
             method: 'GET',
             url: serverUrl + '/api/videos?search=' + query
