@@ -11,15 +11,15 @@ module.exports = {
             return lib.request({
                 path: `/videos`,
                 query: {
+                    page: req.params.id,
                     per_page: 10,
-                    query: req.query.search
-                }
+                    query: req.query.search,
+                    sort : 'relevant',
+                    direction: 'asc'
+                },
             }, (error, body) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    return res.status(200).send(body);
-                }
+                return !error ? res.status(200).send(body) : console.log(error);
+                console.log(body);
             })
         }
         if (config.access_token) {
@@ -45,11 +45,7 @@ module.exports = {
                     per_page: 10
                 }
             }, (error, body) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    return res.status(200).send(body);
-                }
+                return !error ? res.status(200).send(body) : console.log(error);
             })
         }
         if (config.access_token) {
@@ -90,11 +86,7 @@ module.exports = {
                     per_page: 10
                 }
             }, (error, body) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    return res.status(200).send(body);
-                }
+                return !error ? res.status(200).send(body) : console.log(error);
             })
         }
         if (config.access_token) {
@@ -119,11 +111,7 @@ module.exports = {
                     per_page: 1
                 }
             }, (error, body) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    return res.status(200).send(body);
-                }
+                return !error ? res.status(200).send(body) : console.log(error);
             })
         }
         if (config.access_token) {

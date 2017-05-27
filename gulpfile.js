@@ -45,8 +45,6 @@ gulp.task('images', () => {
 });
 
 gulp.task('build', ['views', 'build-css', 'build-js', 'images'], function () {
-
-
     return gulp.src('./public/index.html')
         .pipe(cachebust.references())
         .pipe(gulp.dest('dist'));

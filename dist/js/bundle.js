@@ -46,7 +46,7 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 
     $scope.searchQuery = function (query) {
         $state.go('home');
-        mainService.searchVideos(query).then(function (response) {
+        mainService.searchVideos(1, query).then(function (response) {
             mainService.searchedVideo(response.data.data);
             $state.go('search');
             $scope.query = '';
@@ -77,25 +77,24 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
 
     function test2() {
         $scope.videos = mainService.videoData;
-        console.log($scope.videos);
     }
     test2();
 
-    // function test(){
-    //   mainService.searchVideos().then(function(response){
-    //     $scope.videos=response.data.data;
-    // })
-    // }
-    // test()
-
     $scope.getVideoID = function (id) {
-        console.log(id);
         mainService.getId(id);
     };
 
     $scope.playVideo = function (videoLink) {
         mainService.clickedVideo(videoLink);
         $state.go('playVideo');
+    };
+    var query = void 0;
+
+    $scope.page = function (num) {
+        query = mainService.query;
+        mainService.searchVideos(num, query).then(function (res) {
+            $scope.videos = res.data.data;
+        });
     };
 }]);
 'use strict';
@@ -127,31 +126,25 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var _this = this;
 
     var serverUrl = 'http://localhost:3001';
-
     this.videoData = '';
-
     this.searchedVideo = function (data) {
         this.videoData = data;
     };
     this.id = '';
-
     this.getId = function (id) {
         _this.id = id;
     };
-
     this.video = '';
-
     this.clickedVideo = function (videoLink) {
         this.video = videoLink;
     };
-
-    this.searchVideos = function (query) {
+    this.searchVideos = function (page, query) {
+        _this.query = query;
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos?search=' + query
+            url: serverUrl + '/api/videos/' + page + '?search=' + query
         });
     };
-
     this.getVideoById = function (id) {
         return $http({
             method: 'GET',
@@ -171,7 +164,6 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             url: serverUrl + '/api/comments/' + id
         });
     };
-
     this.login = function () {
         return $http({
             method: 'GET',

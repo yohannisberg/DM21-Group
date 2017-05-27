@@ -37,7 +37,6 @@ module.exports = {
         }).then(response => {
             req.session.user = response.data.user;
             let usersName = req.session.user.name;
-            console.log(db);
             db.add_user([usersName], (err,result) => {
                 err ? console.log(err) : console.log(result);
             })

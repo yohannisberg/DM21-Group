@@ -1,8 +1,8 @@
 angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainService, $state) {
 
-    $scope.searchQuery = function (query) {
+    $scope.searchQuery = query => {
         $state.go('home');
-        mainService.searchVideos(query).then(function (response) {
+        mainService.searchVideos(1, query).then(response => {
             mainService.searchedVideo(response.data.data);
             $state.go('search');
             $scope.query = '';
