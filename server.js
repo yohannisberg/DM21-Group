@@ -1,14 +1,10 @@
 const express = require('express'),
-    config = require('./config'),
-    // massive = require('massive'),
+    app = module.exports = express(),
+    config = require('./config.js'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
-    // connString = config.MASSIVE_URI,
-    // massiveInstance = massive.connectSync({connectionString: connString}),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    app = express(),
-    axios = require('axios'),
     vimeoCtrl = require('./vimeoCtrl'),
     auth = require('./login');
 
@@ -22,6 +18,7 @@ app.use(session({
     saveUninitialized: true,
     rolling: true
 }))
+
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
