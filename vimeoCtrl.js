@@ -77,7 +77,7 @@ module.exports = {
                 headers: {Authorization: `Bearer ${req.session.access_token}`}
             }
         }).then(res => {
-
+            console.log(res);
         }).catch(function (error) {
             console.log(error);
         });

@@ -52,6 +52,11 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
             $scope.query = '';
         });
     };
+    $scope.getUser = function () {
+        mainService.getUser().then(function (res) {
+            console.log(res.data); //res.data is the currently logged-in user's info
+        });
+    };
 }]);
 'use strict';
 
@@ -171,6 +176,12 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/login'
+        });
+    };
+    this.getUser = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/currentuser'
         });
     };
 }]);

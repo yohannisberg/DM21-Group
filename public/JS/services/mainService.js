@@ -50,6 +50,12 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             method: 'GET',
             url: serverUrl + '/api/login'
         })
+    };
+    this.getUser = () => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/currentuser'
+        })
     }
 
 
