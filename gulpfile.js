@@ -10,7 +10,7 @@ let gulp = require('gulp')
     , uglify = require('gulp-uglify')
     , ngAnnotate = require('gulp-ng-annotate')
 
-gulp.task('views' , function (){
+gulp.task('views', function () {
     return gulp.src('./public/views/**/*')
         .pipe(gulp.dest('./dist/views'))
 
@@ -40,8 +40,8 @@ gulp.task('build-js', function () {
 });
 
 gulp.task('images', () => {
-  gulp.src('./public/IMAGES/**/*')
-  .pipe(gulp.dest('./dist/images'));
+    gulp.src('./public/IMAGES/**/*')
+        .pipe(gulp.dest('./dist/images'));
 });
 
 gulp.task('build', ['views', 'build-css', 'build-js', 'images'], function () {
@@ -57,4 +57,4 @@ gulp.task('watch', function () {
 });
 
 
-gulp.task('default' , ['watch' , 'build']);
+gulp.task('default', ['watch', 'build']);

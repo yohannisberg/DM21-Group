@@ -20,6 +20,10 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         url: '/edit',
         templateUrl: '../views/editvideo.html',
         controller: 'editCtrl'
+    }).state('playVideo', {
+        url: '/playVideo',
+        templateUrl: 'views/playVideo.html',
+        controller: 'playVideoCtrl'
     });
 }]);
 'use strict';
@@ -31,25 +35,68 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
 
     $scope.login = function () {
         mainService.login().then(function (res) {
-
             $scope.data = res.data;
-            console.log($scope.data);
         });
     };
     $scope.login();
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
-  function test() {
-    mainService.searchVideos('cat').then(function (response) {
-      console.log(response.data.data);
-      $scope.videos = response.data.data;
+    $scope.searchQuery = function (query) {
+        $state.go('home');
+        mainService.searchVideos(query).then(function (response) {
+            mainService.searchedVideo(response.data.data);
+            $state.go('search');
+            $scope.query = '';
+        });
+    };
+    $scope.getUser = function () {
+        mainService.getUser().then(function (res) {
+            console.log(res.data); //res.data is the currently logged-in user's info
+        });
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('playVideoCtrl', ["$scope", "mainService", function ($scope, mainService) {
+    $scope.video = mainService.video;
+
+    var id = mainService.id.replace(/\D/g, '');
+
+    mainService.getComments(id).then(function (res) {
+        $scope.comments = res.data.data;
+        console.log($scope.comments);
     });
-  }
+    document.querySelector(".videoHolder").innerHTML = $scope.video;
+}]);
+'use strict';
 
-  test();
+angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+
+    function test2() {
+        $scope.videos = mainService.videoData;
+        console.log($scope.videos);
+    }
+    test2();
+
+    // function test(){
+    //   mainService.searchVideos().then(function(response){
+    //     $scope.videos=response.data.data;
+    // })
+    // }
+    // test()
+
+    $scope.getVideoID = function (id) {
+        console.log(id);
+        mainService.getId(id);
+    };
+
+    $scope.playVideo = function (videoLink) {
+        mainService.clickedVideo(videoLink);
+        $state.go('playVideo');
+    };
 }]);
 'use strict';
 
@@ -70,19 +117,33 @@ angular.module('vimeoApp').directive('navBar', function () {
   return {
     restrict: 'E',
     templateUrl: './views/navBar.html',
-    link: function link(scope) {}
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
   };
 });
 'use strict';
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
+    var _this = this;
+
     var serverUrl = 'http://localhost:3001';
-    // this.searchVideos = () => {
-    //     return $http({
-    //         method: 'GET',
-    //         url: serverUrl + '/api/videos/'
-    //     })
-    // };
+
+    this.videoData = '';
+
+    this.searchedVideo = function (data) {
+        this.videoData = data;
+    };
+    this.id = '';
+
+    this.getId = function (id) {
+        _this.id = id;
+    };
+
+    this.video = '';
+
+    this.clickedVideo = function (videoLink) {
+        this.video = videoLink;
+    };
 
     this.searchVideos = function (query) {
         return $http({
@@ -113,9 +174,14 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
 
     this.login = function () {
         return $http({
-
             method: 'GET',
             url: serverUrl + '/api/login'
+        });
+    };
+    this.getUser = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/currentuser'
         });
     };
 }]);

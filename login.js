@@ -8,8 +8,8 @@ const vimeo_module = require('./lib/vimeo'),
     lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET),
     scopes = ['public', 'private', 'purchased', 'create', 'edit', 'delete', 'interact', 'upload'],
     url = lib.buildAuthorizationEndpoint(redirect_uri, scopes, state),
-    base64 = require('base-64').encode;
-
+    base64 = require('base-64').encode,
+    url2 = `https://api.vimeo.com/oauth/authorize?client_id=${config.CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&state=${state}`;
 module.exports = {
 
     login: (req, res) => {
@@ -24,43 +24,27 @@ module.exports = {
                 code: req.query.code,
                 redirect_uri: redirect_uri
             },
-            headers: {Authorization : "basic " + base64(config.CLIENT_ID + ":" + config.CLIENT_SECRET)}
-        }).then(function(response) {
-             // console.log('response:\n\n',response);
-             console.log(response.data.access_token);
+            headers: {Authorization: "basic " + base64(config.CLIENT_ID + ":" + config.CLIENT_SECRET)}
+        }).then(response => {
+            req.session.user = response.data.user;
+            req.session.access_token = response.data.access_token;
             res.redirect('http://localhost:3001');
-        }).catch(function (error) {
-                 console.log('error:\n\n', error);
-            });
+        }).catch(error => {
+            console.log(error);
+        });
     },
-    // uploadVideo: (req, res) => {
-    //     axios({
-    //         method: 'post',
-    //         url: 'https://api.vimeo.com/me/videos',
-    //         data: {
-    //             type: 'pull',
-    //             link: 'https://www.youtube.com/watch?v=HzgCub_7cA8',
-    //             access_token: token
-    //         }
-    //     }).then(res => {
-    //         console.log(res);
-    //     }).catch(function (error) {
-    //         console.log('error:\n\n', error);
-    //     });
-    // }
-    // uploadVideo: (req, res) => {
-    //     axios({
-    //         method: 'get',
-    //         url: `https://api.vimeo.com/tokens`
-    //     })
-    // }
-
+    getUser: (req, res) => {
+        axios({
+            method: 'get',
+            headers: {Authorization: `Bearer ${req.session.access_token}`},
+            url: 'https://api.vimeo.com/me'
+        }).then(response => {
+            res.json(req.session.user);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 }
-
-
-
-
-
 
 
 // module.exports = {
