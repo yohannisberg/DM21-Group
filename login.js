@@ -14,7 +14,6 @@ module.exports = {
 
     login: (req, res) => {
         res.send(url);
-
     },
     callback: (req, res) => {
         axios({
@@ -26,12 +25,11 @@ module.exports = {
                 redirect_uri: redirect_uri
             },
             headers: {Authorization: "basic " + base64(config.CLIENT_ID + ":" + config.CLIENT_SECRET)}
-        }).then(function (response) {
-            console.log(response.data);
+        }).then(response => {
             req.session.access_token = response.data.access_token;
             res.redirect('http://localhost:3001');
-        }).catch(function (error) {
-            console.log('error:\n\n', error);
+        }).catch(error => {
+            console.log(error);
         });
     },
     getUser: (req, res) => {
@@ -40,10 +38,9 @@ module.exports = {
             headers: {Authorization: `Bearer ${req.session.access_token}`},
             url: 'https://api.vimeo.com/me'
         }).then(resp => {
-            console.log(resp);
             res.send(resp.data);
-        }).catch(function (error) {
-            console.log('error:\n\n', error);
+        }).catch(error => {
+            console.log(error);
         });
     }
 }

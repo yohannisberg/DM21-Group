@@ -36,14 +36,6 @@ app.get('/api/currentuser', auth.getUser);
 app.get('/api/upload', vimeoCtrl.uploadVideo);
 
 
-// app.get('/api/info', (req, res) => {
-//     axios({
-//         method: 'get',
-//         url: ''
-//     })
-// })
-
-
 app.listen(config.port, () => {
     console.log('listening on port 3001')
 })
