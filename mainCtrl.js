@@ -39,7 +39,7 @@ module.exports = {
             let usersName = req.session.user.name;
             console.log(db);
             db.add_user([usersName], (err,result) => {
-                console.log(result);
+                err ? console.log(err) : console.log(result);
             })
             req.session.access_token = response.data.access_token;
             res.redirect('http://localhost:3001');
