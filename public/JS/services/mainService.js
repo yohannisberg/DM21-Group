@@ -1,5 +1,5 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
-    let serverUrl = 'http://localhost:3001'
+    let serverUrl = 'http://localhost:3005'
     this.videoData = '';
     this.searchedVideo = function (data) {
         this.videoData = data;

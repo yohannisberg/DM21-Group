@@ -5,21 +5,18 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
     }
     test2();
 
-    $scope.getVideoID = (id) => {
+    $scope.getVideoID = id => {
         mainService.getId(id);
     }
 
-    $scope.playVideo = function (videoLink) {
+    $scope.playVideo = videoLink => {
         mainService.clickedVideo(videoLink);
         $state.go('playVideo')
     }
-    let query;
 
-    $scope.page = (num) => {
-        query = mainService.query;
-        mainService.searchVideos(num, query).then(res => {
+    $scope.page = num => {
+        mainService.searchVideos(num, mainService.query).then(res => {
             $scope.videos = res.data.data
         })
     }
-
 });

@@ -3,7 +3,7 @@ const vimeo_module = require('./lib/vimeo'),
     config = require('./config'),
     axios = require('axios'),
     lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET, config.access_token),
-    redirect_url = 'http://localhost:3001';
+    redirect_url = `http://localhost:${config.port}`;
 
 module.exports = {
     getVideos: (req, res) => {
@@ -12,14 +12,13 @@ module.exports = {
                 path: `/videos`,
                 query: {
                     page: req.params.id,
-                    per_page: 10,
+                    per_page: 12,
                     query: req.query.search,
                     sort : 'relevant',
                     direction: 'asc'
                 },
             }, (error, body) => {
                 return !error ? res.status(200).send(body) : console.log(error);
-                console.log(body);
             })
         }
         if (config.access_token) {

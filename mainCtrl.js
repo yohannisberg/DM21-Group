@@ -41,7 +41,7 @@ module.exports = {
                 err ? console.log(err) : console.log(result);
             })
             req.session.access_token = response.data.access_token;
-            res.redirect('http://localhost:3001');
+            res.redirect(`http://localhost:${config.port}`);
         }).catch(error => {
             console.log(error);
         });

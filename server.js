@@ -3,13 +3,12 @@ const express = require('express'),
     config = require('./config.js'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
     session = require('express-session'),
     vimeoCtrl = require('./vimeoCtrl'),
     mainCtrl = require('./mainCtrl');
 
 let corsOptions = {
-    origin: 'http://localhost:3001'
+    origin: `http://localhost:${config.port}`
 }
 app.use(session({
     secret: config.SESSION_SECRET,
@@ -33,5 +32,5 @@ app.get('/api/upload', vimeoCtrl.uploadVideo);
 
 
 app.listen(config.port, () => {
-    console.log('listening on port 3001')
+    console.log(`listening on port ${config.port}`)
 })
