@@ -29,6 +29,11 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: 'views/playVideo.html',
                 controller: 'playVideoCtrl'
             })
+            .state('upload', {
+                url: '/upload',
+                templateUrl: './views/upload.html',
+                controller: 'uploadCtrl'
+            })
 
     });
 

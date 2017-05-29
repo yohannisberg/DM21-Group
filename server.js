@@ -28,7 +28,8 @@ app.post('/api/comments/:id', vimeoCtrl.addComents);
 app.get('/api/login', mainCtrl.login);
 app.get('/api/callback', mainCtrl.callback);
 app.get('/api/currentuser', mainCtrl.getUser);
-app.get('/api/upload', vimeoCtrl.uploadVideo);
+app.post('/api/upload', mainCtrl.uploadVideo);
+app.get('/api/usersvideos', mainCtrl.usersVideos);
 
 
 app.listen(config.port, () => {

@@ -14,6 +14,7 @@ const vimeo_module = require('./lib/vimeo'),
     scopes = ['public', 'private', 'purchased', 'create', 'edit', 'delete', 'interact', 'upload'],
     url = lib.buildAuthorizationEndpoint(redirect_uri, scopes, state),
     url2 = `https://api.vimeo.com/oauth/authorize?client_id=${config.CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&state=${state}`;
+    // video = require('./videos/SampleVideo_1280x720_1mb.mp4');
 
 
 app.set('db', massiveInstance);
@@ -56,5 +57,35 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
-    }
+    },
+    uploadVideo: (req, res) => {
+        axios({
+            method: 'post',
+            headers: {Authorization: `Bearer ${req.session.access_token}`},
+            url: 'https://api.vimeo.com/me/videos',
+            data: {
+                type: 'pull',
+                link: req.body.video,
+            }
+
+        }).then(res => {
+            console.log('yo man', req.body.video);
+            console.log(res);
+        }).catch(error => {
+            console.log('yo man /n/n', req.body.video);
+            console.log(error);
+            console.log(req.session);
+        });
+    },
+    usersVideos: (req, response) => {
+        axios({
+            method: 'get',
+            url: 'https://api.vimeo.com/me/videos',
+            headers: {Authorization: `Bearer ${req.session.access_token}`}
+        }).then(res => {
+            response.send(res.data);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
 }

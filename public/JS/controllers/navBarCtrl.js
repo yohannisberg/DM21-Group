@@ -11,6 +11,7 @@ angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainServic
     $scope.getUser = () => {
         mainService.getUser().then(res => {
             console.log(res.data); //res.data is the currently logged-in user's info
+            $state.go('upload');
         })
     }
 });

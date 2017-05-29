@@ -61,22 +61,7 @@ module.exports = {
             });
         }
     },
-    uploadVideo: (req, res) => {
-        axios({
-            method: 'post',
-            url: 'https://api.vimeo.com/me/videos',
-            data: {
-                type: 'pull',
-                redirect_url: redirect_url,
-                link: 'https://www.youtube.com/watch?v=HzgCub_7cA8',
-                headers: {Authorization: `Bearer ${req.session.access_token}`}
-            }
-        }).then(res => {
-            console.log(res);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    },
+
     getComments: (req, res) => {
         let makeRequest = lib => {
             return lib.request({
