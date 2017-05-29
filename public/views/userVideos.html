@@ -24,8 +24,11 @@
 </div>
 
 <button ng-click="userVideos()">Show Videos</button>
-<div ng-repeat="x in videos">
-  {{x}}
+
+<div class="video" ng-repeat="x in videos">
+  <img class='searchImage' ng-src='{{x.pictures.sizes[3].link}}'>
+  {{videos.indexOf(x)}}
+  <br/>
 </div>
 
 <footer-dir></footer-dir>

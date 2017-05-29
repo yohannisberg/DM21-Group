@@ -11,7 +11,7 @@ angular.module('vimeoApp', ["ui.router"])
             })
             .state('userVideos', {
                 url: '/userVideos',
-                templateUrl: 'views/userVideos.html',
+                templateUrl: './views/userVideos.html',
                 controller: 'userVideosCtrl'
             })
             .state('search', {

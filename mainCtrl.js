@@ -53,7 +53,7 @@ module.exports = {
             headers: {Authorization: `Bearer ${req.session.access_token}`},
             url: 'https://api.vimeo.com/me'
         }).then(response => {
-            res.json(req.session.user);
+            res.status(200).json(req.session.user);
         }).catch(error => {
             console.log(error);
         });
@@ -69,12 +69,9 @@ module.exports = {
             }
 
         }).then(res => {
-            console.log('yo man', req.body.video);
-            console.log(res);
+            console.log(req.body.video);
         }).catch(error => {
-            console.log('yo man /n/n', req.body.video);
             console.log(error);
-            console.log(req.session);
         });
     },
     usersVideos: (req, response) => {
@@ -83,7 +80,7 @@ module.exports = {
             url: 'https://api.vimeo.com/me/videos',
             headers: {Authorization: `Bearer ${req.session.access_token}`}
         }).then(res => {
-            response.send(res.data);
+            response.status(200).send(res.data);
         }).catch(error => {
             console.log(error);
         });
