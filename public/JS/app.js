@@ -11,7 +11,7 @@ angular.module('vimeoApp', ["ui.router"])
             })
             .state('userVideos', {
                 url: '/userVideos',
-                templateUrl: 'views/userVideos.html',
+                templateUrl: './views/userVideos.html',
                 controller: 'userVideosCtrl'
             })
             .state('search', {
@@ -28,6 +28,11 @@ angular.module('vimeoApp', ["ui.router"])
                 url: '/playVideo',
                 templateUrl: 'views/playVideo.html',
                 controller: 'playVideoCtrl'
+            })
+            .state('upload', {
+                url: '/upload',
+                templateUrl: './views/upload.html',
+                controller: 'uploadCtrl'
             })
 
     });

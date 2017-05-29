@@ -1,30 +1,24 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
-    let serverUrl = 'http://localhost:3001'
-
-    this.videoData='';
-
-    this.searchedVideo = function(data){
-      this.videoData = data;
+    let serverUrl = 'http://localhost:3005'
+    this.videoData = '';
+    this.searchedVideo = function (data) {
+        this.videoData = data;
     }
     this.id = '';
-
     this.getId = (id) => {
         this.id = id;
     }
-
-    this.video='';
-
-    this.clickedVideo = function(videoLink){
-      this.video = videoLink;
+    this.video = '';
+    this.clickedVideo = function (videoLink) {
+        this.video = videoLink;
     }
-
-    this.searchVideos = (query) => {
+    this.searchVideos = (page, query) => {
+        this.query = query;
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos?search=' + query
+            url: serverUrl + '/api/videos/' + page + '?search=' + query
         })
     };
-
     this.getVideoById = (id) => {
         return $http({
             method: 'GET',
@@ -44,7 +38,6 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/comments/' + id
         })
     };
-
     this.login = () => {
         return $http({
             method: 'GET',
@@ -56,8 +49,20 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             method: 'GET',
             url: serverUrl + '/api/currentuser'
         })
+    };
+    this.uploadVideo = (video) => {
+        console.log(video);
+        return $http({
+            method: 'POST',
+            data: {video},
+            url: serverUrl + '/api/upload'
+        })
+    };
+    this.userVideos = () => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/usersvideos'
+        })
     }
-
-
 });
 
