@@ -1,17 +1,23 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
     let serverUrl = 'http://localhost:3005'
+    
     this.videoData = '';
+  
     this.searchedVideo = function (data) {
         this.videoData = data;
     }
     this.id = '';
+  
     this.getId = (id) => {
         this.id = id;
     }
+    
     this.video = '';
+  
     this.clickedVideo = function (videoLink) {
         this.video = videoLink;
     }
+    
     this.searchVideos = (page, query) => {
         this.query = query;
         return $http({
@@ -65,4 +71,3 @@ angular.module('vimeoApp').service('mainService', function ($http) {
         })
     }
 });
-

@@ -8,7 +8,7 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
     $scope.getVideoID = id => {
         mainService.getId(id);
     }
-
+    
     $scope.playVideo = videoLink => {
         mainService.clickedVideo(videoLink);
         $state.go('playVideo')
