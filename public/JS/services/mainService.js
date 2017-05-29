@@ -1,4 +1,4 @@
-angular.module('vimeoApp').service('mainService', function ($http) {
+angular.module('vimeoApp').service('mainService', function ($http, $state) {
     let serverUrl = 'http://localhost:3001'
 
     this.videoData='';
@@ -6,6 +6,8 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.searchedVideo=function(data){
       this.videoData=data;
     }
+
+    console.log(this.videoData)
 
     this.video='';
 
@@ -50,4 +52,3 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     }
 
 });
-

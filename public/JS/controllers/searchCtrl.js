@@ -6,17 +6,24 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
 
   test2();
 
-  // function test(){
-  //   mainService.searchVideos().then(function(response){
-  //     $scope.videos=response.data.data;
-  // })
-  // }
-  // test()
-
   $scope.playVideo=function(videoLink){
     console.log(videoLink)
     mainService.clickedVideo(videoLink);
     $state.go('playVideo')
   }
+
+//   $scope.convertNum=function(num) {
+//      if (num >= 1000000000) {
+//         $scope.numb=(num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+//      }
+//      else if (num >= 1000000) {
+//         $scope.numb= (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+//      }
+//      else if (num >= 1000) {
+//         $scope.numb= (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+//      }
+//      $scope.numb= num;
+// }
+//   $scope.convertNum();
 
 });

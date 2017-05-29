@@ -10,9 +10,10 @@ module.exports = {
     getVideos: (req, res) => {
         let makeRequest = function (lib) {
             return lib.request({
-                path: `/videos?query=${req.query.search}`,
+                path: `/videos`,
                 query: {
-                    per_page: 10
+                    per_page: 10,
+                    query: req.query.search
                 }
             }, function (error, body, status_code, headers) {
                 if (error) {
