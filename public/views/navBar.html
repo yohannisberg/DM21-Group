@@ -8,11 +8,12 @@
 		<div>Upgrade</div>
 
 		<form ng-submit='searchQuery(query)'>
-		<input class='searchBar' ng-model='query'></input>
+		<input class='searchBar' ng-model='query'>
 		<img src='./IMAGES/johnImages/mag-glass.png' class='magGlass' ng-click='searchQuery(query)'>
 		</form>
 
 		<div class='profilePic'></div>
-		<span class='uploadButton'><span class='cloud'>☁</span>Upload</span>
+		<span class='uploadButton' ng-click="getUser()><span class='cloud'>☁</span>Upload</span>
+
 	</div>
 </div>

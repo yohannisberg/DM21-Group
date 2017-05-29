@@ -166,37 +166,7 @@
 .cloud {
   margin-right: 6px; }
 
-.uploadButton {
-  background-color: #657987;
-  line-height: 32px;
-  border-radius: .1875rem;
-  color: #fff;
-  cursor: pointer;
-  padding: 0 10px;
-  position: absolute;
-  right: 30px; }
 
-.searchPageWrapper {
-  width: 1250px;
-  margin: 0 auto; }
-
-.searchLeftWrapper {
-  width: 200px;
-  float: left;
-  margin-top: 98px;
-  margin-left: 30px; }
-
-.searchRightWrapper {
-  float: right;
-  width: 1020px;
-  margin-top: 98px;
-  display: flex;
-  flex-wrap: wrap; }
-
-.searchVideos {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 20px; }
 
 .searchImage {
   width: 320px;
@@ -232,14 +202,6 @@
   width: 80%;
   margin: 20px 0; }
 
-.vidName {
-  margin-top: 10px;
-  color: #3A5161;
-  font-weight: 700;
-  max-width: 320px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; }
 
 .userAndViewsWrapper {
   width: 320px;
