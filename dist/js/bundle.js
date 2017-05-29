@@ -20,6 +20,10 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         url: '/edit',
         templateUrl: '../views/editvideo.html',
         controller: 'editCtrl'
+    }).state('playvideo', {
+        url: '/playvideo',
+        templateUrl: 'views/playVid.html',
+        controller: 'playVideo'
     });
 }]);
 'use strict';
@@ -40,16 +44,48 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
-  function test() {
-    mainService.searchVideos('cat').then(function (response) {
-      console.log(response.data.data);
-      $scope.videos = response.data.data;
+  $scope.searchQuery = function (query) {
+    mainService.searchVideos(query).then(function (response) {
+      mainService.searchedVideo(response.data.data);
+      $state.go('search');
+      $scope.query = '';
     });
+  };
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('playVideoCtrl', ["$scope", "mainService", function ($scope, mainService) {
+  $scope.video = mainService.video;
+
+  // $scope.testVid=response.data.data[1].embed.html;
+  // console.log("hi", typeof $scope.testVid)
+  //
+  document.querySelector(".videoHolder").innerHTML = $scope.video;
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+
+  function test2() {
+    $scope.videos = mainService.videoData;
   }
 
-  test();
+  test2();
+
+  // function test(){
+  //   mainService.searchVideos().then(function(response){
+  //     $scope.videos=response.data.data;
+  // })
+  // }
+  // test()
+
+  $scope.playVideo = function (videoLink) {
+    console.log(videoLink);
+    mainService.clickedVideo(videoLink);
+    $state.go('playVideo');
+  };
 }]);
 'use strict';
 
@@ -70,21 +106,29 @@ angular.module('vimeoApp').directive('navBar', function () {
   return {
     restrict: 'E',
     templateUrl: './views/navBar.html',
-    link: function link(scope) {}
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
   };
 });
 'use strict';
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var serverUrl = 'http://localhost:3001';
-    // this.searchVideos = () => {
-    //     return $http({
-    //         method: 'GET',
-    //         url: serverUrl + '/api/videos/'
-    //     })
-    // };
+
+    this.videoData = '';
+
+    this.searchedVideo = function (data) {
+        this.videoData = data;
+    };
+
+    this.video = '';
+
+    this.clickedVideo = function (videoLink) {
+        this.video = videoLink;
+    };
 
     this.searchVideos = function (query) {
+        console.log(query);
         return $http({
             method: 'GET',
             url: serverUrl + '/api/videos?search=' + query
