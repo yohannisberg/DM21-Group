@@ -22,6 +22,7 @@ app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
 
 app.get('/api/videos/:id', vimeoCtrl.getVideos);
+app.get('/api/videos/channels/:channel', vimeoCtrl.getVideoByChannels);
 app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/comments/:id', vimeoCtrl.addComents);
 app.get('/api/login', mainCtrl.login);

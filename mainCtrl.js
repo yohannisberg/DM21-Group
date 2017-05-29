@@ -58,18 +58,17 @@ module.exports = {
             console.log(error);
         });
     },
-    uploadVideo: (req, res) => {
+    uploadVideo: (req, response) => {
         axios({
             method: 'post',
             headers: {Authorization: `Bearer ${req.session.access_token}`},
             url: 'https://api.vimeo.com/me/videos',
             data: {
-                type: 'pull',
-                link: req.body.video,
+                type: 'POST',
             }
-
         }).then(res => {
-            console.log(req.body.video);
+            console.log(res.data.upload_link_secure);
+            response.status(200).send(res.data.upload_link_secure)
         }).catch(error => {
             console.log(error);
         });
