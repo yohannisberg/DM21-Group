@@ -53,4 +53,7 @@ gulp.task('watch', () => {
     return gulp.watch(['./public/index.html', './public/CSS/**/*', './public/js/**/*', './public/views/**/*'], ['build']);
 });
 
-gulp.task('default', ['watch', 'build']);
+
+gulp.task('default' , ['watch' , 'build']);
+
+
