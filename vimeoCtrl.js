@@ -35,11 +35,10 @@ module.exports = {
             });
         }
     },
-    getVideoById: (req, res) => {
+    getVideoByChannels: (req, res) => {
         let makeRequest = function (lib) {
-            console.log(req.params);
             return lib.request({
-                path: `/videos/${req.params.id}`,
+                path: `/channels/${req.params.channel}/videos`,
                 query: {
                     per_page: 10
                 }
