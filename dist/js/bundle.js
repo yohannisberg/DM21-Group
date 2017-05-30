@@ -46,7 +46,7 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
 
 angular.module('vimeoApp').controller('playVidCtrl', ["$scope", "mainService", function ($scope, mainService) {
 
-  $scope.videos = [1, 2];
+  $scope.videos = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 }]);
 'use strict';
 
@@ -65,25 +65,6 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", fu
 'use strict';
 
 angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", function ($scope) {}]);
-'use strict';
-
-angular.module('vimeoApp').directive('footerDir', function () {
-
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {}
-  };
-});
 'use strict';
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
@@ -130,4 +111,23 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
         });
     };
 }]);
+'use strict';
+
+angular.module('vimeoApp').directive('footerDir', function () {
+
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {}
+  };
+});
 //# sourceMappingURL=bundle.js.map
