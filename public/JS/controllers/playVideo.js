@@ -1,4 +1,4 @@
-angular.module('vimeoApp').controller('playVideoCtrl', function ($scope, mainService) {
+angular.module('vimeoApp').controller('playVideo', function ($scope, mainService) {
     $scope.video = mainService.video;
 
     let id = mainService.id.replace(/\D/g, '');
@@ -7,6 +7,7 @@ angular.module('vimeoApp').controller('playVideoCtrl', function ($scope, mainSer
         $scope.comments = res.data.data;
         console.log($scope.comments);
     })
-    document.querySelector(".videoHolder").innerHTML = $scope.video;
+    document.querySelector(".video-window").innerHTML = $scope.video;
+    console.log($scope.video);
 
 });

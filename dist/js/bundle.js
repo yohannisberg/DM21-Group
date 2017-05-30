@@ -22,7 +22,7 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         controller: 'editCtrl'
     }).state('playvideo', {
         url: '/playvideo',
-        templateUrl: 'views/playVid.html',
+        templateUrl: './views/playVid.html',
         controller: 'playVideo'
     }).state('uploadVideo', {
         url: '/uploadVideo',
@@ -77,13 +77,7 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('playVidCtrl', ["$scope", "mainService", function ($scope, mainService) {
-
-  $scope.videos = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-}]);
-'use strict';
-
-angular.module('vimeoApp').controller('playVideoCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
     $scope.video = mainService.video;
 
     var id = mainService.id.replace(/\D/g, '');
@@ -92,7 +86,8 @@ angular.module('vimeoApp').controller('playVideoCtrl', ["$scope", "mainService",
         $scope.comments = res.data.data;
         console.log($scope.comments);
     });
-    document.querySelector(".videoHolder").innerHTML = $scope.video;
+    document.querySelector(".video-window").innerHTML = $scope.video;
+    console.log($scope.video);
 }]);
 'use strict';
 
@@ -109,7 +104,7 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
 
     $scope.playVideo = function (videoLink) {
         mainService.clickedVideo(videoLink);
-        $state.go('playVideo');
+        $state.go('playvideo');
     };
 
     $scope.page = function (num) {

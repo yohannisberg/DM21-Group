@@ -11,7 +11,7 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
     
     $scope.playVideo = videoLink => {
         mainService.clickedVideo(videoLink);
-        $state.go('playVideo')
+        $state.go('playvideo')
     }
 
     $scope.page = num => {
