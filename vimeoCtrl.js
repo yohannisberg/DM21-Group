@@ -13,7 +13,7 @@ module.exports = {
                 query: {
                     page: req.params.id,
                     per_page: 12,
-                    query: `${req.query.search}&fields=embed,stats,user,name,pictures`,
+                    query: `${req.query.search}`,
                     sort : 'relevant',
                     direction: 'asc'
                 },
@@ -38,7 +38,7 @@ module.exports = {
     getVideoByChannels: (req, res) => {
         let makeRequest = function (lib) {
             return lib.request({
-                path: `/channels/${req.params.channel}`,
+                path: `/channels/${req.params.channel}/videos`,
                 query: {
                     per_page: 10
                 }

@@ -46,6 +46,7 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
 
     // mainService.getVideosByChannel('staffpicks').then(res => {
     //     $scope.staffpicks = res.data;
+    //     console.log($scope.staffpicks);
     // })
     //
     // mainService.getVideosByChannel('music').then(res => {
