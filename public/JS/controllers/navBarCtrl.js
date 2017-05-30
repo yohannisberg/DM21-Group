@@ -4,14 +4,17 @@ angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainServic
         $state.go('home');
         mainService.searchVideos(1, query).then(response => {
             mainService.searchedVideo(response.data.data);
+             console.log(response.data.data);
+            // let videoId = response.data.data.replace(/\D/g, '')
+            // mainService.id.push(videoId);
             $state.go('search');
             $scope.query = '';
         })
     }
     $scope.getUser = () => {
+        $state.go('uploadVideo');
         mainService.getUser().then(res => {
             console.log(res.data); //res.data is the currently logged-in user's info
-            $state.go('upload');
         })
     }
 });

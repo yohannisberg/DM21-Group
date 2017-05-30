@@ -13,7 +13,7 @@ module.exports = {
                 query: {
                     page: req.params.id,
                     per_page: 12,
-                    query: req.query.search,
+                    query: `${req.query.search}`,
                     sort : 'relevant',
                     direction: 'asc'
                 },
@@ -69,6 +69,7 @@ module.exports = {
                     per_page: 10
                 }
             }, (error, body) => {
+                console.log(body);
                 return !error ? res.status(200).send(body) : console.log(error);
             })
         }

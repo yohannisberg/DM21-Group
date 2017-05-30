@@ -20,19 +20,131 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         url: '/edit',
         templateUrl: '../views/editvideo.html',
         controller: 'editCtrl'
-    }).state('playVideo', {
-        url: '/playVideo',
-        templateUrl: 'views/playVideo.html',
-        controller: 'playVideoCtrl'
+    }).state('playvideo', {
+        url: '/playvideo',
+        templateUrl: './views/playVid.html',
+        controller: 'playVideo'
     }).state('uploadVideo', {
         url: '/uploadVideo',
-        templateUrl: 'views/uploadVideo.html',
+        templateUrl: './views/uploadVideo.html',
         controller: 'uploadVideoCtrl'
-    }).state('upload', {
-        url: '/upload',
-        templateUrl: './views/upload.html',
-        controller: 'uploadCtrl'
     });
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
+'use strict';
+
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
+
+    $scope.login = function () {
+        mainService.login().then(function (res) {
+            $scope.data = res.data;
+        });
+    };
+    $scope.login();
+
+    mainService.getVideosByChannel('staffpicks').then(function (res) {
+        console.log(res.data.data);
+        $scope.staffpicks = res.data.data;
+    });
+
+    // mainService.getVideosByChannel('staffpicks').then(res => {
+    //     $scope.staffpicks = res.data;
+    //     console.log($scope.staffpicks);
+    // })
+    //
+    // mainService.getVideosByChannel('music').then(res => {
+    //     $scope.music = res.data;
+    // })
+    // mainService.getVideosByChannel('animation').then(res => {
+    //     $scope.animation = res.data;
+    // })
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+
+    $scope.searchQuery = function (query) {
+        $state.go('home');
+        mainService.searchVideos(1, query).then(function (response) {
+            mainService.searchedVideo(response.data.data);
+            console.log(response.data.data);
+            // let videoId = response.data.data.replace(/\D/g, '')
+            // mainService.id.push(videoId);
+            $state.go('search');
+            $scope.query = '';
+        });
+    };
+    $scope.getUser = function () {
+        $state.go('uploadVideo');
+        mainService.getUser().then(function (res) {
+            console.log(res.data); //res.data is the currently logged-in user's info
+        });
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
+    $scope.video = mainService.video;
+
+    var id = mainService.arr[0];
+
+    mainService.getComments(id).then(function (res) {
+        $scope.comments = res.data.data;
+        console.log($scope.comments);
+    });
+    document.querySelector(".video-window").innerHTML = $scope.video;
+    console.log($scope.video);
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+
+    function test2() {
+        console.log(mainService.videoData);
+        $scope.videos = mainService.videoData;
+    }
+    test2();
+
+    $scope.getVideoID = function (id) {
+        mainService.getId(id);
+    };
+
+    $scope.playVideo = function (videoLink, uri) {
+        mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
+    };
+
+    $scope.page = function (num) {
+        mainService.searchVideos(num, mainService.query).then(function (res) {
+            $scope.videos = res.data.data;
+            console.log($scope.videos);
+        });
+    };
+}]);
+"use strict";
+'use strict';
+
+angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+    $scope.upLoad = function () {
+        mainService.uploadVideo().then(function (res) {
+            console.log(res.data);
+            $scope.link = JSON.stringify(res.data);
+        });
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", function ($scope, mainService) {
+    $scope.userVideos = function () {
+        mainService.userVideos().then(function (res) {
+            $scope.videos = res.data.data;
+            console.log($scope.videos);
+        });
+    };
 }]);
 'use strict';
 
@@ -56,105 +168,6 @@ angular.module('vimeoApp').directive('navBar', function () {
 });
 'use strict';
 
-angular.module('vimeoApp').controller('editCtrl', ["$scope", function ($scope) {}]);
-'use strict';
-
-angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
-
-    $scope.login = function () {
-        mainService.login().then(function (res) {
-            $scope.data = res.data;
-        });
-    };
-    $scope.login();
-
-    mainService.getVideosByChannel('staffpicks').then(function (res) {
-        console.log(res.data.data);
-        $scope.staffpicks = res.data.data;
-    });
-}]);
-'use strict';
-
-angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
-
-    $scope.searchQuery = function (query) {
-        $state.go('home');
-        mainService.searchVideos(1, query).then(function (response) {
-            mainService.searchedVideo(response.data.data);
-            $state.go('search');
-            $scope.query = '';
-        });
-    };
-    $scope.getUser = function () {
-        mainService.getUser().then(function (res) {
-            console.log(res.data); //res.data is the currently logged-in user's info
-            $state.go('upload');
-        });
-    };
-}]);
-'use strict';
-
-angular.module('vimeoApp').controller('playVideoCtrl', ["$scope", "mainService", function ($scope, mainService) {
-    $scope.video = mainService.video;
-
-    var id = mainService.id.replace(/\D/g, '');
-
-    mainService.getComments(id).then(function (res) {
-        $scope.comments = res.data.data;
-        console.log($scope.comments);
-    });
-    document.querySelector(".videoHolder").innerHTML = $scope.video;
-}]);
-'use strict';
-
-angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
-
-    function test2() {
-        console.log(mainService.videoData);
-        $scope.videos = mainService.videoData;
-    }
-    test2();
-
-    $scope.getVideoID = function (id) {
-        mainService.getId(id);
-    };
-
-    $scope.playVideo = function (videoLink) {
-        mainService.clickedVideo(videoLink);
-        $state.go('playVideo');
-    };
-
-    $scope.page = function (num) {
-        mainService.searchVideos(num, mainService.query).then(function (res) {
-            $scope.videos = res.data.data;
-        });
-    };
-}]);
-'use strict';
-
-angular.module('vimeoApp').controller('uploadCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
-    $scope.upload = function () {
-        mainService.uploadVideo($scope.video).then(function (res) {
-            console.log(res.data);
-            $state.go('userVideos');
-        });
-    };
-}]);
-'use strict';
-
-angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", function ($scope) {}]);
-'use strict';
-
-angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", function ($scope, mainService) {
-    $scope.userVideos = function () {
-        mainService.userVideos().then(function (res) {
-            $scope.videos = res.data.data;
-            console.log($scope.videos);
-        });
-    };
-}]);
-'use strict';
-
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var _this = this;
 
@@ -165,10 +178,13 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     this.searchedVideo = function (data) {
         this.videoData = data;
     };
+
     this.id = '';
 
+    this.arr = [];
+
     this.getId = function (id) {
-        _this.id = id;
+        _this.arr.push(id);
     };
 
     this.video = '';
@@ -223,11 +239,9 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             url: serverUrl + '/api/currentuser'
         });
     };
-    this.uploadVideo = function (video) {
-        console.log(video);
+    this.uploadVideo = function () {
         return $http({
-            method: 'POST',
-            data: { video: video },
+            method: 'PUT',
             url: serverUrl + '/api/upload'
         });
     };
@@ -235,6 +249,13 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/usersvideos'
+        });
+    };
+
+    this.getVideosByChannel = function (channel) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/channels/' + channel)
         });
     };
 }]);

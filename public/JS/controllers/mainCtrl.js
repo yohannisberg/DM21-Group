@@ -12,5 +12,15 @@ angular.module('vimeoApp').controller('mainCtrl', function ($scope, mainService)
             $scope.staffpicks = res.data.data;
         })
 
-
+    // mainService.getVideosByChannel('staffpicks').then(res => {
+    //     $scope.staffpicks = res.data;
+    //     console.log($scope.staffpicks);
+    // })
+    //
+    // mainService.getVideosByChannel('music').then(res => {
+    //     $scope.music = res.data;
+    // })
+    // mainService.getVideosByChannel('animation').then(res => {
+    //     $scope.animation = res.data;
+    // })
 });

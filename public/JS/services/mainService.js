@@ -6,10 +6,13 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.searchedVideo = function (data) {
         this.videoData = data;
     }
+
     this.id = '';
 
+    this.arr = [];
+
     this.getId = (id) => {
-        this.id = id;
+        this.arr.push(id);
     }
 
     this.video = '';
@@ -64,11 +67,9 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/currentuser'
         })
     };
-    this.uploadVideo = (video) => {
-        console.log(video);
+    this.uploadVideo = () => {
         return $http({
-            method: 'POST',
-            data: {video},
+            method: 'PUT',
             url: serverUrl + '/api/upload'
         })
     };
@@ -76,6 +77,13 @@ angular.module('vimeoApp').service('mainService', function ($http) {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/usersvideos'
+        })
+    };
+
+    this.getVideosByChannel = (channel) => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + `/api/videos/channels/${channel}`
         })
     }
 });
