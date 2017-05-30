@@ -1,12 +1,22 @@
-angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainService) {
+angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainService, $state) {
 
-  function test(){
-    mainService.searchVideos('cat').then(function(response){
-      console.log(response.data.data)
-    $scope.videos=response.data.data;
+    function test2() {
+        $scope.videos = mainService.videoData;
+    }
+    test2();
 
-  })
-  }
+    $scope.getVideoID = id => {
+        mainService.getId(id);
+    }
+    
+    $scope.playVideo = videoLink => {
+        mainService.clickedVideo(videoLink);
+        $state.go('playVideo')
+    }
 
-  test()
+    $scope.page = num => {
+        mainService.searchVideos(num, mainService.query).then(res => {
+            $scope.videos = res.data.data
+        })
+    }
 });

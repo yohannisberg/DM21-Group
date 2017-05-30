@@ -1,13 +1,19 @@
+<div class='colorRibbon'></div>
 <div class='navBarWrapper'>
 	<div class='navBarInnards'>
-		<img src='./IMAGES/johnImages/vimeo_logo_dark.png' class='vimeoLogo'>
+		<a ui-sref='home'><img src='./IMAGES/johnImages/vimeo_logo_dark.png' class='vimeoLogo'></a>
 		<div>Manage videos <span class='arrows'>▼</span></div>
 		<div>Watch <span class='arrows'>▼</span></div>
 		<div>On Demand <span class='arrows'>▼</span></div>
 		<div>Upgrade</div>
-		<input class='searchBar'></input>
-		<img src='./IMAGES/johnImages/mag-glass.png' class='magGlass'>
+
+		<form ng-submit='searchQuery(query)'>
+		<input class='searchBar' ng-model='query'>
+		<img src='./IMAGES/johnImages/mag-glass.png' class='magGlass' ng-click='searchQuery(query)'>
+		</form>
+
 		<div class='profilePic'></div>
-		<div class='uploadButton'><span class='cloud'>☁</span>Upload</div>
+		<span class='uploadButton' ng-click="getUser()><span class='cloud'>☁</span>Upload</span>
+
 	</div>
 </div>

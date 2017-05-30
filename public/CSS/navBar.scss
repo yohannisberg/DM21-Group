@@ -1,3 +1,9 @@
+.colorRibbon{
+  width:100%;
+  background-image: -webkit-linear-gradient(left,#73D2F6,#08C 22%,#7FC400 36%,#FFD583 48%,#FFB21E 63%,#FF4D4D 76%,#503873);
+  height:0.2875rem;
+}
+
 .navBarWrapper{
   height: 60px;
   width: 100%;
@@ -41,12 +47,14 @@
   color: #7b8084;
   position: absolute;
   right: 179px;
+  top:15px;
 }
 
 .magGlass{
   width: 14px;
   position: absolute;
   right: 197px;
+  top: 23px;
 }
 
 .profilePic{

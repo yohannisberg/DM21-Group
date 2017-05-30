@@ -1,20 +1,14 @@
 const express = require('express'),
-    config = require('./config'),
-    // massive = require('massive'),
+    app = module.exports = express(),
+    config = require('./config.js'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
-    // connString = config.MASSIVE_URI,
-    // massiveInstance = massive.connectSync({connectionString: connString}),
-    cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    app = express(),
-    axios = require('axios'),
     vimeoCtrl = require('./vimeoCtrl'),
-    auth = require('./login');
-
+    mainCtrl = require('./mainCtrl');
 
 let corsOptions = {
-    origin: 'http://localhost:3001'
+    origin: `http://localhost:${config.port}`
 }
 app.use(session({
     secret: config.SESSION_SECRET,
@@ -22,31 +16,21 @@ app.use(session({
     saveUninitialized: true,
     rolling: true
 }))
+
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
 
-app.get('/api/videos', vimeoCtrl.getVideos);
-app.get('/api/videos/:id', vimeoCtrl.getVideoById);
+app.get('/api/videos/:id', vimeoCtrl.getVideos);
 app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/comments/:id', vimeoCtrl.addComents);
-app.get('/api/login', auth.login);
-app.get('/api/callback', auth.callback);
-// app.get('/api/currentuser', auth.uploadVideo);
-// app.get('/api/currentuser', auth.getUser);
-//  app.post('/api/upload', vimeoCtrl.uploadVideo);
-
-
-// app.get('/api/info', (req, res) => {
-//     axios({
-//         method: 'get',
-//         url: ''
-//     })
-// })
-
-
+app.get('/api/login', mainCtrl.login);
+app.get('/api/callback', mainCtrl.callback);
+app.get('/api/currentuser', mainCtrl.getUser);
+app.post('/api/upload', mainCtrl.uploadVideo);
+app.get('/api/usersvideos', mainCtrl.usersVideos);
 
 
 app.listen(config.port, () => {
-    console.log('listening on port 3001')
+    console.log(`listening on port ${config.port}`)
 })

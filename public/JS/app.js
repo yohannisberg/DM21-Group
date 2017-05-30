@@ -11,7 +11,7 @@ angular.module('vimeoApp', ["ui.router"])
             })
             .state('userVideos', {
                 url: '/userVideos',
-                templateUrl: 'views/userVideos.html',
+                templateUrl: './views/userVideos.html',
                 controller: 'userVideosCtrl'
             })
             .state('search', {
@@ -19,17 +19,29 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: 'views/search.html',
                 controller: 'searchCtrl'
             })
-            .state('settings', {
-                url: '/settings',
-                templateUrl: '../views/settings.html',
-                controller: 'settingsCtrl'
+            .state('edit' ,{
+                url: '/edit',
+                templateUrl: '../views/editvideo.html',
+                controller: 'editCtrl'
             })
-            .state('play', {
+            .state('playvideo', {
                 url: '/playvideo',
-                templateUrl: '../views/playVid.html',
-                controller: 'playVidCtrl'
-            });
-          
-        
-    
-});
+                templateUrl: 'views/playVid.html',
+                controller: 'playVideo'
+            })
+            .state('uploadVideo', {
+                url: '/uploadVideo',
+                templateUrl: 'views/uploadVideo.html',
+                controller: 'uploadVideoCtrl'
+            })
+            .state('upload', {
+                url: '/upload',
+                templateUrl: './views/upload.html',
+                controller: 'uploadCtrl'
+            })
+
+    });
+
+
+
+>>>>>>> master

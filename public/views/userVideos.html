@@ -23,4 +23,12 @@
 <img src='./IMAGES/johnImages/vimeoEditVideos.jpeg' class='editVideoPic'>
 </div>
 
+<button ng-click="userVideos()">Show Videos</button>
+
+<div class="video" ng-repeat="x in videos">
+  <img class='searchImage' ng-src='{{x.pictures.sizes[3].link}}'>
+  {{videos.indexOf(x)}}
+  <br/>
+</div>
+
 <footer-dir></footer-dir>
