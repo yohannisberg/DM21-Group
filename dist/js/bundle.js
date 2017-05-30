@@ -32,6 +32,26 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
+angular.module('vimeoApp').directive('footerDir', function () {
+
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
+  };
+});
+'use strict';
+
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
@@ -135,26 +155,6 @@ angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService"
         });
     };
 }]);
-'use strict';
-
-angular.module('vimeoApp').directive('footerDir', function () {
-
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {},
-    controller: 'navBarCtrl'
-  };
-});
 'use strict';
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
