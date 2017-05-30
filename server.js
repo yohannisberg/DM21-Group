@@ -30,7 +30,7 @@ app.get('/api/callback', mainCtrl.callback);
 app.get('/api/currentuser', mainCtrl.getUser);
 app.put('/api/upload', mainCtrl.uploadVideo);
 app.get('/api/usersvideos', mainCtrl.usersVideos);
-
+app.get('/api/videos/channels/:channel', vimeoCtrl.getVideoByChannels);
 
 app.listen(config.port, () => {
     console.log(`listening on port ${config.port}`)

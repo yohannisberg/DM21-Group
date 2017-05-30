@@ -6,6 +6,9 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.searchedVideo = function (data) {
         this.videoData = data;
     }
+
+    this.id = '';
+
     this.arr = [];
 
     this.getId = (id) => {
@@ -16,6 +19,14 @@ angular.module('vimeoApp').service('mainService', function ($http) {
 
     this.clickedVideo = function (videoLink) {
         this.video = videoLink;
+    }
+
+    this.getVideosByChannel = (channel) => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + `/api/videos/channels/${channel}`
+
+       })
     }
 
     this.searchVideos = (page, query) => {

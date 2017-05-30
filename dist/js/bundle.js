@@ -44,6 +44,11 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
     };
     $scope.login();
 
+    mainService.getVideosByChannel('staffpicks').then(function (res) {
+        console.log(res.data.data);
+        $scope.staffpicks = res.data.data;
+    });
+
     // mainService.getVideosByChannel('staffpicks').then(res => {
     //     $scope.staffpicks = res.data;
     //     console.log($scope.staffpicks);
@@ -97,6 +102,7 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
 angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
     function test2() {
+        console.log(mainService.videoData);
         $scope.videos = mainService.videoData;
     }
     test2();
@@ -172,6 +178,9 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     this.searchedVideo = function (data) {
         this.videoData = data;
     };
+
+    this.id = '';
+
     this.arr = [];
 
     this.getId = function (id) {
@@ -182,6 +191,14 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
 
     this.clickedVideo = function (videoLink) {
         this.video = videoLink;
+    };
+
+    this.getVideosByChannel = function (channel) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/channels/' + channel)
+
+        });
     };
 
     this.searchVideos = function (page, query) {
