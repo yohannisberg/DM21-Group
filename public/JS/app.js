@@ -31,17 +31,10 @@ angular.module('vimeoApp', ["ui.router"])
             })
             .state('uploadVideo', {
                 url: '/uploadVideo',
-                templateUrl: 'views/uploadVideo.html',
+                templateUrl: './views/uploadVideo.html',
                 controller: 'uploadVideoCtrl'
             })
-            .state('upload', {
-                url: '/upload',
-                templateUrl: './views/upload.html',
-                controller: 'uploadCtrl'
-            })
-
     });
 
 
 
->>>>>>> master

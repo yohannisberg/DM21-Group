@@ -5,5 +5,4 @@ angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainSe
             console.log($scope.videos);
         })
     }
-
 });

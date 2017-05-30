@@ -17,6 +17,7 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
     $scope.page = num => {
         mainService.searchVideos(num, mainService.query).then(res => {
             $scope.videos = res.data.data
+            console.log($scope.videos);
         })
     }
 });
