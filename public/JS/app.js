@@ -24,20 +24,17 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: '../views/editvideo.html',
                 controller: 'editCtrl'
             })
-            .state('playVideo', {
-                url: '/playVideo',
-                templateUrl: 'views/playVideo.html',
-                controller: 'playVideoCtrl'
+            .state('playvideo', {
+                url: '/playvideo',
+                templateUrl: './views/playVid.html',
+                controller: 'playVideo'
             })
             .state('uploadVideo', {
                 url: '/uploadVideo',
-                templateUrl: 'views/uploadVideo.html',
+                templateUrl: './views/uploadVideo.html',
                 controller: 'uploadVideoCtrl'
             })
-            .state('upload', {
-                url: '/upload',
-                templateUrl: './views/upload.html',
-                controller: 'uploadCtrl'
-            })
-
     });
+
+
+
