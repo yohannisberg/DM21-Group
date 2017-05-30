@@ -6,10 +6,10 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.searchedVideo = function (data) {
         this.videoData = data;
     }
-    this.id = '';
+    this.arr = [];
 
     this.getId = (id) => {
-        this.id = id;
+        this.arr.push(id);
     }
 
     this.video = '';

@@ -69,6 +69,7 @@ module.exports = {
                     per_page: 10
                 }
             }, (error, body) => {
+                console.log(body);
                 return !error ? res.status(200).send(body) : console.log(error);
             })
         }

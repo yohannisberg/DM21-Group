@@ -64,6 +64,9 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
         $state.go('home');
         mainService.searchVideos(1, query).then(function (response) {
             mainService.searchedVideo(response.data.data);
+            console.log(response.data.data);
+            // let videoId = response.data.data.replace(/\D/g, '')
+            // mainService.id.push(videoId);
             $state.go('search');
             $scope.query = '';
         });
@@ -80,7 +83,7 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
     $scope.video = mainService.video;
 
-    var id = mainService.id.replace(/\D/g, '');
+    var id = mainService.arr[0];
 
     mainService.getComments(id).then(function (res) {
         $scope.comments = res.data.data;
@@ -102,8 +105,10 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
         mainService.getId(id);
     };
 
-    $scope.playVideo = function (videoLink) {
+    $scope.playVideo = function (videoLink, uri) {
         mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
         $state.go('playvideo');
     };
 
@@ -167,10 +172,10 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     this.searchedVideo = function (data) {
         this.videoData = data;
     };
-    this.id = '';
+    this.arr = [];
 
     this.getId = function (id) {
-        _this.id = id;
+        _this.arr.push(id);
     };
 
     this.video = '';
