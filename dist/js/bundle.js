@@ -44,16 +44,16 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
     };
     $scope.login();
 
-    mainService.getVideosByChannel('staffpicks').then(function (res) {
-        $scope.staffpicks = res.data;
-    });
-
-    mainService.getVideosByChannel('music').then(function (res) {
-        $scope.music = res.data;
-    });
-    mainService.getVideosByChannel('animation').then(function (res) {
-        $scope.animation = res.data;
-    });
+    // mainService.getVideosByChannel('staffpicks').then(res => {
+    //     $scope.staffpicks = res.data;
+    // })
+    //
+    // mainService.getVideosByChannel('music').then(res => {
+    //     $scope.music = res.data;
+    // })
+    // mainService.getVideosByChannel('animation').then(res => {
+    //     $scope.animation = res.data;
+    // })
 }]);
 'use strict';
 
@@ -117,7 +117,7 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
 angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
     $scope.upLoad = function () {
         mainService.uploadVideo().then(function (res) {
-            console.log('hey', res);
+            console.log('hey', res.data);
             $scope.link = res.data;
         });
     };

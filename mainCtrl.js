@@ -51,7 +51,7 @@ module.exports = {
         axios({
             method: 'get',
             headers: {Authorization: `Bearer ${req.session.access_token}`},
-            url: 'https://api.vimeo.com/me'
+            url: 'https://api.vimeo.com/me?fields=uri,name'
         }).then(response => {
             res.status(200).json(req.session.user);
         }).catch(error => {

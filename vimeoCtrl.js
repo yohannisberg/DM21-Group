@@ -13,7 +13,7 @@ module.exports = {
                 query: {
                     page: req.params.id,
                     per_page: 12,
-                    query: req.query.search,
+                    query: `${req.query.search}&fields=embed,stats,user,name,pictures`,
                     sort : 'relevant',
                     direction: 'asc'
                 },
