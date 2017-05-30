@@ -32,6 +32,26 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
+angular.module('vimeoApp').directive('footerDir', function () {
+
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
+  };
+});
+'use strict';
+
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
@@ -77,8 +97,6 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
         mainService.searchVideos(1, query).then(function (response) {
             mainService.searchedVideo(response.data.data);
             console.log(response.data.data);
-            // let videoId = response.data.data.replace(/\D/g, '')
-            // mainService.id.push(videoId);
             $state.go('search');
             $scope.query = '';
         });
@@ -101,6 +119,15 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         $scope.comments = res.data.data;
         console.log($scope.comments);
     });
+    $scope.addComment = function () {
+        mainService.postComment(id, $scope.text).then(function (res) {
+            console.log(res);
+        });
+        mainService.getComments(id).then(function (res) {
+            $scope.comments = res.data.data;
+            console.log('yo', $scope.comments);
+        });
+    };
     document.querySelector(".video-window").innerHTML = $scope.video;
     console.log($scope.video);
 }]);
@@ -155,26 +182,6 @@ angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService"
 }]);
 'use strict';
 
-angular.module('vimeoApp').directive('footerDir', function () {
-
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {},
-    controller: 'navBarCtrl'
-  };
-});
-'use strict';
-
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var _this = this;
 
@@ -227,10 +234,10 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             url: serverUrl + '/api/videos/' + id + '/comments'
         });
     };
-    this.postComment = function (id) {
+    this.postComment = function (id, text) {
         return $http({
             method: 'POST',
-            data: '',
+            data: { text: text },
             url: serverUrl + '/api/comments/' + id
         });
     };
