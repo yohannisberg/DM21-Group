@@ -200,25 +200,6 @@
   position: absolute;
   right: 30px; }
 
-<<<<<<< HEAD
-.searchPageWrapper {
-  width: 1250px;
-  margin: 0 auto; }
-
-.searchLeftWrapper {
-  width: 200px;
-  float: left;
-  margin-top: 98px;
-  margin-left: 30px; }
-
-.searchRightWrapper {
-  float: right;
-  width: 1020px;
-  margin-top: 98px;
-  display: flex;
-  flex-wrap: wrap; }
-
-=======
 .playVid-page {
   display: flex;
   justify-content: center;
@@ -363,7 +344,6 @@
   display: flex;
   flex-wrap: wrap; }
 
->>>>>>> 9ca3fd12baeb3fd8773a465fed677fa271ab062a
 .searchVideos {
   padding-left: 10px;
   padding-right: 10px;
