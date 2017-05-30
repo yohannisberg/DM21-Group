@@ -32,30 +32,10 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
-angular.module('vimeoApp').directive('footerDir', function () {
-
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {},
-    controller: 'navBarCtrl'
-  };
-});
-'use strict';
-
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
-angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
     $scope.login = function () {
         mainService.login().then(function (res) {
@@ -63,6 +43,13 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
         });
     };
     $scope.login();
+
+    $scope.playVideo = function (videoLink, uri) {
+        mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
+    };
 
     mainService.getVideosByChannel('staffpicks').then(function (res) {
         console.log(res.data.data);
@@ -168,10 +155,30 @@ angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService"
 }]);
 'use strict';
 
+angular.module('vimeoApp').directive('footerDir', function () {
+
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
+  };
+});
+'use strict';
+
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var _this = this;
 
-    var serverUrl = 'http://localhost:3005';
+    var serverUrl = 'http://localhost:3012';
 
     this.videoData = '';
 
