@@ -1,3 +1,4 @@
+<div class='colorRibbon'></div>
 <div class='navBarWrapper'>
 	<div class='navBarInnards'>
 		<a ui-sref='home'><img src='./IMAGES/johnImages/vimeo_logo_dark.png' class='vimeoLogo'></a>
@@ -7,11 +8,12 @@
 		<div>Upgrade</div>
 
 		<form ng-submit='searchQuery(query)'>
-		<input class='searchBar' ng-model='query'></input>
+		<input class='searchBar' ng-model='query'>
 		<img src='./IMAGES/johnImages/mag-glass.png' class='magGlass' ng-click='searchQuery(query)'>
 		</form>
 
 		<div class='profilePic'></div>
-		<div class='uploadButton'><span class='cloud'>☁</span>Upload</div>
+		<span class='uploadButton' ng-click="getUser()><span class='cloud'>☁</span>Upload</span>
+
 	</div>
 </div>
