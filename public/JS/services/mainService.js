@@ -58,7 +58,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     };
     this.uploadVideo = () => {
         return $http({
-            method: 'POST',
+            method: 'PUT',
             url: serverUrl + '/api/upload'
         })
     };

@@ -117,8 +117,8 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
 angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
     $scope.upLoad = function () {
         mainService.uploadVideo().then(function (res) {
-            console.log('hey', res.data);
-            $scope.link = res.data;
+            console.log(res.data);
+            $scope.link = JSON.stringify(res.data);
         });
     };
 }]);
@@ -216,7 +216,7 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     };
     this.uploadVideo = function () {
         return $http({
-            method: 'POST',
+            method: 'PUT',
             url: serverUrl + '/api/upload'
         });
     };

@@ -16,7 +16,6 @@ const vimeo_module = require('./lib/vimeo'),
     url2 = `https://api.vimeo.com/oauth/authorize?client_id=${config.CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&state=${state}`;
 
 
-
 app.set('db', massiveInstance);
 let db = app.get('db');
 
@@ -38,7 +37,7 @@ module.exports = {
         }).then(response => {
             req.session.user = response.data.user;
             let usersName = req.session.user.name;
-            db.add_user([usersName], (err,result) => {
+            db.add_user([usersName], (err, result) => {
                 err ? console.log(err) : console.log(result);
             })
             req.session.access_token = response.data.access_token;
@@ -63,15 +62,37 @@ module.exports = {
             method: 'post',
             headers: {Authorization: `Bearer ${req.session.access_token}`},
             url: 'https://api.vimeo.com/me/videos',
-            data: {
-                type: 'POST',
+            data:{
+                type: 'streaming'
             }
-        }).then(res => {
-            console.log(res.data.upload_link_secure);
-            response.status(200).send(res.data.upload_link_secure)
-        }).catch(error => {
-            console.log(error);
-        });
+
+        }).then(resp => {
+            let link = resp.data.upload_link_secure;
+            let ticket_id = resp.data.ticket_id;
+            console.log(resp);
+            // axios({
+            //     method: 'put',
+            //     headers: {
+            //         "Content-Length": 339108,
+            //         "Content-Type": "video/mp4"
+            //     },
+            //     url: `${link}/upload?ticket_id=${ticket_id}`,
+            // }).then(res => {
+            //     // req.session.data = res.data.complete_uri;
+            //     console.log(res);
+                // axios({
+                //     method: 'delete',
+                //     url: `https://api.vimeo.com/${req.session.data}`
+                // }).then(res1 => {
+                //     console.log(res1);
+                // })
+                // response.status(200).send(res.data.ticket_id);
+            }).catch(error => {
+                console.log(error);
+            });
+        // });
+
+
     },
     usersVideos: (req, response) => {
         axios({
