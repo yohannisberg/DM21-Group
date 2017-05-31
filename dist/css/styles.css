@@ -392,7 +392,6 @@
   position: absolute;
   right: 30px; }
 
-<<<<<<< HEAD
 a:hover, a:visited, a:link, a:active .logInNav {
   text-decoration: none;
   color: #607680; }
@@ -435,17 +434,8 @@ a:hover, a:visited, a:link, a:active .logInNav {
   margin-left: -20px;
   margin-bottom: 6px; }
 
-.playVid-page {
-  display: flex;
-  justify-content: center;
-  width: 70%;
-  margin: auto;
-  color: white;
-  flex-direction: row; }
-=======
 * {
   font-family: Helvetica; }
->>>>>>> master
 
 .video-window {
   background: black;
