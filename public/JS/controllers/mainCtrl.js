@@ -1,4 +1,4 @@
-angular.module('vimeoApp').controller('mainCtrl', function ($scope, mainService) {
+angular.module('vimeoApp').controller('mainCtrl', function ($scope, mainService, $state) {
 
     $scope.login = () => {
         mainService.login().then(res => {
@@ -6,6 +6,13 @@ angular.module('vimeoApp').controller('mainCtrl', function ($scope, mainService)
         })
     }
     $scope.login();
+
+    $scope.playVideo = (videoLink, uri) => {
+        mainService.clickedVideo(videoLink);
+        let id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
+    }
 
     mainService.getVideosByChannel('staffpicks').then(res => {
             console.log(res.data.data)
