@@ -355,10 +355,10 @@
 
 .searchBar {
   margin: 0 5px 0 0;
-  width: 210px;
+  width: 272px;
   height: 30px;
   cursor: pointer;
-  padding: 0 0 0 10px;
+  padding: 0 32px 0 10px;
   color: #7b8084;
   position: absolute;
   right: 179px;
@@ -376,7 +376,8 @@
   background: gray;
   border-radius: 100%;
   position: absolute;
-  right: 134px; }
+  right: 134px;
+  cursor: pointer; }
 
 .cloud {
   margin-right: 6px; }
@@ -391,8 +392,60 @@
   position: absolute;
   right: 30px; }
 
+<<<<<<< HEAD
+a:hover, a:visited, a:link, a:active .logInNav {
+  text-decoration: none;
+  color: #607680; }
+
+.dropDown {
+  position: absolute;
+  height: 345px;
+  width: 203px;
+  background-color: white;
+  top: 62px;
+  right: 55px;
+  border: 1px solid #D0D8DB;
+  color: black;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px; }
+
+.dropDown div {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  font-size: 15px; }
+
+.dropDown div a {
+  color: black; }
+
+.navUserName {
+  font-weight: 700;
+  margin-top: -5px; }
+
+.mainUserArrow {
+  font-size: 8.75px; }
+
+.navViewProf {
+  font-size: 10.75px !important; }
+
+.mainBorderDropdown {
+  border-bottom: 1px solid #D0D8DB;
+  margin-left: -20px;
+  margin-bottom: 6px; }
+
+.playVid-page {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+  color: white;
+  flex-direction: row; }
+=======
 * {
   font-family: Helvetica; }
+>>>>>>> master
 
 .video-window {
   background: black;
@@ -685,6 +738,23 @@
   margin-left: 3px;
   padding-left: 6px; }
 
+.searchButtonWrapper {
+  margin-bottom: 50px;
+  margin-top: 50px; }
+
+.searchButtonWrapper button {
+  background-color: #EEF1F2;
+  padding: 5px 8px;
+  font-weight: 700;
+  color: #4E5A5E;
+  cursor: pointer;
+  border: none;
+  margin: 0 2px; }
+
+.searchButtonSelected {
+  background: #00ADEF !important;
+  color: #FFF !important; }
+
 .settings-container {
   width: 100%;
   max-width: 720px;
@@ -814,7 +884,7 @@
 
 .editVideoSearch {
   box-shadow: #D0D8D8 0 0 0 1px inset;
-  font-size: .875rem;
+  font-size: 1.2rem;
   border-radius: .3125rem;
   padding: .1875rem;
   padding-left: 5px;
