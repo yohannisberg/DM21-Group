@@ -17,9 +17,9 @@
 
 <!-- <div ng-controller="mainCtrl">
       <a href="{{data}}"><button>Login</button></a>
-</div>
+</div> -->
 
-<a ui-sref="userVideos">temp to userVideos</a>
+<!-- <a ui-sref="userVideos">temp to userVideos</a>
 <a ui-sref="search">temp to search</a> -->
 
 <div class='mainPageWhiteBackground'>
@@ -48,7 +48,7 @@
 <div class='vidNameMainPage'>{{picks.name}}</div>
 <div class='userAndViewsWrapperMainPage'>
 <span>{{picks.user.name}}</span>
-<span class='searchPlaysMainPage'>{{picks.stats.plays | number:fractionSize}} plays</span>
+<span class='searchPlaysMainPage' ng-hide='picks.stats.plays==null'>{{picks.stats.plays | number:fractionSize}} plays</span>
 </div>
 </div>
 </div>
