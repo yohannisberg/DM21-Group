@@ -391,131 +391,219 @@
   position: absolute;
   right: 30px; }
 
-.playVid-page {
-  display: flex;
-  justify-content: center;
-  width: 70%;
-  margin: auto;
-  color: white;
-  flex-direction: row; }
+* {
+  font-family: Helvetica; }
 
 .video-window {
   background: black;
   width: 100%;
-  height: 540px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center; }
 
-.left-content {
-  width: 65%;
-  background: green;
-  display: flex;
-  justify-content: center;
-  flex-direction: column; }
-  .left-content .heading-wrapper {
-    background: blue;
-    width: 100%;
-    height: 300px;
-    display: flex;
-    flex-direction: column; }
-    .left-content .heading-wrapper .vid-title {
-      background: #00FA9A;
-      width: 100%;
-      height: auto;
-      font-size: 50px; }
-    .left-content .heading-wrapper .clip-info {
-      background: #778899;
-      width: 100%;
-      height: 50px; }
-    .left-content .heading-wrapper .follow-wrapper {
-      display: flex;
-      align-content: center; }
-    .left-content .heading-wrapper .user-icon {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      background: yellow;
-      margin: 10px; }
-    .left-content .heading-wrapper .follow-btn {
-      background: #87CEFA;
-      width: 100px;
-      height: 50px;
-      font-size: 20px;
-      margin: 10px; }
-  .left-content .details-wrapper {
-    width: 100%;
-    height: 200px;
-    background: #A52A2A;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    .left-content .details-wrapper .clip-details {
-      width: 100%;
-      height: 100%;
-      background: green;
-      display: flex;
-      align-items: center; }
-  .left-content .clip-category {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: left;
-    height: 200px;
-    background: purple;
-    justify-content: center; }
-    .left-content .clip-category .btn-wrapper {
-      display: flex;
-      flex-direction: row; }
-    .left-content .clip-category .category-btn {
-      width: 80px;
-      height: 40px;
-      background: red;
-      display: flex; }
-  .left-content .comments-wrapper {
-    width: 100%;
-    height: 200px;
-    background: #FF1493;
-    display: flex;
-    align-items: center; }
-  .left-content .comment-content {
-    width: 100%;
-    height: 200px;
-    background: #ADFF2F;
-    display: flex;
-    align-items: center; }
-    .left-content .comment-content .user-comment {
-      color: red;
-      background: #DB7093;
-      display: flex;
-      align-items: center; }
-
-.right-content-wrapper {
-  width: 400px;
-  background: grey; }
-
-.right-content {
-  width: 80%;
-  height: auto;
-  background: black;
-  margin: auto; }
-
-.next-video {
+.vid-lower-wrapper {
   width: 100%;
-  height: 90px;
-  background: #008080;
+  background: white;
   display: flex;
-  color: red;
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px; }
-
-.vid-thumbnail {
-  height: 90px;
-  width: 150px;
-  background: purple; }
-
-.vid-title {
-  margin-left: 15px; }
+  height: 800px; }
+  .vid-lower-wrapper .vid-lower-left {
+    width: 65%;
+    height: 100%;
+    background: yellow; }
+    .vid-lower-wrapper .vid-lower-left .title-outer-wrapper {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      justify-content: flex-end;
+      background: white;
+      border-bottom: 1px solid grey; }
+      .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper {
+        width: 900px;
+        height: 100%;
+        background: white;
+        padding: 30px; }
+        .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .title-box {
+          display: flex; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .title-box .vid-title {
+            font-size: 35px; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .title-box .vid-rating {
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 25px;
+            font-size: 15px;
+            border: solid red 1px;
+            padding: 2px 8px;
+            border-radius: 5px;
+            height: 100%;
+            transform: translate(0%, 45%); }
+        .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info {
+          display: flex; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info .from {
+            padding: 7px; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info .days-ago {
+            padding: 7px; }
+        .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper {
+          display: flex;
+          align-items: center; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .user-icon {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background: grey;
+            margin: 10px; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn {
+            background: white;
+            color: #00adef;
+            border-color: #00adef;
+            height: 50px;
+            font-size: 18px;
+            padding: 10px; }
+    .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper {
+      height: auto;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      background: #F2F4F5;
+      border-bottom: 1px solid grey; }
+      .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper .disc-wrapper {
+        width: 900px;
+        padding: 30px; }
+        .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper .disc-wrapper .disc-topbar {
+          display: flex;
+          justify-content: space-between;
+          color: grey;
+          margin: 0 30px 20px 0; }
+          .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper .disc-wrapper .disc-topbar .disc-stats {
+            display: flex;
+            align-items: center;
+            font-size: 18px; }
+            .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper .disc-wrapper .disc-topbar .disc-stats .fa {
+              padding: 0 15px 0 0; }
+            .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper .disc-wrapper .disc-topbar .disc-stats div {
+              padding-right: 20px; }
+          .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper .disc-wrapper .disc-topbar .share-btn {
+            color: #607680;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            border: solid grey 1px;
+            border-radius: 5px;
+            height: 40px;
+            width: 90px; }
+  .vid-lower-wrapper .category-outer-wrapper {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid grey;
+    background: #FFFFFF; }
+    .vid-lower-wrapper .category-outer-wrapper .category-wrapper {
+      width: 900px;
+      padding: 30px; }
+    .vid-lower-wrapper .category-outer-wrapper .clip-category {
+      display: flex;
+      flex-direction: column; }
+    .vid-lower-wrapper .category-outer-wrapper .category {
+      margin-bottom: 10px; }
+    .vid-lower-wrapper .category-outer-wrapper .category-btn {
+      height: 40px;
+      width: 90px;
+      border-radius: 5%;
+      margin: 10px 15px 0 0;
+      border: none;
+      background: #E3E8E9; }
+  .vid-lower-wrapper .comments-outer-wrapper {
+    background: white;
+    height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid grey; }
+    .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper {
+      height: 100%;
+      width: 900px;
+      padding: 30px; }
+      .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comments-title {
+        font-size: 26px; }
+      .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .previous-comments-bar {
+        height: auto;
+        width: 97%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin: 20px;
+        background: #E3E8E9;
+        justify-content: center;
+        font-size: 20px;
+        border-radius: 2%; }
+      .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content {
+        display: flex; }
+        .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .user-pic {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          background: grey;
+          margin: 10px 15px 10px 10px;
+          border: none; }
+        .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .user-name {
+          margin-right: 10px; }
+        .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .main-comment-box {
+          width: 100%; }
+          .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .main-comment-box .comment-details {
+            display: flex;
+            width: 100%;
+            margin: 10px 10px 10px 0; }
+      .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .reply-tag {
+        text-align: right;
+        display: block; }
+  .vid-lower-wrapper .vid-lower-right {
+    width: 35%;
+    height: 100%; }
+    .vid-lower-wrapper .vid-lower-right .right-content {
+      width: 60%;
+      height: auto;
+      background: white; }
+    .vid-lower-wrapper .vid-lower-right .search-results {
+      font-size: 18px;
+      margin: 10px; }
+    .vid-lower-wrapper .vid-lower-right .autoplay-toggle {
+      color: grey;
+      font-size: 16px;
+      margin: 10px; }
+    .vid-lower-wrapper .vid-lower-right .next-video {
+      width: 80%;
+      height: auto;
+      display: flex;
+      margin-bottom: 15px;
+      padding: 20px;
+      margin: auto; }
+      .vid-lower-wrapper .vid-lower-right .next-video .vid-thumbnail {
+        height: 90px;
+        width: 100%;
+        padding: 20px;
+        border: 5px solid #19B4F0; }
+      .vid-lower-wrapper .vid-lower-right .next-video .vid-title {
+        height: 90px;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        justify-content: center; }
+    .vid-lower-wrapper .vid-lower-right .show-more-box {
+      text-align: center;
+      background: white;
+      color: #00adef;
+      border-color: #00adef;
+      font-size: 14px;
+      width: 60%; }
+      .vid-lower-wrapper .vid-lower-right .show-more-box .more-btn {
+        width: 140px;
+        height: 45px; }
 
 
 .searchPageWrapper {

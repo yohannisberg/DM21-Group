@@ -5,8 +5,6 @@ angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainServic
         mainService.searchVideos(1, query).then(response => {
             mainService.searchedVideo(response.data.data);
              console.log(response.data.data);
-            // let videoId = response.data.data.replace(/\D/g, '')
-            // mainService.id.push(videoId);
             $state.go('search');
             $scope.query = '';
         })

@@ -6,7 +6,7 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 
     $stateProvider.state('home', {
         url: '/',
-        templateUrl: '../views/home.html',
+        templateUrl: './views/home.html',
         controller: 'mainCtrl'
     }).state('userVideos', {
         url: '/userVideos',
@@ -14,11 +14,11 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         controller: 'userVideosCtrl'
     }).state('search', {
         url: '/search',
-        templateUrl: 'views/search.html',
+        templateUrl: './views/search.html',
         controller: 'searchCtrl'
     }).state('edit', {
         url: '/edit',
-        templateUrl: '../views/editvideo.html',
+        templateUrl: './views/editvideo.html',
         controller: 'editCtrl'
     }).state('playvideo', {
         url: '/playvideo',
@@ -35,7 +35,7 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
-angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
     $scope.login = function () {
         mainService.login().then(function (res) {
@@ -43,6 +43,13 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", func
         });
     };
     $scope.login();
+
+    $scope.playVideo = function (videoLink, uri) {
+        mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
+    };
 
     mainService.getVideosByChannel('staffpicks').then(function (res) {
         console.log(res.data.data);
@@ -70,8 +77,6 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
         mainService.searchVideos(1, query).then(function (response) {
             mainService.searchedVideo(response.data.data);
             console.log(response.data.data);
-            // let videoId = response.data.data.replace(/\D/g, '')
-            // mainService.id.push(videoId);
             $state.go('search');
             $scope.query = '';
         });
@@ -94,6 +99,15 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         $scope.comments = res.data.data;
         console.log($scope.comments);
     });
+    $scope.addComment = function () {
+        mainService.postComment(id, $scope.text).then(function (res) {
+            console.log(res);
+        });
+        mainService.getComments(id).then(function (res) {
+            $scope.comments = res.data.data;
+            console.log($scope.comments);
+        });
+    };
     document.querySelector(".video-window").innerHTML = $scope.video;
     console.log($scope.video);
 }]);
@@ -138,12 +152,20 @@ angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
     $scope.userVideos = function () {
         mainService.userVideos().then(function (res) {
             $scope.videos = res.data.data;
             console.log($scope.videos);
         });
+    };
+    $scope.userVideos();
+
+    $scope.play = function (videoLink, uri) {
+        mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
     };
 }]);
 'use strict';
@@ -171,7 +193,7 @@ angular.module('vimeoApp').directive('navBar', function () {
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var _this = this;
 
-    var serverUrl = 'http://localhost:3005';
+    var serverUrl = 'http://localhost:3012';
 
     this.videoData = '';
 
@@ -220,10 +242,10 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             url: serverUrl + '/api/videos/' + id + '/comments'
         });
     };
-    this.postComment = function (id) {
+    this.postComment = function (id, text) {
         return $http({
             method: 'POST',
-            data: '',
+            data: { text: text },
             url: serverUrl + '/api/comments/' + id
         });
     };

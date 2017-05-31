@@ -69,7 +69,6 @@ module.exports = {
                     per_page: 10
                 }
             }, (error, body) => {
-                console.log(body);
                 return !error ? res.status(200).send(body) : console.log(error);
             })
         }
@@ -93,8 +92,12 @@ module.exports = {
                 path: `/videos/${req.params.id}/comments`,
                 query: {
                     per_page: 1
+                },
+                data: {
+                    text: req.body.text
                 }
             }, (error, body) => {
+                console.log(body);
                 return !error ? res.status(200).send(body) : console.log(error);
             })
         }

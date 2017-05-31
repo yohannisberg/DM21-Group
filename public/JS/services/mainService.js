@@ -1,5 +1,5 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
-    let serverUrl = 'http://localhost:3005'
+    let serverUrl = 'http://localhost:3012'
 
     this.videoData = '';
 
@@ -48,10 +48,10 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/videos/' + id + '/comments'
         })
     }
-    this.postComment = id => {
+    this.postComment = (id, text) => {
         return $http({
             method: 'POST',
-            data: '',
+            data: {text},
             url: serverUrl + '/api/comments/' + id
         })
     };
