@@ -1,224 +1,22 @@
-*{
+* {
     font-family: Helvetica;
 }
-// .playVid-page {
-//     display: flex;
-//     justify-content: center; // align-items: center;
-//     width: 70%;
-//     margin: auto; // color: white;
-//     flex-direction: row;
-// }
 
-// .video-size {
-//     height: 100%;
-//     width: auto;
-// }
-
-// .video-window {
-//     background: black;
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// // _______________________________________________________________________________________________
-// .left-content {
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-//     flex-direction: column;
-//     border-bottom: 1px solid grey;
-//     .heading-wrapper {
-//         background: white;
-//         width: 100%;
-//         height: 200px;
-//         display: flex;
-//         flex-direction: column;
-//         border-bottom: 1px solid grey;
-//         .vid-title {
-//             // background: #00FA9A;
-//             width: 100%;
-//             height: auto;
-//             font-size: 50px;
-//             margin: 0;
-//         }
-//         .clip-info {
-//             // background: #778899;
-//             width: 100%;
-//             height: 50px;
-//         }
-//         .follow-wrapper {
-//             // background: yellowgreen;
-//             display: flex;
-//             align-items: center; 
-//         }
-//         .user-icon {
-//             border-radius: 50%;
-//             width: 50px;
-//             height: 50px;
-//             background: grey;
-//             margin: 10px;
-//         }
-//         .follow-btn {
-//             background: white;
-//             color: #00adef;
-//             border-color: #00adef;
-//             width: 10%;
-//             height: 50px;
-//             font-size: 20px;
-//             margin: 10px;
-//         }
-//     } // // _______________________________________________________________________________________________
-//     .details-wrapper {
-//         width: 100%;
-//         height: 200px;
-//         background: #A52A2A;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         .clip-details {
-//             width: 100%;
-//             height: 100%;
-//             background: #F2F4F5;
-//             display: flex;
-//             align-items: center;
-//             border-bottom: 1px solid grey;
-//         } //     .submit{
-//         //         width:100%;
-//         //         height: 50px;
-//         //         background:#8A2BE2;
-//         //             display:flex;
-//         //             justify-content: center;
-//         //             align-items: center;
-//         //     }
-//     } // // _______________________________________________________________________________________________
-//     .clip-category {
-//         display: flex;
-//         flex-flow: column nowrap;
-//         align-items: left;
-//         height: 200px;
-//         background: white;
-//         justify-content: center;
-//         border-bottom: 1px solid grey;
-//         .btn-wrapper {
-//             display: flex;
-//             flex-direction: row;
-//             background: white;
-//         }
-//         .category-btn {
-//             width: 80px;
-//             height: 40px;
-//             background: #F2F4F5;
-//             display: flex;
-//         }
-//     } // // _______________________________________________________________________________________________
-//     .comments-wrapper {
-//         width: 100%;
-//         height: 50px; // background: #FF1493;
-//         display: flex;
-//         align-items: center; //     .comments-title{
-//         //         width:100%;
-//         //         height: 50px;
-//         //         background: #FFD700;
-//         //             display:flex;
-//         //             justify-content: center;
-//         //             align-items: center;
-//         //     }
-//     } // // _______________________________________________________________________________________________
-//     .comment-content {
-//         width: 100%;
-//         height: auto; // background: #ADFF2F;
-//         height: auto;
-//         .user-pic {
-//             border-radius: 50%;
-//             width: 50px;
-//             height: 50px;
-//             background: grey;
-//             margin: 10px;
-//             border: none; // display:inline-block;
-//         }
-//         .comment-details {
-//             display: inline-block;
-//             h5 {
-//                 display: inline-block;
-//             }
-//         }
-//         .reply-tag {
-//             text-align: right;
-//             display: block;
-//         }
-//         .user-comment {
-//             // background: blue;
-//             display: block;
-//             align-items: center;
-//         }
-//     }
-// }
-
-// // // _______________________________________________________________________________________________
-// .right-content-wrapper {
-//     width: 400px;
-//     background: #FFFFFF;
-// }
-
-// .right-content {
-//     width: 80%;
-//     height: auto;
-//     background: white;
-//     margin: auto; 
-// }
-
-// .next-video {
-//     width: 100%;
-//     height: 90px;
-//     // background: #008080;
-//     display: flex;
-//     color: red;
-//     display: flex;
-//     align-items: center;
-//     margin-bottom: 20px
-// }
-
-// .vid-thumbnail {
-//     height: 90px;
-//     width: 150px;
-//     background: purple;
-// }
-
-// .vid-title {
-//     margin-left: 15px;
-// }
-
-// .show-more-btn{
-//     width:100%;
-//     height: 50px;
-//     display:flex;
-//     justify-content: center;
-//     align-items: center;
-//     // background: #40E0D0;
-// }
-// // .submit{
-// //     width:100%;
-// //     height: 50px;
-// //     background: #FFFF00;
-// //             display:flex;
-// //             justify-content: center;
-// //             align-items: center;
-// // }
-
-
-
-// =========================
-// =========================
-// =========================
+.video-window {
+    background: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .vid-lower-wrapper {
     width: 100%;
-    background: blue;
+    background: white;
     display: flex;
     height: 800px;
+    // margin:auto;
     .vid-lower-left {
         width: 65%;
         height: 100%;
@@ -229,10 +27,12 @@
             display: flex;
             justify-content: flex-end;
             background: white;
+            border-bottom: 1px solid grey;
             .title-wrapper {
                 width: 900px;
                 height: 100%;
                 background: white;
+                padding: 30px;
                 .title-box {
                     display: flex;
                     .vid-title {
@@ -252,61 +52,64 @@
                         transform: translate(0%, 45%);
                     }
                 }
-
-            .user-info {
-                display:flex; 
-                .from{
-                    padding:7px;
-                }
-                .days-ago{
-                    padding:7px;
-                }
-            }
-            .follow-wrapper {
-                display: flex;
-                align-items: center;
-                    .user-icon {
-                    border-radius: 50%;
-                    width: 50px;
-                    height: 50px;
-                    background: grey;
-                    margin: 10px;
-                }
-                .follow-btn {
-                    background: white;
-                    color: #00adef;
-                    border-color: #00adef;
-                    height: 50px;
-                    font-size: 20px;
+                .user-info {
+                    display: flex;
+                    .from {
+                        padding: 7px;
                     }
-
+                    .days-ago {
+                        padding: 7px;
+                    }
+                }
+                .follow-wrapper {
+                    display: flex;
+                    align-items: center;
+                    .user-icon {
+                        border-radius: 50%;
+                        width: 50px;
+                        height: 50px;
+                        background: grey;
+                        margin: 10px;
+                    }
+                    .follow-btn {
+                        background: white;
+                        color: #00adef;
+                        border-color: #00adef;
+                        height: 50px;
+                        font-size: 18px;
+                        padding: 10px;
+                    }
                 }
             }
         }
-
         .disc-outer-wrapper {
             height: auto;
             width: 100%;
             display: flex;
             justify-content: flex-end;
-            background: #EEF1F2;
-            padding: 30px;
-                
-                .disc-wrapper {
-                width:900px;
-
+            background: #F2F4F5;
+            border-bottom: 1px solid grey;
+            .disc-wrapper {
+                width: 900px;
+                padding: 30px;
                 .disc-topbar {
                     display: flex;
                     justify-content: space-between;
-                    color:grey;
+                    color: grey;
                     margin: 0 30px 20px 0;
-
-                    .disc-stats{
+                    .disc-stats {
                         display: flex;
                         align-items: center;
                         font-size: 18px;
+                        .fa{
+                            padding: 0 15px 0 0 ;
+                        }
+                        div{
+                            padding-right:20px;
+                        }
+
                     }
-                    .share-btn{
+                    .share-btn {
                         color: #607680;
                         display: flex;
                         justify-content: center;
@@ -321,30 +124,174 @@
             }
         }
     }
+    .category-outer-wrapper {
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid grey;
+        background: #FFFFFF;
+        .category-wrapper {
+            width: 900px;
+            padding: 30px;
+        }
+        .clip-category {
+            display: flex;
+            flex-direction: column;
+        }
+        .category {
+            margin-bottom: 10px;
+        }
+        .category-btn {
+            height: 40px;
+            width: 90px;
+            border-radius: 5%;
+            margin: 10px 15px 0 0;
+            border:none;
+            background: #E3E8E9
+        }
+    }
+    .comments-outer-wrapper {
+        background: white;
+        height: 400px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid grey;
+        .comments-wrapper {
+            height: 100%;
+            width: 900px;
+            padding: 30px;
+            .comments-title {
+                font-size: 26px;
+            }
+            .previous-comments-bar {
+                height: auto;
+                width: 97%;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin: 20px;
+                background: #E3E8E9;
+                justify-content: center;
+                font-size: 20px;
+                border-radius: 2%;
+            }
+            .comment-content {
+                display: flex;
+                .user-pic {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    background: grey;
+                    margin: 10px 15px 10px 10px;
+                    border: none;
+                }
+                .user-name {
+                    // width:%;
+                    margin-right: 10px;
+                }
+                .main-comment-box {
+                    width: 100%;
+                    .comment-details {
+                        display: flex;
+                        width: 100%;
+                        margin: 10px 10px 10px 0;
+                    }
+                }
+            } //comment-content
+            .reply-tag {
+                text-align: right;
+                display: block;
+            }
+        }
+    }
 
 
 
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ====================================================================================================
 
     .vid-lower-right {
         width: 35%;
         height: 100%;
-        background: purple;
-    }   
+        // background: yellowgreen;
+    
+        .right-content{
+            width:60%;
+            height:auto;
+            background: white;
+            // margin:auto;
+        }
+        .search-results{
+            font-size:18px;
+            margin:10px;
+
+
+        }
+        .autoplay-toggle{
+            color:grey;
+            font-size:16px;
+            margin:10px;
+
+        }
+
+        .next-video{
+            width: 80%;
+            height: auto;
+            // background: red;
+            display: flex;
+            margin-bottom: 15px;
+            padding:20px;
+            margin:auto;
+        
+        .vid-thumbnail{
+            height:90px;
+            width:100%;
+            padding:20px;
+            border: 5px solid #19B4F0;
+            // background: yellow;
+        }
+        .vid-title{
+            height:90px;
+            width:100%;
+            padding:20px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            justify-content: center;
+            // background:yellowgreen;
+
+
+        }
+    
+        }
+
+    .show-more-box{
+        text-align: center;
+            background: white;
+            color: #00adef;
+            border-color: #00adef;
+            font-size: 14px;
+            // margin: auto;
+            width: 60%;
+
+        
+        .more-btn{
+            width: 140px;
+            height: 45px;
+        }
+    }
+    
+
+
+    }
+
+
+
+
+
+
+
+
+
 }
