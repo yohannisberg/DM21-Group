@@ -90,3 +90,23 @@ flex-wrap: wrap;
   margin-left:3px;
   padding-left: 6px;
 }
+
+.searchButtonWrapper{
+  margin-bottom:50px;
+  margin-top:50px;
+}
+
+.searchButtonWrapper button{
+  background-color:#EEF1F2;
+  padding: 5px 8px;
+  font-weight:700;
+  color:#4E5A5E;
+  cursor:pointer;
+  border: none;
+  margin: 0 2px;
+}
+
+.searchButtonSelected{
+  background:#00ADEF !important;
+  color:#FFF !important;
+}

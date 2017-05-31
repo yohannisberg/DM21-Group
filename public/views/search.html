@@ -35,11 +35,14 @@
 <div class='userAndViewsWrapper'>
 <span>{{stuff.user.name}}</span>
 
-  <span class='searchPlays'>{{stuff.stats.plays | number:fractionSize}}</span>
+  <!-- <span class='searchPlays' ng-show='stuff.stats.plays=1' +'plays'></span> -->
+  <span class='searchPlays' ng-hide='stuff.stats.plays==null'>{{stuff.stats.plays | number:fraction}} plays</span>
+
 
 </div>
 </div>
 
+<div class='searchButtonWrapper'>
 	<button ng-click="page(1)">1</button>
 	<button ng-click="page(2)">2</button>
 	<button ng-click="page(3)">3</button>
@@ -50,6 +53,7 @@
 	<button ng-click="page(8)">8</button>
 	<button ng-click="page(9)">9</button>
 	<button ng-click="page(10)">10</button>
+</div>
 
 </div>
 

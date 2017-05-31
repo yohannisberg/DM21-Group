@@ -40,10 +40,10 @@
 
 .searchBar{
   margin: 0 5px 0 0;
-  width: 210px;
+  width: 272px;
   height: 30px;
   cursor: pointer;
-  padding: 0 0 0 10px;
+  padding: 0 32px 0 10px;
   color: #7b8084;
   position: absolute;
   right: 179px;
@@ -64,6 +64,7 @@
   border-radius: 100%;
   position: absolute;
   right: 134px;
+  cursor:pointer;
 }
 
 .cloud{
@@ -79,4 +80,54 @@
   padding: 0 10px;
   position: absolute;
   right: 30px;
+}
+
+a:hover, a:visited, a:link, a:active .logInNav{
+  text-decoration:none;
+  color:#607680;
+}
+
+.dropDown{
+  position:absolute;
+  height:345px;
+  width:203px;
+  background-color:white;
+  top:62px;
+  right:55px;
+  border: 1px solid #D0D8DB;
+  color:black;
+  font-weight:400;
+  display: flex;
+  flex-direction: column;
+  padding-top:15px;
+}
+
+.dropDown div{
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:2px;
+  font-size: 15px;
+}
+
+.dropDown div a{
+  color:black;
+}
+
+.navUserName{
+  font-weight:700;
+  margin-top:-5px;
+}
+
+.mainUserArrow{
+  font-size:8.75px;
+}
+
+.navViewProf{
+  font-size:10.75px !important;
+}
+
+.mainBorderDropdown{
+  border-bottom: 1px solid #D0D8DB;
+  margin-left:-20px;
+  margin-bottom:6px;
 }
