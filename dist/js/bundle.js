@@ -6,7 +6,7 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 
     $stateProvider.state('home', {
         url: '/',
-        templateUrl: '../views/home.html',
+        templateUrl: './views/home.html',
         controller: 'mainCtrl'
     }).state('userVideos', {
         url: '/userVideos',
@@ -14,11 +14,11 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         controller: 'userVideosCtrl'
     }).state('search', {
         url: '/search',
-        templateUrl: 'views/search.html',
+        templateUrl: './views/search.html',
         controller: 'searchCtrl'
     }).state('edit', {
         url: '/edit',
-        templateUrl: '../views/editvideo.html',
+        templateUrl: './views/editvideo.html',
         controller: 'editCtrl'
     }).state('playvideo', {
         url: '/playvideo',
@@ -105,7 +105,7 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         });
         mainService.getComments(id).then(function (res) {
             $scope.comments = res.data.data;
-            console.log('yo', $scope.comments);
+            console.log($scope.comments);
         });
     };
     document.querySelector(".video-window").innerHTML = $scope.video;
@@ -152,12 +152,20 @@ angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
     $scope.userVideos = function () {
         mainService.userVideos().then(function (res) {
             $scope.videos = res.data.data;
             console.log($scope.videos);
         });
+    };
+    $scope.userVideos();
+
+    $scope.play = function (videoLink, uri) {
+        mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
     };
 }]);
 'use strict';

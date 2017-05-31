@@ -13,7 +13,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         })
         mainService.getComments(id).then(res => {
             $scope.comments = res.data.data;
-            console.log('yo', $scope.comments);
+            console.log($scope.comments);
         })
     }
     document.querySelector(".video-window").innerHTML = $scope.video;

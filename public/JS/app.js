@@ -6,7 +6,7 @@ angular.module('vimeoApp', ["ui.router"])
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: '../views/home.html',
+                templateUrl: './views/home.html',
                 controller: 'mainCtrl'
             })
             .state('userVideos', {
@@ -16,12 +16,12 @@ angular.module('vimeoApp', ["ui.router"])
             })
             .state('search', {
                 url: '/search',
-                templateUrl: 'views/search.html',
+                templateUrl: './views/search.html',
                 controller: 'searchCtrl'
             })
             .state('edit' ,{
                 url: '/edit',
-                templateUrl: '../views/editvideo.html',
+                templateUrl: './views/editvideo.html',
                 controller: 'editCtrl'
             })
             .state('playvideo', {
