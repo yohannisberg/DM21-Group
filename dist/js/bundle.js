@@ -36,119 +36,6 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
-angular.module('vimeoApp').directive('footerDir', function () {
-
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {},
-    controller: 'navBarCtrl'
-  };
-});
-'use strict';
-
-angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
-    var _this = this;
-
-    var serverUrl = 'http://localhost:3012';
-
-    this.videoData = '';
-
-    this.searchedVideo = function (data) {
-        this.videoData = data;
-    };
-
-    this.id = '';
-
-    this.arr = [];
-
-    this.getId = function (id) {
-        _this.arr.push(id);
-    };
-
-    this.video = '';
-
-    this.clickedVideo = function (videoLink) {
-        this.video = videoLink;
-    };
-
-    this.getVideosByChannel = function (channel) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + ('/api/videos/channels/' + channel)
-
-        });
-    };
-
-    this.searchVideos = function (page, query) {
-        _this.query = query;
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/videos/' + page + '?search=' + query
-        });
-    };
-    this.getVideoById = function (id) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/videos/' + id
-        });
-    };
-    this.getComments = function (id) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/videos/' + id + '/comments'
-        });
-    };
-    this.postComment = function (id, text) {
-        return $http({
-            method: 'POST',
-            data: { text: text },
-            url: serverUrl + '/api/comments/' + id
-        });
-    };
-    this.login = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/login'
-        });
-    };
-    this.getUser = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/currentuser'
-        });
-    };
-    this.uploadVideo = function () {
-        return $http({
-            method: 'PUT',
-            url: serverUrl + '/api/upload'
-        });
-    };
-    this.userVideos = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/usersvideos'
-        });
-    };
-
-    this.getVideosByChannel = function (channel) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + ('/api/videos/channels/' + channel)
-        });
-    };
-}]);
-'use strict';
-
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
@@ -340,6 +227,119 @@ angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService"
         console.log(number);
         var yup = number + "yup";
         $scope.yup;
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').directive('footerDir', function () {
+
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
+  };
+});
+'use strict';
+
+angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
+    var _this = this;
+
+    var serverUrl = 'http://localhost:3012';
+
+    this.videoData = '';
+
+    this.searchedVideo = function (data) {
+        this.videoData = data;
+    };
+
+    this.id = '';
+
+    this.arr = [];
+
+    this.getId = function (id) {
+        _this.arr.push(id);
+    };
+
+    this.video = '';
+
+    this.clickedVideo = function (videoLink) {
+        this.video = videoLink;
+    };
+
+    this.getVideosByChannel = function (channel) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/channels/' + channel)
+
+        });
+    };
+
+    this.searchVideos = function (page, query) {
+        _this.query = query;
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/videos/' + page + '?search=' + query
+        });
+    };
+    this.getVideoById = function (id) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/videos/' + id
+        });
+    };
+    this.getComments = function (id) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/videos/' + id + '/comments'
+        });
+    };
+    this.postComment = function (id, text) {
+        return $http({
+            method: 'POST',
+            data: { text: text },
+            url: serverUrl + '/api/comments/' + id
+        });
+    };
+    this.login = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/login'
+        });
+    };
+    this.getUser = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/currentuser'
+        });
+    };
+    this.uploadVideo = function () {
+        return $http({
+            method: 'PUT',
+            url: serverUrl + '/api/upload'
+        });
+    };
+    this.userVideos = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/usersvideos'
+        });
+    };
+
+    this.getVideosByChannel = function (channel) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/channels/' + channel)
+        });
     };
 }]);
 //# sourceMappingURL=bundle.js.map
