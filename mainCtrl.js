@@ -55,7 +55,7 @@ module.exports = {
             res.status(200).json(req.session.user);
         }).catch(error => {
             res.status(401).send('Not signed in')
-            // console.log(error);
+             console.log(error);
         });
     },
     uploadVideo: (req, response) => {
