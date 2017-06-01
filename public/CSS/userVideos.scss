@@ -1,12 +1,17 @@
+// .editVideoOuterWrapper{
+//   margin-bottom:1px;
+// }
+
 .editVideoWrapper{
   display: flex;
   justify-content: center;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  // height:100vh;
 }
 
  .editVideo{
    width: 800px;
-   height:290px;
+  //  height:290px;
    margin-top: 40px;
    padding: 0 30px;
    min-width: 40rem;
@@ -56,7 +61,7 @@
  }
 
  .titleEdit{
-   width:190px;
+   width:265px;
    padding: 15px 10px 10px 10px;
  }
 
@@ -92,11 +97,12 @@
  }
 
  .videoName{
-   width:86px;
+   width:160px;
    padding: 15px 10px 10px 10px;
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis;
+   font-weight:700;
  }
 
  .editVideoPic{
