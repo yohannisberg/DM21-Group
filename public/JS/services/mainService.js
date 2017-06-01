@@ -85,11 +85,4 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/usersvideos'
         })
     };
-//this getVideosByChannel is a duplicate?
-    this.getVideosByChannel = (channel) => {
-        return $http({
-            method: 'GET',
-            url: serverUrl + `/api/videos/channels/${channel}`
-        })
-    }
 });
