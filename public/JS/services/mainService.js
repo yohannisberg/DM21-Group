@@ -10,10 +10,15 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.id = '';
 
     this.arr = [];
-    console.log(this.arr)
+
 
     this.getId = (id) => {
         this.arr.push(id);
+        if(this.arr.length > 1){
+            while(this.arr.length > 1){
+                this.arr.shift();
+            }
+        }
     }
 
     this.video = '';
@@ -38,10 +43,9 @@ angular.module('vimeoApp').service('mainService', function ($http) {
         })
     };
     this.getVideoById = (id) => {
-        console.log("getVideoById" , id)
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/' + id
+            url: serverUrl + '/api/videos?id=' + id
         })
     };
     this.getComments = id => {

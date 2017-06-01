@@ -11,7 +11,7 @@ module.exports = {
             return lib.request({
                 path: `/videos`,
                 query: {
-                    page: req.params.id,
+                    page: req.params.pageNum,
                     per_page: 12,
                     query: `${req.query.search}`,
                     sort : 'relevant',
@@ -38,9 +38,8 @@ module.exports = {
 /////////////
     getVideoById: (req, res) => {
             let makeRequest = function (lib) {
-                console.log(req.params);
                 return lib.request({
-                    path: `/videos/${req.params.id}`,
+                    path: `/videos/${req.query.id}`,
                     query: {
                         per_page: 10
                     }
