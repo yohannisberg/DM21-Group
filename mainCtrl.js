@@ -37,6 +37,9 @@ module.exports = {
         }).then(response => {
             req.session.user = response.data.user;
             let usersName = req.session.user.name;
+            db.delete_all_users((err, result) => {
+                err ? console.log(err) : console.log(result);
+            });
             db.add_user([usersName], (err, result) => {
                 err ? console.log(err) : console.log(result);
             })
@@ -55,7 +58,7 @@ module.exports = {
             res.status(200).json(req.session.user);
         }).catch(error => {
             res.status(401).send('Not signed in')
-            // console.log(error);
+             console.log(error);
         });
     },
     uploadVideo: (req, response) => {
