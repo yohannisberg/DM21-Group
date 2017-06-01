@@ -474,14 +474,14 @@ a:hover, a:visited, a:link, a:active .logInNav {
   width: 100%;
   background: white;
   display: flex;
-  height: 800px; }
+  height: auto; }
   .vid-lower-wrapper .vid-lower-left {
     width: 65%;
     height: 100%;
     background: yellow; }
     .vid-lower-wrapper .vid-lower-left .title-outer-wrapper {
       width: 100%;
-      height: 200px;
+      height: auto;
       display: flex;
       justify-content: flex-end;
       background: white;
@@ -586,11 +586,10 @@ a:hover, a:visited, a:link, a:active .logInNav {
       background: #E3E8E9; }
   .vid-lower-wrapper .comments-outer-wrapper {
     background: white;
-    height: 400px;
+    height: 100%;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    border-bottom: 1px solid grey; }
+    justify-content: flex-end; }
     .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper {
       height: 100%;
       width: 900px;
@@ -622,12 +621,21 @@ a:hover, a:visited, a:link, a:active .logInNav {
         .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .main-comment-box {
           width: 100%; }
           .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .main-comment-box .comment-details {
-            display: flex;
             width: 100%;
             margin: 10px 10px 10px 0; }
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .reply-tag {
         text-align: right;
         display: block; }
+      .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-box {
+        height: 50px;
+        width: 80%;
+        display: flex;
+        justify-content: flex-start;
+        margin: 20px 0 20px 70px;
+        align-items: center;
+        color: lightgray; }
+        .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-box .comment-submit {
+          margin: 20px 0 20px 70px; }
   .vid-lower-wrapper .vid-lower-right {
     width: 35%;
     height: 100%; }
@@ -646,18 +654,16 @@ a:hover, a:visited, a:link, a:active .logInNav {
       width: 80%;
       height: auto;
       display: flex;
-      margin-bottom: 15px;
-      padding: 20px;
       margin: auto; }
       .vid-lower-wrapper .vid-lower-right .next-video .vid-thumbnail {
-        height: 90px;
-        width: 100%;
-        padding: 20px;
+        height: 80px;
+        width: 40%;
+        margin-top: 15px;
         border: 5px solid #19B4F0; }
       .vid-lower-wrapper .vid-lower-right .next-video .vid-title {
-        height: 90px;
-        width: 100%;
-        padding: 20px;
+        height: 80px;
+        width: 40%;
+        margin: 15px 0 0 15px;
         display: flex;
         flex-direction: column;
         text-align: left;
@@ -671,8 +677,8 @@ a:hover, a:visited, a:link, a:active .logInNav {
       width: 60%; }
       .vid-lower-wrapper .vid-lower-right .show-more-box .more-btn {
         width: 140px;
-        height: 45px; }
-
+        height: 45px;
+        margin: 20px; }
 
 .searchPageWrapper {
   width: 1250px;

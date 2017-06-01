@@ -10,6 +10,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.id = '';
 
     this.arr = [];
+    console.log(this.arr)
 
     this.getId = (id) => {
         this.arr.push(id);
@@ -37,6 +38,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
         })
     };
     this.getVideoById = (id) => {
+        console.log("getVideoById" , id)
         return $http({
             method: 'GET',
             url: serverUrl + '/api/videos/' + id
@@ -79,7 +81,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/usersvideos'
         })
     };
-
+//this getVideosByChannel is a duplicate?
     this.getVideosByChannel = (channel) => {
         return $http({
             method: 'GET',
