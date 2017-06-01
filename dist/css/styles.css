@@ -151,7 +151,8 @@
   position: absolute;
   height: 400px;
   width: 100%;
-  z-index: -1; }
+  z-index: -1;
+  left: 0; }
 
 .topBanner {
   width: 96%;
@@ -270,7 +271,7 @@
   width: 100%; }
 
 .userAndViewsWrapperMainPage {
-  width: 320px;
+  width: 100%;
   color: #879CAB;
   cursor: pointer;
   overflow: hidden;
@@ -318,6 +319,30 @@
   line-height: 1.3;
   width: 35%;
   margin-top: 10px; }
+
+.loadingWrapper {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.loading {
+  color: #607680;
+  font-size: 28px;
+  font-weight: 700; }
+
+.loadBlue {
+  color: blue;
+  font-size: 50px; }
+
+.loadGreen {
+  color: green;
+  font-size: 50px; }
+
+.loadRed {
+  color: red;
+  font-size: 50px; }
 
 .colorRibbon {
   width: 100%;
@@ -745,6 +770,10 @@ a:hover, a:visited, a:link, a:active .logInNav {
   background: #00ADEF !important;
   color: #FFF !important; }
 
+iframe {
+  height: 540px;
+  width: 960px; }
+
 .settings-container {
   width: 100%;
   max-width: 720px;
@@ -856,7 +885,6 @@ a:hover, a:visited, a:link, a:active .logInNav {
 
 .editVideo {
   width: 800px;
-  height: 290px;
   margin-top: 40px;
   padding: 0 30px;
   min-width: 40rem;
@@ -898,7 +926,7 @@ a:hover, a:visited, a:link, a:active .logInNav {
   font-weight: 400; }
 
 .titleEdit {
-  width: 190px;
+  width: 265px;
   padding: 15px 10px 10px 10px; }
 
 .addedEdit {
@@ -928,11 +956,12 @@ a:hover, a:visited, a:link, a:active .logInNav {
   margin: 15px 5px 15px 10px; }
 
 .videoName {
-  width: 86px;
+  width: 160px;
   padding: 15px 10px 10px 10px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  font-weight: 700; }
 
 .editVideoPic {
   width: 300px;
