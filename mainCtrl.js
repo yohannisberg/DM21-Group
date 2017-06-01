@@ -37,6 +37,9 @@ module.exports = {
         }).then(response => {
             req.session.user = response.data.user;
             let usersName = req.session.user.name;
+            db.delete_all_users((err, result) => {
+                err ? console.log(err) : console.log(result);
+            });
             db.add_user([usersName], (err, result) => {
                 err ? console.log(err) : console.log(result);
             })
