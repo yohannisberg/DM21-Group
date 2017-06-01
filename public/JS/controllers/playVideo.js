@@ -10,7 +10,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
 
     mainService.getComments(id).then(res => {
         $scope.comments = res.data.data;
-        console.log($scope.comments);
+        // console.log($scope.comments);
     })
     $scope.addComment = () => {
         mainService.postComment(id, $scope.text).then(res => {
@@ -18,9 +18,25 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         })
         mainService.getComments(id).then(res => {
             $scope.comments = res.data.data;
-            console.log($scope.comments);
+            // console.log($scope.comments);
         })
     }
+
+
+    // $scope.getVideo = () => {
+        mainService.getVideoById(id).then(res => {
+            console.log(res.data)
+            $scope.media = res.data
+            
+        })
+    // }
+
+    mainService.getVideosByChannel('staffpicks').then(res => {
+        console.log(res.data.data)
+        $scope.staffpicks = res.data.data;
+    })
+
+
     document.querySelector(".video-window").innerHTML = $scope.video;
-     console.log($scope.video);
+    //  console.log($scope.video);
 });

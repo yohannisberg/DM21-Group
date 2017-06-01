@@ -14,22 +14,22 @@
             <div class="title-wrapper">
                 <div class="title-box">
                     <div class="vid-title">
-                        THE WEEKEND - "Party Monster"
+                        {{media.name}}
                     </div>
                     <div class="vid-rating">
-                        MATURE
+                        VID-RATING
                     </div>
                 </div>
                 <div class="user-info">
                     <div class="from">
-                        from BRTHRPRO
+                        {{media.app.name}}
                     </div>
                     <div class="days-ago">
-                        5 Days ago
+                        {{media.created_time}}
                     </div>
                 </div>
                 <div class="follow-wrapper">
-                    <div class="user-icon"></div>
+                    <img class="user-icon" ng-src="{{media.user.pictures.sizes[3].link}}">
                     <button class="follow-btn">+ Follow</button>
                 </div>
             </div>
@@ -48,27 +48,23 @@
 
 
 
-
-
                         <i class="fa fa-play" aria-hidden="true"></i>
-                        <div>1,751</div>
+                        <div>Plays : {{media.stats.plays}}</div>
                         <i class="fa fa-heart" aria-hidden="true"></i>
-                        <div>218</div>
+                        <div>Likes : {{media.metadata.connections.likes.total}}</div>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <div>Collections : </div>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <div>Comments :{{media.metadata.connections.comments.total}}</div>
 
-                        <!--albums: 8 comments: 7-->
+
                     </div>
 
 
-
-
-
-
-                    <div class="share-btn">
-                        SHARE
-                    </div>
+                    <div class="share-btn">SHARE</div>
                 </div>
 
-                <div class="vid-disc">{{}}
+                <div class="vid-disc">{{media.description}}
                 </div>
             </div>
         </div>
@@ -94,15 +90,15 @@
 
         <div class="comments-outer-wrapper">
             <div class="comments-wrapper">
-                <div class="comments-title"> # of Comments</div>
+                <div class="comments-title">{{media.metadata.connections.comments.total}} Comments</div>
                 <div class="previous-comments-bar">
                     + Load 100 previous comments
                 </div>
 
             
-                <div class="comment-content"> 
-                    <div class="user-pic"></div>
-                    <div class="main-comment-box" ng-repeat= "data in comments">
+                <div class="comment-content"ng-repeat= "data in comments"> 
+                    <img class="user-pic">
+                        <div class="main-comment-box">
                         <div class="comment-details">
                             <div class="user-name">{{data.user.name}}</div>
                             <div class="post-date">created on: {{data.created_on}}</div>
@@ -116,6 +112,7 @@
                 </div>
                 <div class="comment-box-container">
                     <input class="comment-box"type="text" name="comment-input" value="Add a comment">
+                    <button class="comment-submit"type="submit">Add comment</button>
                 </div>
             </div>
         </div>
@@ -129,14 +126,11 @@
             <div class="autoplay-toggle">Autoplay next video</div>
             <hr>
 
-            <div class="next-video">
-                <div class="vid-thumbnail">
-                    vid-thumbnail
-                </div>
-
+            <div class="next-video" ng-repeat="media in staffpicks ">
+                <img class="vid-thumbnail" ng-src="{{media.pictures.sizes[5].link}}">
                 <div class="vid-title">
-                    <h4>Title</h4>
-                    <h5>Sub-Title</h5>
+                    <h5><strong>{{media.name}}</strong></h5>
+                    <h6>From {{media.user.name}}</h6>
                 </div>
             </div>
 
@@ -186,7 +180,7 @@
 
             <div class="footer-linklist col-sm-3">
                 <h4 class="subtitle">More</h4>
-                <ul class='footer-left'>
+                <ul class="footer-left">
                     <li><a href="">On Demand</a></li>
                     <li><a href="">Everywhere</a></li>
                     <li><a href="">Upload</a></li>
@@ -198,7 +192,7 @@
             <!--///////////////////////////////////////////////////////////////////-->
             <div class="footer-linklist col-sm-3">
                 <h4 class="subtitle">Upgrade</h4>
-                <ul class='footer-left'>
+                <ul class="footer-left">
                     <li><a href="">Vimeo Plus</a></li>
                     <li><a href="">Vimeo Pro</a></li>
                     <li><a href="">Vimeo Business</a></li>
