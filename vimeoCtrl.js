@@ -35,6 +35,35 @@ module.exports = {
             });
         }
     },
+/////////////
+    getVideoById: (req, res) => {
+            let makeRequest = function (lib) {
+                console.log(req.params);
+                return lib.request({
+                    path: `/videos/${req.params.id}`,
+                    query: {
+                        per_page: 10
+                    }
+                }, (error, body) => {
+                    return !error ? res.status(200).send(body) : console.log(error);
+                })
+            }
+            if (config.access_token) {
+                lib.access_token = config.access_token;
+                makeRequest(lib);
+            }
+            else {
+                lib.generateClientCredentials('public', (err, access_token) => {
+                    if (err) {
+                        res.status(404).send(err);
+                    }
+                    lib.access_token = access_token.access_token;
+                    makeRequest(lib);
+                });
+            }
+        },
+////////////////
+
     getVideoByChannels: (req, res) => {
         let makeRequest = function (lib) {
             return lib.request({
