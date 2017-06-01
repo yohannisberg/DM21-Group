@@ -12,12 +12,31 @@
 	</head>
 	<body>
 		<ui-view></ui-view>
+			<!--<footer-dir></footer-dir>-->
+
+	
+
 		<script src="https://player.vimeo.com/api/player.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 		<script src="./js/bundle.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					
+					setTimeout(function(){
+						$(footer-dir).css({
+							"position" : "absolute",
+							"bottom" : "0"
+						})
+					}, 1000)
+				})
+
+			</script>
 	</body>
+		
+	
 
 </html>
+

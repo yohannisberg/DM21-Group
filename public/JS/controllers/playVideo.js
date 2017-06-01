@@ -1,4 +1,9 @@
 angular.module('vimeoApp').controller('playVideo', function ($scope, mainService) {
+
+// $scope.comments= {}
+// $scope.testcomments = [1,2,3,4,5,6,7]
+
+
     $scope.video = mainService.video;
 
     let id = mainService.arr[0];

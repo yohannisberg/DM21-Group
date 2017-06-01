@@ -15,8 +15,7 @@
     width: 100%;
     background: white;
     display: flex;
-    height: 800px;
-    // margin:auto;
+    height: auto;
     .vid-lower-left {
         width: 65%;
         height: 100%;
@@ -153,11 +152,11 @@
     }
     .comments-outer-wrapper {
         background: white;
-        height: 400px;
+        height: 100%;
         width: 100%;
         display: flex;
         justify-content: flex-end;
-        border-bottom: 1px solid grey;
+        // border-bottom: 1px solid grey;
         .comments-wrapper {
             height: 100%;
             width: 900px;
@@ -178,7 +177,7 @@
                 border-radius: 2%;
             }
             .comment-content {
-                display: flex;
+                // display: flex;
                 .user-pic {
                     border-radius: 50%;
                     width: 50px;
@@ -188,21 +187,34 @@
                     border: none;
                 }
                 .user-name {
-                    // width:%;
                     margin-right: 10px;
                 }
                 .main-comment-box {
                     width: 100%;
+                    // display: flex;
+                    // flex-direction: row;
                     .comment-details {
-                        display: flex;
+                        // display: flex;
                         width: 100%;
                         margin: 10px 10px 10px 0;
                     }
                 }
-            } //comment-content
+            } 
             .reply-tag {
                 text-align: right;
                 display: block;
+            }
+
+            .comment-box{
+                height: 50px;
+                width:80%;
+                display:flex;
+                justify-content: flex-start;
+                margin-left:70px;
+                align-items: center;
+                color:lightgray;
+
+
             }
         }
     }
@@ -220,7 +232,6 @@
             width:60%;
             height:auto;
             background: white;
-            // margin:auto;
         }
         .search-results{
             font-size:18px;
@@ -238,11 +249,11 @@
         .next-video{
             width: 80%;
             height: auto;
-            // background: red;
             display: flex;
             margin-bottom: 15px;
             padding:20px;
             margin:auto;
+            // background: red;
         
         .vid-thumbnail{
             height:90px;
@@ -266,32 +277,19 @@
     
         }
 
-    .show-more-box{
-        text-align: center;
-            background: white;
-            color: #00adef;
-            border-color: #00adef;
-            font-size: 14px;
-            // margin: auto;
-            width: 60%;
+        .show-more-box{
+            text-align: center;
+                background: white;
+                color: #00adef;
+                border-color: #00adef;
+                font-size: 14px;
+                width: 60%;
 
-        
-        .more-btn{
-            width: 140px;
-            height: 45px;
+            
+            .more-btn{
+                width: 140px;
+                height: 45px;
+            }
         }
     }
-    
-
-
-    }
-
-
-
-
-
-
-
-
-
 }

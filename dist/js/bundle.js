@@ -120,6 +120,11 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 'use strict';
 
 angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
+
+    // $scope.comments= {}
+    // $scope.testcomments = [1,2,3,4,5,6,7]
+
+
     $scope.video = mainService.video;
 
     var id = mainService.arr[0];

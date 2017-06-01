@@ -50,18 +50,13 @@
 
 
 
-                        <i class="fa fa-play" aria-hidden="true"></i><div>1,751</div>
-                        <i class="fa fa-heart" aria-hidden="true"></i><div>218</div>
-                            
-                            <!--albums: 8 comments: 7-->
+                        <i class="fa fa-play" aria-hidden="true"></i>
+                        <div>1,751</div>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <div>218</div>
+
+                        <!--albums: 8 comments: 7-->
                     </div>
-
-
-
-
-
-
-
 
 
 
@@ -73,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="vid-disc"> Director/Edit/Color- BRTHR  Producer- Sara Greco Line Producer- Jamee Ranta Prod Co.- Strangelove Creative Director: La Mar C. Taylor DP: Erik H AD- Kenneth Arnold Taylor Prod Design- Lauren Nikrooz VFX- Gloria FX Additional VFX- Kwan Au, Mikhael Villegas, BRTHR Title Design- Mikhael Villegas full credits on end title card
+                <div class="vid-disc">{{}}
                 </div>
             </div>
         </div>
@@ -103,95 +98,146 @@
                 <div class="previous-comments-bar">
                     + Load 100 previous comments
                 </div>
-                <div class="comment-content">
-                    <img src="" alt="" class="user-pic">
-                    
-                    <div class="main-comment-box">
+
+            
+                <div class="comment-content"> 
+                    <div class="user-pic"></div>
+                    <div class="main-comment-box" ng-repeat= "data in comments">
                         <div class="comment-details">
-                            <div class="user-name">USER XYZ</div>
-                            <div class="post-date">-- years ago </div>
+                            <div class="user-name">{{data.user.name}}</div>
+                            <div class="post-date">created on: {{data.created_on}}</div>
                         </div>
-                        
+
                         <div class="user-comment">
-                            Love this. What a great idea. Wonderful style & animation :-)
+                            {{data.text}}
                         </div>
-                    <a class="reply-tag">Reply</a>
+                        <a class="reply-tag">Reply</a>
                     </div>
-
                 </div>
-
-                    
+                <div class="comment-box-container">
+                    <input class="comment-box"type="text" name="comment-input" value="Add a comment">
+                </div>
             </div>
         </div>
     </div>
-        <!--==========================================================================-->
-        <!--==========================================================================-->
+    <!--==========================================================================-->
+    <!--==========================================================================-->
 
-        <div class="vid-lower-right">
-
-
-
-
-
+    <div class="vid-lower-right">
         <div class="right-content">
-
             <div class="search-results">Search-results for "Trash Cat"</div>
             <div class="autoplay-toggle">Autoplay next video</div>
+            <hr>
 
-                <hr>
-
-
-                <div class="next-video"> 
-                    <div class="vid-thumbnail">
-                        vid-thumbnail
-                    </div>
-
-                    <div class="vid-title">
-                        <h4>Title</h4>
-                        <h5>Sub-Title</h5>
-                    </div>
+            <div class="next-video">
+                <div class="vid-thumbnail">
+                    vid-thumbnail
                 </div>
-            
+
+                <div class="vid-title">
+                    <h4>Title</h4>
+                    <h5>Sub-Title</h5>
+                </div>
             </div>
 
-            <div class="show-more-box">
-                <button class="more-btn"type="submit">Show More...</button>
-            </div>
-
-
-            </div>
         </div>
+
+        <div class="show-more-box">
+            <button class="more-btn" type="submit">Show More...</button>
+        </div>
+
+
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 
+<footer class="main-footer">
 
 
+    <div class="upper-footer">
+        <div class="listlink-box">
+
+            <div class="footer-linklist col-sm-3">
+                <h4 class="subtitle">Vimeo</h4>
+                <ul class="footer-left">
+                    <li><a href="">About Vimeo</a></li>
+                    <li><a href="">Vimeo Blog</a></li>
+                    <li><a href="">Vimeo Guidelines</a></li>
+                    <li><a href="">Developers</a></li>
+                    <li><a href="">Jobs</a></li>
+                </ul>
+            </div>
 
 
-<footer-dir></footer-dir>
+            <!--EXPERIENCE-->
+            <div class="footer-linklist col-sm-3">
+                <div>
+                    <h4 class="subtitle">Help</h4>
+                    <ul class="footer-left">
+                        <li><a class="" href="">Help Center</a></li>
+                        <li><a class="" href="">Video School</a></li>
+                        <li><a class="" href="">FAQ</a></li>
+                        <li><a class="" href="">Forums</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--/////////////////////////////////// WORK IN PROGRESS /////////////////////////-->
+
+            <div class="footer-linklist col-sm-3">
+                <h4 class="subtitle">More</h4>
+                <ul class='footer-left'>
+                    <li><a href="">On Demand</a></li>
+                    <li><a href="">Everywhere</a></li>
+                    <li><a href="">Upload</a></li>
+                    <li><a href="">Site Map</a></li>
+                </ul>
+            </div>
 
 
+            <!--///////////////////////////////////////////////////////////////////-->
+            <div class="footer-linklist col-sm-3">
+                <h4 class="subtitle">Upgrade</h4>
+                <ul class='footer-left'>
+                    <li><a href="">Vimeo Plus</a></li>
+                    <li><a href="">Vimeo Pro</a></li>
+                    <li><a href="">Vimeo Business</a></li>
+                    <li><a href="">Refer a friend</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--///////////////////////////////////////////////////////////////////-->
+            <div class="footer-box">
+
+                <div class="footer-title">Did you know?</div>
+                <div class="footer-subtitle">You can win a free Vimeo Plus membership by streatching your filmmaking muscles in one our Weekend Challenges</div>
+            </div>
+    </div>
+
+        <!--///////////////////////////////////////////////////////////////////-->
+
+        <div class = "lower-outer-box">            
+            <div class="lower-bar-left">
+                <ul class="lower-link-left">
+                    <li><a href="">TM + © 2017 Vimeo, Inc. All rights reserved.</a></li>
+                    <li><a href="">Terms</a></li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Copyright</a></li>
+                    <li><a href="">Cookies</a></li>
+                    <li><a href="">Made with  in NYC.</a></li>
+                </ul>
+            </div>
+            
 
 
+            <div class="lower-bar-right">
+                <ul class = "lower-link-right">                    
+                    <li><a href="">Language: English</a></li>
+                    <li><a href="">Mature content filter: None</a></li>
+                </ul>
+            </div>
 
+        </div>
+</footer>
 
 
