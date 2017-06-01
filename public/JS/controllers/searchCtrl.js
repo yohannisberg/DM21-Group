@@ -11,6 +11,7 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
     }
 
     $scope.playVideo = (videoLink, uri) => {
+      console.log(videoLink)
         mainService.clickedVideo(videoLink);
         let id = uri.replace(/\D/g, '');
         mainService.getId(id);

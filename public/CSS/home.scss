@@ -39,6 +39,7 @@ align-items: center
  height:400px;
  width:100%;
  z-index:-1;
+ left:0;
 }
 
 .topBanner{
@@ -161,6 +162,10 @@ margin-bottom:20px;
 width:20%;
 }
 
+// .placeholderVideoWrapper{
+//   max-height:120px;
+// }
+
 .placeholderVideo{
   width:100%;
   margin-top:20px;
@@ -185,7 +190,7 @@ width:20%;
 }
 
 .userAndViewsWrapperMainPage{
-  width:320px;
+  width:100%;
   color: #879CAB;
   cursor:pointer;
   overflow: hidden;
