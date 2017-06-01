@@ -106,6 +106,9 @@
                         div{
                             padding-right:20px;
                         }
+                        .fa-paper-plane{
+                            padding:20px;
+                        }
 
                     }
                     .share-btn {
@@ -118,6 +121,10 @@
                         border-radius: 5px;
                         height: 40px;
                         width: 90px;
+                    
+                        .share{
+                            padding: 10px;
+                        }
                     }
                 }
             }
@@ -176,6 +183,9 @@
                 font-size: 20px;
                 border-radius: 2%;
             }
+            .comment-box-container{
+                margin:auto;
+            }
             .comment-content {
                 display: flex;
                 .user-pic {
@@ -210,13 +220,13 @@
                 width:80%;
                 display:flex;
                 justify-content: flex-start;
-                margin:20px 0 20px 70px;
+                margin:30px 0 20px 70px;
                 align-items: center;
                 color:lightgray;
+            }
 
             .comment-submit{
-                margin:20px 0 20px 70px
-            }
+                margin:10px 0 20px 70px
 
             }
         }
