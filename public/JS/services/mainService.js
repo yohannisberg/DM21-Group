@@ -1,63 +1,52 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
-    let serverUrl = 'http://localhost:3012'
-
+    let serverUrl = 'http://localhost:3012';
     this.videoData = '';
-
-    this.searchedVideo = function (data) {
-        this.videoData = data;
-    }
-
-    this.id = '';
-
+    this.video = '';
     this.arr = [];
-
-    this.getId = (id) => {
+    this.searchedVideo = data => {
+        this.videoData = data;
+    };
+    this.clickedVideo = videoLink => {
+        this.video = videoLink;
+    };
+    this.getId = id => {
         this.arr.push(id);
-        if(this.arr.length > 1){
-            while(this.arr.length > 1){
+        if (this.arr.length > 1) {
+            while (this.arr.length > 1) {
                 this.arr.shift();
             }
         }
-    }
-
-    this.video = '';
-
-    this.clickedVideo = function (videoLink) {
-        this.video = videoLink;
-    }
-
-    this.getVideosByChannel = (channel) => {
+    };
+    this.getVideosByChannel = channel => {
         return $http({
             method: 'GET',
             url: serverUrl + `/api/videos/channels/${channel}`
-
-       })
-    }
-
+        })
+    };
     this.searchVideos = (page, query) => {
         this.query = query;
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/' + page + '?search=' + query
+            url: serverUrl + `/api/videos/${page}?search=${query}`
         })
     };
-    this.getVideoById = (id) => {
+    this.getVideoById = id => {
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos?id=' + id
+            url: serverUrl + `/api/videos?id=${id}`
         })
     };
     this.getComments = id => {
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/' + id + '/comments'
+            url: serverUrl + `/api/videos/${id}/comments`
         })
-    }
+    };
     this.postComment = (id, text) => {
         return $http({
             method: 'POST',
             data: {text},
-            url: serverUrl + '/api/comments/' + id
+            url: serverUrl + `/api/videos/${id}/comments`
         })
     };
     this.login = () => {
@@ -88,6 +77,19 @@ angular.module('vimeoApp').service('mainService', function ($http) {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/accesstoken'
+        })
+    };
+    this.addToWatchLater = (video, id) => {
+        return $http({
+            method: 'POST',
+            data: {video},
+            url: serverUrl + `/api/videos/${id}/watchlater`
+        })
+    };
+    this.getWatchLaterList = () => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/usersvideos'
         })
     }
 });
