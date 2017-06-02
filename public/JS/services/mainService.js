@@ -11,7 +11,6 @@ angular.module('vimeoApp').service('mainService', function ($http) {
 
     this.arr = [];
 
-
     this.getId = (id) => {
         this.arr.push(id);
         if(this.arr.length > 1){
@@ -75,7 +74,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     };
     this.uploadVideo = () => {
         return $http({
-            method: 'PUT',
+            method: 'POST',
             url: serverUrl + '/api/upload'
         })
     };
@@ -85,4 +84,10 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/usersvideos'
         })
     };
+    this.getAccessToken = () => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/accesstoken'
+        })
+    }
 });
