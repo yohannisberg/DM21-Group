@@ -5,8 +5,10 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     let id = mainService.arr[0];
 
     mainService.getComments(id).then(res => {
+        console.log("res.data.data" , res.data.dat)
         $scope.comments = res.data.data;
     })
+
     $scope.addComment = () => {
         let id = mainService.arr[0];
         console.log(id);
@@ -28,6 +30,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         mainService.getId(id);
         $state.go('playvideo');
     }
+
     $scope.getVideo = () => {
         let id = mainService.arr[0];
         mainService.getVideoById(id).then(res => {
