@@ -11,19 +11,15 @@ angular.module('vimeoApp').controller('uploadVideoCtrl', function ($scope, mainS
                     redirect_url: `http://localhost:3012/#!/userVideos`
                 }
             }).then(res => {
-                $scope.link = res.data.upload_link_secure;
-                console.log(res);
+                let link = res.data.upload_link_secure;
+                $http({
+                    method: 'POST',
+                    url: link,
+                    data: $scope.video
+                }).then(res => {
+                    console.log(res);
+                })
             })
-        })
-    }
-
-    // console.log($scope.access_token);  ?? why doesn't it bind to scope?
-
-    $scope.submitVideo = () => {
-        $http({
-            method: 'POST',
-            url: $scope.link,
-            data: $scope.video
         })
     }
 });
