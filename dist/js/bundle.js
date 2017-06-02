@@ -78,7 +78,6 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", "$st
     };
 
     mainService.getVideosByChannel('staffpicks').then(function (res) {
-        console.log(res.data.data);
         $scope.staffpicks = res.data.data;
     });
 
@@ -104,19 +103,17 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 
     $scope.mainDropDown = true;
 
-    // $scope.login = () => {
-    //     mainService.login().then(res => {
-    //       console.log(res.data)
-    //         $scope.data = res.data;
-    //     })
-    // }
-    // $scope.login();
+    $scope.login = function () {
+        mainService.login().then(function (res) {
+            $scope.data = res.data;
+        });
+    };
+    $scope.login();
 
     $scope.searchQuery = function (query) {
         $state.go('loading');
         mainService.searchVideos(1, query).then(function (response) {
             mainService.searchedVideo(response.data.data);
-            console.log(response.data.data);
             $state.go('search');
             $scope.query = '';
         });
@@ -207,11 +204,32 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
 "use strict";
 'use strict';
 
-angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
-    $scope.upLoad = function () {
-        mainService.uploadVideo().then(function (res) {
-            console.log(res.data);
-            $scope.link = JSON.stringify(res.data);
+angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService", "$state", "$http", function ($scope, mainService, $state, $http) {
+
+    $scope.getAccessToken = function () {
+        mainService.getAccessToken().then(function (resp) {
+            $http({
+                method: 'POST',
+                url: 'https://api.vimeo.com/me/videos',
+                headers: { Authorization: 'Bearer ' + resp.data.access_token },
+                data: {
+                    type: 'POST',
+                    redirect_url: 'http://localhost:3012/#!/userVideos'
+                }
+            }).then(function (res) {
+                $scope.link = res.data.upload_link_secure;
+                console.log(res);
+            });
+        });
+    };
+
+    // console.log($scope.access_token);  ?? why doesn't it bind to scope?
+
+    $scope.submitVideo = function () {
+        $http({
+            method: 'POST',
+            url: $scope.link,
+            data: $scope.video
         });
     };
 }]);
@@ -233,11 +251,11 @@ angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService"
         $state.go('playvideo');
     };
 
-    $scope.testing = function (number) {
-        console.log(number);
-        var yup = number + "yup";
-        $scope.yup;
-    };
+    // $scope.testing=function(number){
+    //   console.log(number)
+    //   var yup=number + "yup";
+    //   $scope.yup;
+    // }
 }]);
 'use strict';
 
@@ -339,7 +357,7 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     };
     this.uploadVideo = function () {
         return $http({
-            method: 'PUT',
+            method: 'POST',
             url: serverUrl + '/api/upload'
         });
     };
@@ -349,11 +367,10 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             url: serverUrl + '/api/usersvideos'
         });
     };
-    //this getVideosByChannel is a duplicate?
-    this.getVideosByChannel = function (channel) {
+    this.getAccessToken = function () {
         return $http({
             method: 'GET',
-            url: serverUrl + ('/api/videos/channels/' + channel)
+            url: serverUrl + '/api/accesstoken'
         });
     };
 }]);

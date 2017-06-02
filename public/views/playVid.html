@@ -98,7 +98,7 @@
                     + Load 100 previous comments
                 </div>
                 <div class="comment-content"ng-repeat= "data in comments"> 
-                    <img src="{{user.pictures.sizes[3].link}}"class="user-pic">
+                    <img src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
                         <div class="main-comment-box">
                         <div class="comment-details">
                             <div class="user-name">{{data.user.name}}</div>
@@ -119,7 +119,7 @@
         </div>
     </div>
     <!--==========================================================================-->
-    <!--==========================================================================-->
+    <!--==========================================================================--> 
 
     <div class="vid-lower-right">
         <div class="right-content">
@@ -128,8 +128,8 @@
             <hr>
 
             <div class="next-video" ng-repeat="media in staffpicks ">
-
-                <img class="vid-thumbnail" ng-class="{ 'blue-border' : $index === 0}" ng-src="{{media.pictures.sizes[5].link}}">
+<!--media: {{media}}-->
+                <img class="vid-thumbnail" ng-click="playVideo( media.link , media.uri )" ng-class="{ 'blue-border' : $index === 0}" ng-src="{{media.pictures.sizes[5].link}}">
                 <div class="vid-title">
                     <h5><strong>{{media.name}}</strong></h5>
                     <h6>From {{media.user.name}}</h6>

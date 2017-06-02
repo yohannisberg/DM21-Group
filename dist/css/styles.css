@@ -526,13 +526,17 @@ a:hover, a:visited, a:link, a:active .logInNav {
             margin: 10px; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn {
             background: white;
-            color: #00adef;
-            border-color: #00adef;
+            color: #A6E2F9;
             height: 40px;
             font-size: 18px;
-            margin: 10px; }
+            margin: 10px;
+            border-radius: 5px;
+            border-color: #00adef; }
             .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn .fa {
               margin: 8px; }
+          .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn:hover {
+            background: #A6E2F9;
+            color: white; }
     .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper {
       height: auto;
       width: 100%;
@@ -646,7 +650,13 @@ a:hover, a:visited, a:link, a:active .logInNav {
         align-items: center;
         color: lightgray; }
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-submit {
-        margin: 10px 0 20px 70px; }
+        margin: 10px 0 20px 70px;
+        background: #88ceea;
+        color: white;
+        height: 30px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px; }
   .vid-lower-wrapper .vid-lower-right {
     width: 35%;
     height: 100%; }
