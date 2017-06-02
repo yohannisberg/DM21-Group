@@ -117,4 +117,40 @@ module.exports = {
             console.log(error);
         });
     },
+    getComments: (req, response) => {
+        axios({
+            method: 'get',
+            url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
+            headers: {Authorization: `Bearer ${req.session.access_token}`},
+
+        }).then(res => {
+            response.status(200).send(res.data);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    addComments: (req, res) => {
+        axios({
+            method: 'post',
+            url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
+            headers: {Authorization: `Bearer ${req.session.access_token}`},
+            data: {
+                text: req.body.text
+            }
+        }).then(res => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    watchLater: (req, res) => {
+        db.add_video([req.body.video, req.params.id], (err, video) => {
+            !err ? res.status(200).send(video) : res.status(404).send(err);
+        })
+    },
+    displayWatchLater: (req, res) => {
+        db.get_videos((err, video) => {
+            !err ? res.status(200).send(video) : res.status(404).send(err);
+        })
+    }
 }

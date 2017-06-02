@@ -39,4 +39,9 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: './views/loading.html',
                 controller: 'loadingCtrl'
             })
+            .state('watchLater', {
+                url: '/watchlater',
+                templateUrl: './views/watchLater.html',
+                controller: 'userVideos'
+            })
     });
