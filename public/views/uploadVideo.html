@@ -27,11 +27,12 @@
       <div class="searchRight">
             <div class="searchRightTopWrapper">
                   <img src="./IMAGES/johnImages/Cloud_Upload.png" class="cloudSymbol">
-                  <form method="POST" action={{link}} enctype="multipart/form-data">
-                        <div class="uploadPageButton"><input type="file" name="file_data"/>Choose files to upload</div>
-                        <div class="underUploadButton">or drag and drop them here.</div>
+
+                  <form method="POST" action="{{link}}" enctype="multipart/form-data" id="videoform">
+                        <input type="file" name="file_data">
                   </form>
-                  <button ng-click="upLoad()">Submit</button>
+                  <button  ng-click="getAccessToken()">Upload</button>
+                  <button type="submit" form="videoform" value="Submit">Submit</button>
             </div>
       </div>
 
