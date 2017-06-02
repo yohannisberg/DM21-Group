@@ -32,6 +32,10 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
         url: '/searching',
         templateUrl: './views/loading.html',
         controller: 'loadingCtrl'
+    }).state('watchLater', {
+        url: '/watchlater',
+        templateUrl: './views/watchLater.html',
+        controller: 'userVideos'
     });
 }]);
 'use strict';
@@ -41,23 +45,23 @@ angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope
 
 angular.module('vimeoApp').controller('loadingCtrl', ["$scope", "$timeout", function ($scope, $timeout) {
 
-  $scope.loadB = true;
-  $scope.loadG = false;
-  $scope.loadR = false;
+    $scope.loadB = true;
+    $scope.loadG = false;
+    $scope.loadR = false;
 
-  $timeout();
+    $timeout();
 
-  $timeout(function () {
-    $scope.loadG = true;
-  }, 500);
+    $timeout(function () {
+        $scope.loadG = true;
+    }, 500);
 
-  $timeout();
+    $timeout();
 
-  $timeout(function () {
-    $scope.loadR = true;
-  }, 1000);
+    $timeout(function () {
+        $scope.loadR = true;
+    }, 1000);
 
-  $timeout();
+    $timeout();
 }]);
 'use strict';
 
@@ -80,18 +84,6 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", "$st
     mainService.getVideosByChannel('staffpicks').then(function (res) {
         $scope.staffpicks = res.data.data;
     });
-
-    // mainService.getVideosByChannel('staffpicks').then(res => {
-    //     $scope.staffpicks = res.data;
-    //     console.log($scope.staffpicks);
-    // })
-    //
-    // mainService.getVideosByChannel('music').then(res => {
-    //     $scope.music = res.data;
-    // })
-    // mainService.getVideosByChannel('animation').then(res => {
-    //     $scope.animation = res.data;
-    // })
 }]);
 'use strict';
 
@@ -120,9 +112,7 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
     };
     $scope.getUser = function () {
         $state.go('uploadVideo');
-        mainService.getUser().then(function (res) {
-            // console.log(res.data); //res.data is the currently logged-in user's info
-        });
+        mainService.getUser().then(function (res) {});
     };
 
     $scope.checkUser = function () {
@@ -140,7 +130,7 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
+angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
     $scope.video = mainService.video;
 
@@ -151,13 +141,25 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         $scope.comments = res.data.data;
     });
 
-    $scope.addComment = function (comment) {
-        console.log('comment', comment);
-        mainService.postComment(id, comment).then(function (res) {
-            $scope.addComments = res.data.data;
-            // console.log('comments' , comments)
-            console.log('$scope.addComments', $scope.addComments);
+    $scope.addComment = function () {
+        var id = mainService.arr[0];
+        console.log(id);
+        console.log($scope.text);
+        mainService.postComment(id, $scope.text).then(function (res) {
+            console.log("yo dude", res.data.data);
+
+            mainService.getComments(id).then(function (res) {
+                $scope.comments = res.data.data;
+            });
         });
+    };
+    $scope.playVideo = function (videoLink, uri) {
+        $state.go('loading');
+        console.log(videoLink, uri);
+        mainService.clickedVideo(videoLink);
+        var id = uri.replace(/\D/g, '');
+        mainService.getId(id);
+        $state.go('playvideo');
     };
 
     $scope.getVideo = function () {
@@ -200,6 +202,12 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
             $scope.videos = res.data.data;
         });
     };
+    $scope.addToWatchLaterList = function () {
+        mainService.getVideoById;
+        mainService.addToWatchLater(video, id).then(function (res) {
+            console.log(res);
+        });
+    };
 }]);
 "use strict";
 'use strict';
@@ -217,19 +225,15 @@ angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService
                     redirect_url: 'http://localhost:3012/#!/userVideos'
                 }
             }).then(function (res) {
-                $scope.link = res.data.upload_link_secure;
-                console.log(res);
+                var link = res.data.upload_link_secure;
+                $http({
+                    method: 'POST',
+                    url: link,
+                    data: $scope.video
+                }).then(function (res) {
+                    console.log(res);
+                });
             });
-        });
-    };
-
-    // console.log($scope.access_token);  ?? why doesn't it bind to scope?
-
-    $scope.submitVideo = function () {
-        $http({
-            method: 'POST',
-            url: $scope.link,
-            data: $scope.video
         });
     };
 }]);
@@ -250,17 +254,19 @@ angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService"
         mainService.getId(id);
         $state.go('playvideo');
     };
-
-    // $scope.testing=function(number){
-    //   console.log(number)
-    //   var yup=number + "yup";
-    //   $scope.yup;
-    // }
+    $scope.displayWatchLaterList = function () {
+        var id = mainService.arr[0];
+        mainService.getVideoById(id).then(function (res) {
+            mainService.getWatchLaterList(res.data, id).then(function (resp) {
+                $scope.list = resp.data;
+            });
+        });
+    };
+    $scope.displayWatchLaterList();
 }]);
 'use strict';
 
 angular.module('vimeoApp').directive('footerDir', function () {
-
     return {
         restrict: "AE",
         templateUrl: "./views/footerDir.html"
@@ -283,17 +289,15 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     var _this = this;
 
     var serverUrl = 'http://localhost:3012';
-
     this.videoData = '';
-
-    this.searchedVideo = function (data) {
-        this.videoData = data;
-    };
-
-    this.id = '';
-
+    this.video = '';
     this.arr = [];
-
+    this.searchedVideo = function (data) {
+        _this.videoData = data;
+    };
+    this.clickedVideo = function (videoLink) {
+        _this.video = videoLink;
+    };
     this.getId = function (id) {
         _this.arr.push(id);
         if (_this.arr.length > 1) {
@@ -302,45 +306,36 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
             }
         }
     };
-
-    this.video = '';
-
-    this.clickedVideo = function (videoLink) {
-        this.video = videoLink;
-    };
-
     this.getVideosByChannel = function (channel) {
         return $http({
             method: 'GET',
             url: serverUrl + ('/api/videos/channels/' + channel)
-
         });
     };
-
     this.searchVideos = function (page, query) {
         _this.query = query;
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/' + page + '?search=' + query
+            url: serverUrl + ('/api/videos/' + page + '?search=' + query)
         });
     };
     this.getVideoById = function (id) {
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos?id=' + id
+            url: serverUrl + ('/api/videos?id=' + id)
         });
     };
     this.getComments = function (id) {
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/' + id + '/comments'
+            url: serverUrl + ('/api/videos/' + id + '/comments')
         });
     };
     this.postComment = function (id, text) {
         return $http({
             method: 'POST',
             data: { text: text },
-            url: serverUrl + '/api/comments/' + id
+            url: serverUrl + ('/api/videos/' + id + '/comments')
         });
     };
     this.login = function () {
@@ -371,6 +366,19 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/accesstoken'
+        });
+    };
+    this.addToWatchLater = function (video, id) {
+        return $http({
+            method: 'POST',
+            data: { video: video },
+            url: serverUrl + ('/api/videos/' + id + '/watchlater')
+        });
+    };
+    this.getWatchLaterList = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/usersvideos'
         });
     };
 }]);
