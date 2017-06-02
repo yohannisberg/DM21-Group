@@ -14,10 +14,10 @@ angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainSe
         $state.go('playvideo');
     }
 
-    $scope.testing=function(number){
-      console.log(number)
-      var yup=number + "yup";
-      $scope.yup;
-    }
+    // $scope.testing=function(number){
+    //   console.log(number)
+    //   var yup=number + "yup";
+    //   $scope.yup;
+    // }
 
 });
