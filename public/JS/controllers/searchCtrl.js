@@ -21,4 +21,10 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
             $scope.videos = res.data.data;
         })
     }
+    $scope.addToWatchLaterList = () => {
+        mainService.getVideoById
+        mainService.addToWatchLater(video, id).then(res => {
+            console.log(res);
+        })
+    }
 });

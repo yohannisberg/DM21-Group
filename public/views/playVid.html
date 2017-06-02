@@ -112,8 +112,12 @@
                     </div>
                 </div>
                 <div class="comment-box-container">
-                    <input ng-model ="comment" class="comment-box"type="text" name="comment-input" value="Add a comment">
-                    <button ng-click= "addComment(comment)"class="comment-submit"type="submit">Add comment</button>
+
+                    <input class="comment-box" type="text" ng-model="text" name="comment-input" value="Add a comment">
+                    <button class="comment-submit" ng-click="addComment()">Add comment</button>
+
+
+
                 </div>
             </div>
         </div>
@@ -127,9 +131,10 @@
             <div class="autoplay-toggle"><i class="fa fa-toggle-on" aria-hidden="true"></i>&nbsp;Autoplay next video</div>
             <hr>
 
-            <div class="next-video" ng-repeat="media in staffpicks ">
 
-                <img class="vid-thumbnail" ng-class="{ 'blue-border' : $index === 0}" ng-src="{{media.pictures.sizes[5].link}}">
+            <div class="next-video" ng-repeat="media in staffpicks">
+                <img class="vid-thumbnail" ng-class="{ 'blue-border' : $index === 0}" ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri)">
+
                 <div class="vid-title">
                     <h5><strong>{{media.name}}</strong></h5>
                     <h6>From {{media.user.name}}</h6>
