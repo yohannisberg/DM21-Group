@@ -6,15 +6,21 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     let id = mainService.arr[0];
 
     mainService.getComments(id).then(res => {
+        console.log("res.data.data" , res.data.dat)
         $scope.comments = res.data.data;
     })
-    $scope.addComment = () => {
-        mainService.postComment(id, $scope.text).then(res => {
-        })
-        mainService.getComments(id).then(res => {
-            $scope.comments = res.data.data;
+
+
+
+    $scope.addComment = (comment) => {
+        console.log('comment' , comment)
+        mainService.postComment(id, comment).then(res => {
+            $scope.addComments = res.data.data;
+            // console.log('comments' , comments)
+            console.log('$scope.addComments' , $scope.addComments)
         })
     }
+
 
     $scope.getVideo = () => {
         let id = mainService.arr[0];

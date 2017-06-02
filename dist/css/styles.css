@@ -108,6 +108,8 @@
   width: 70%; }
   .lower-link-left a {
     display: flex; }
+  .lower-link-left .fa {
+    color: red; }
 
 .lower-bar-right {
   display: flex;
@@ -526,9 +528,11 @@ a:hover, a:visited, a:link, a:active .logInNav {
             background: white;
             color: #00adef;
             border-color: #00adef;
-            height: 50px;
+            height: 40px;
             font-size: 18px;
-            padding: 10px; }
+            margin: 10px; }
+            .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn .fa {
+              margin: 8px; }
     .vid-lower-wrapper .vid-lower-left .disc-outer-wrapper {
       height: auto;
       width: 100%;
@@ -616,6 +620,7 @@ a:hover, a:visited, a:link, a:active .logInNav {
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content {
         display: flex; }
         .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .user-pic {
+          background-image: url(.dist/images/user-icon-blue-300x300.png);
           border-radius: 50%;
           width: 50px;
           height: 50px;
@@ -651,29 +656,34 @@ a:hover, a:visited, a:link, a:active .logInNav {
       background: white; }
     .vid-lower-wrapper .vid-lower-right .search-results {
       font-size: 18px;
-      margin: 10px; }
+      margin: 15px 0 10px 28px; }
     .vid-lower-wrapper .vid-lower-right .autoplay-toggle {
       color: grey;
-      font-size: 16px;
-      margin: 10px; }
+      font-size: 16px; }
+      .vid-lower-wrapper .vid-lower-right .autoplay-toggle .fa {
+        color: #19B4F0;
+        margin-right: 5px; }
     .vid-lower-wrapper .vid-lower-right .next-video {
       width: 80%;
       height: auto;
       display: flex;
       margin: auto; }
+      .vid-lower-wrapper .vid-lower-right .next-video .blue-border {
+        border: 5px solid #19B4F0; }
       .vid-lower-wrapper .vid-lower-right .next-video .vid-thumbnail {
         height: 80px;
         width: 40%;
-        margin-top: 15px;
-        border: 5px solid #19B4F0; }
+        margin-top: 15px; }
       .vid-lower-wrapper .vid-lower-right .next-video .vid-title {
         height: 80px;
         width: 40%;
-        margin: 15px 0 0 15px;
+        margin: 10px 0 0 15px;
         display: flex;
         flex-direction: column;
         text-align: left;
         justify-content: center; }
+        .vid-lower-wrapper .vid-lower-right .next-video .vid-title h6 {
+          margin-top: 0; }
     .vid-lower-wrapper .vid-lower-right .show-more-box {
       text-align: center;
       background: white;
