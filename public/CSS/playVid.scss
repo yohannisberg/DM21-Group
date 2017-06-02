@@ -74,9 +74,12 @@
                         background: white;
                         color: #00adef;
                         border-color: #00adef;
-                        height: 50px;
+                        height: 40px;
                         font-size: 18px;
-                        padding: 10px;
+                        margin:10px;
+                        .fa{
+                            margin: 8px;
+                        }
                     }
                 }
             }
@@ -189,6 +192,7 @@
             .comment-content {
                 display: flex;
                 .user-pic {
+                    background-image: url(.dist/images/user-icon-blue-300x300.png);
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
@@ -248,44 +252,52 @@
         }
         .search-results{
             font-size:18px;
-            margin:10px;
+            margin: 15px 0 10px 28px;
+            
 
 
         }
         .autoplay-toggle{
             color:grey;
             font-size:16px;
-            margin:10px;
 
+            .fa{ 
+                color:#19B4F0;
+                margin-right: 5px;
+            }
         }
 
         .next-video{
             width: 80%;
             height: auto;
             display: flex;
-            // margin-bottom: 15px;
-            // padding:20px;
             margin:auto;
-            // background: red;
-        
+            
+            .blue-border { 
+            border: 5px solid #19B4F0;
+            }
+                
+
+                
         .vid-thumbnail{
             height: 80px;
             width: 40%;
             margin-top: 15px;
-            border: 5px solid #19B4F0;
-            // background: yellow;
+            // border: 5px solid #19B4F0;
         }
         .vid-title{
             height: 80px;
             width: 40%;
-            margin: 15px 0 0 15px;
+            margin: 10px 0 0 15px;
 
             display: flex;
             flex-direction: column;
             text-align: left;
             justify-content: center;
             // background:yellowgreen;
-
+            h6{
+                margin-top:0;
+            }
 
         }
     

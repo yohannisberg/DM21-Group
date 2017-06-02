@@ -130,8 +130,6 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 
     $scope.checkUser = function () {
         mainService.getUser().then(function (res) {
-            // console.log(res.data)
-
             if (res.data.name) {
                 $scope.logInNavBar = false;
                 $scope.profilePicture = res.data.pictures[3].link;
@@ -147,34 +145,31 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 
 angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
 
-    // $scope.comments= {}
-    // $scope.testcomments = [1,2,3,4,5,6,7]
-
-
     $scope.video = mainService.video;
 
     var id = mainService.arr[0];
 
     mainService.getComments(id).then(function (res) {
+        console.log("res.data.data", res.data.dat);
         $scope.comments = res.data.data;
-        // console.log($scope.comments);
     });
-    $scope.addComment = function () {
-        mainService.postComment(id, $scope.text).then(function (res) {
-            console.log(res);
-        });
-        mainService.getComments(id).then(function (res) {
-            $scope.comments = res.data.data;
-            // console.log($scope.comments);
+
+    $scope.addComment = function (comment) {
+        console.log('comment', comment);
+        mainService.postComment(id, comment).then(function (res) {
+            $scope.addComments = res.data.data;
+            // console.log('comments' , comments)
+            console.log('$scope.addComments', $scope.addComments);
         });
     };
 
-    // $scope.getVideo = () => {
-    mainService.getVideoById(id).then(function (res) {
-        console.log(res.data);
-        $scope.media = res.data;
-    });
-    // }
+    $scope.getVideo = function () {
+        var id = mainService.arr[0];
+        mainService.getVideoById(id).then(function (res) {
+            $scope.media = res.data;
+        });
+    };
+    $scope.getVideo();
 
     mainService.getVideosByChannel('staffpicks').then(function (res) {
         console.log(res.data.data);
@@ -182,14 +177,12 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
     });
 
     document.querySelector(".video-window").innerHTML = $scope.video;
-    //  console.log($scope.video);
 }]);
 'use strict';
 
 angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
     function test2() {
-        console.log(mainService.videoData);
         $scope.videos = mainService.videoData;
     }
     test2();
@@ -199,7 +192,6 @@ angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$
     };
 
     $scope.playVideo = function (videoLink, uri) {
-        console.log(videoLink);
         mainService.clickedVideo(videoLink);
         var id = uri.replace(/\D/g, '');
         mainService.getId(id);
@@ -283,10 +275,14 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     this.id = '';
 
     this.arr = [];
-    console.log(this.arr);
 
     this.getId = function (id) {
         _this.arr.push(id);
+        if (_this.arr.length > 1) {
+            while (_this.arr.length > 1) {
+                _this.arr.shift();
+            }
+        }
     };
 
     this.video = '';
@@ -311,10 +307,9 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
         });
     };
     this.getVideoById = function (id) {
-        console.log("getVideoById", id);
         return $http({
             method: 'GET',
-            url: serverUrl + '/api/videos/' + id
+            url: serverUrl + '/api/videos?id=' + id
         });
     };
     this.getComments = function (id) {
