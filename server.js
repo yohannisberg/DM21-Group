@@ -27,6 +27,8 @@ app.get('/api/videos/channels/:channel', vimeoCtrl.getVideoByChannels);
 app.get('/api/videos/:id/comments', vimeoCtrl.getComments)
 app.post('/api/videos/:id/comments', mainCtrl.addComments);
 app.get('/api/login', mainCtrl.login);
+app.get('/api/callback', mainCtrl.callback);
+app.get('/api/logout', mainCtrl.logout);
 app.get('/api/accesstoken', mainCtrl.getAccessToken);
 app.get('/api/currentuser', mainCtrl.getUser);
 app.post('/api/upload', mainCtrl.uploadVideo);

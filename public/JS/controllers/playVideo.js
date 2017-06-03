@@ -3,6 +3,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     $scope.video = mainService.video;
 
     let id = mainService.arr[0];
+    $scope.comments = [];
 
     mainService.getComments(id).then(res => {
         $scope.comments = res.data.data;
@@ -10,11 +11,12 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
 
     $scope.addComment = () => {
         let id = mainService.arr[0];
-        console.log(id);
-        console.log($scope.text);
+        // $state.go('loading');
         mainService.postComment(id, $scope.text).then(res => {
             mainService.getComments(id).then(res => {
                 $scope.comments = res.data.data;
+                // $state.go('playvideo');
+
             })
         })
     }

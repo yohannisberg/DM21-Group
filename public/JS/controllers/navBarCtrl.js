@@ -13,6 +13,13 @@ angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainServic
     }
     $scope.login();
 
+    $scope.logout = () => {
+        $scope.logInNavBar = false;
+        mainService.logout().then(res => {
+            console.log(res);
+        })
+    }
+
     $scope.searchQuery = query => {
         $state.go('loading');
         mainService.searchVideos(1, query).then(response => {

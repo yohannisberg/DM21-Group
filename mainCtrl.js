@@ -18,6 +18,7 @@ const vimeo_module = require('./lib/vimeo'),
 
 app.set('db', massiveInstance);
 let db = app.get('db');
+let redirectUrl = `http://localhost:${config.port}`;
 
 module.exports = {
 
@@ -45,11 +46,15 @@ module.exports = {
                 err ? console.log(err) : console.log(result);
             })
             req.session.access_token = response.data.access_token;
-            let redirectUrl = `http://localhost:${config.port}`;
             res.redirect(redirectUrl);
         }).catch(error => {
             console.log(error);
         });
+    },
+    logout: (req, res) => {
+        console.log('logging out');
+        req.session.destroy();
+        res.redirect(redirectUrl);
     },
     getUser: (req, res) => {
         axios({

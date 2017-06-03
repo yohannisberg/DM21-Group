@@ -102,6 +102,13 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
     };
     $scope.login();
 
+    $scope.logout = function () {
+        $scope.logInNavBar = false;
+        mainService.logout().then(function (res) {
+            console.log(res);
+        });
+    };
+
     $scope.searchQuery = function (query) {
         $state.go('loading');
         mainService.searchVideos(1, query).then(function (response) {
@@ -135,21 +142,19 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", "$s
     $scope.video = mainService.video;
 
     var id = mainService.arr[0];
+    $scope.comments = [];
 
     mainService.getComments(id).then(function (res) {
-        console.log("res.data.data", res.data.dat);
         $scope.comments = res.data.data;
     });
 
     $scope.addComment = function () {
         var id = mainService.arr[0];
-        console.log(id);
-        console.log($scope.text);
+        // $state.go('loading');
         mainService.postComment(id, $scope.text).then(function (res) {
-            console.log("yo dude", res.data.data);
-
             mainService.getComments(id).then(function (res) {
                 $scope.comments = res.data.data;
+                // $state.go('playvideo');
             });
         });
     };
@@ -171,7 +176,6 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", "$s
     $scope.getVideo();
 
     mainService.getVideosByChannel('staffpicks').then(function (res) {
-        console.log(res.data.data);
         $scope.staffpicks = res.data.data;
     });
 
@@ -342,6 +346,12 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/login'
+        });
+    };
+    this.logout = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/logout'
         });
     };
     this.getUser = function () {
