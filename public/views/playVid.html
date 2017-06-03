@@ -87,7 +87,7 @@
                     + Load 100 previous comments
                 </div>
                 <div class="comment-content"ng-repeat= "data in comments"> 
-                    <img src="{{user.pictures.sizes[3].link}}"class="user-pic">
+                    <img src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
                         <div class="main-comment-box">
                         <div class="comment-details">
                             <div class="user-name">{{data.user.name}}</div>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="comment-box-container">
 
-                    <input class="comment-box" type="text" ng-model="text" name="comment-input" value="Add a comment">
+                    <input class="comment-box" type="text" ng-model="text" name="comment-input" placeholder="Add a comment">
                     <button class="comment-submit" ng-click="addComment()">Add comment</button>
 
 
@@ -112,7 +112,7 @@
         </div>
     </div>
     <!--==========================================================================-->
-    <!--==========================================================================-->
+    <!--==========================================================================--> 
 
     <div class="vid-lower-right">
         <div class="right-content">
