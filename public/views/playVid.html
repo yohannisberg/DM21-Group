@@ -6,10 +6,7 @@
 <!--==========================================================================-->
 
 <div class="vid-lower-wrapper">
-
     <div class="vid-lower-left">
-
-
         <div class="title-outer-wrapper">
             <div class="title-wrapper">
                 <div class="title-box">
@@ -36,18 +33,10 @@
         </div>
         <!--==========================================================================-->
         <!--==========================================================================-->
-
-
-
         <div class="disc-outer-wrapper">
             <div class="disc-wrapper">
                 <div class="disc-topbar">
-
                     <div class="disc-stats">
-
-
-
-
                         <i class="fa fa-play" aria-hidden="true"></i>
                         <div>{{media.stats.plays}}</div>
                         <i class="fa fa-heart" aria-hidden="true"></i>
@@ -102,7 +91,7 @@
                         <div class="main-comment-box">
                         <div class="comment-details">
                             <div class="user-name">{{data.user.name}}</div>
-                            <div class="post-date">created on: {{data.created_on}}</div>
+                            <div class="post-date">created on: {{data.created_on | date :  "dd.MM.y"}}</div>
                         </div>
 
                         <div class="user-comment">

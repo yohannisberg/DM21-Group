@@ -117,18 +117,6 @@ module.exports = {
             console.log(error);
         });
     },
-    getComments: (req, response) => {
-        axios({
-            method: 'get',
-            url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
-            headers: {Authorization: `Bearer ${req.session.access_token}`},
-
-        }).then(res => {
-            response.status(200).send(res.data);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
     addComments: (req, res) => {
         axios({
             method: 'post',

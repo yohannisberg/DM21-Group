@@ -5,7 +5,6 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     let id = mainService.arr[0];
 
     mainService.getComments(id).then(res => {
-        console.log("res.data.data" , res.data.dat)
         $scope.comments = res.data.data;
     })
 
@@ -14,13 +13,10 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         console.log(id);
         console.log($scope.text);
         mainService.postComment(id, $scope.text).then(res => {
-            console.log("yo dude", res.data.data);
-
             mainService.getComments(id).then(res => {
                 $scope.comments = res.data.data;
             })
         })
-
     }
     $scope.playVideo = (videoLink, uri) => {
         $state.go('loading');
@@ -40,7 +36,6 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     $scope.getVideo();
 
     mainService.getVideosByChannel('staffpicks').then(res => {
-        console.log(res.data.data)
         $scope.staffpicks = res.data.data;
     })
 
