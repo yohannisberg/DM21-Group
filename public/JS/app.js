@@ -19,7 +19,7 @@ angular.module('vimeoApp', ["ui.router"])
                 templateUrl: './views/search.html',
                 controller: 'searchCtrl'
             })
-            .state('edit' ,{
+            .state('edit', {
                 url: '/edit',
                 templateUrl: './views/editvideo.html',
                 controller: 'editCtrl'
@@ -38,5 +38,10 @@ angular.module('vimeoApp', ["ui.router"])
                 url: '/searching',
                 templateUrl: './views/loading.html',
                 controller: 'loadingCtrl'
+            })
+            .state('watchLater', {
+                url: '/watchlater',
+                templateUrl: './views/watchLater.html',
+                controller: 'userVideos'
             })
     });

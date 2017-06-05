@@ -6,19 +6,17 @@ angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainServic
 
     $scope.mainDropDown = true;
 
-    // $scope.login = () => {
-    //     mainService.login().then(res => {
-    //       console.log(res.data)
-    //         $scope.data = res.data;
-    //     })
-    // }
-    // $scope.login();
+    $scope.login = () => {
+        mainService.login().then(res => {
+            $scope.data = res.data;
+        })
+    }
+    $scope.login();
 
     $scope.searchQuery = query => {
         $state.go('loading');
         mainService.searchVideos(1, query).then(response => {
             mainService.searchedVideo(response.data.data);
-            console.log(response.data.data);
             $state.go('search');
             $scope.query = '';
         })
@@ -26,7 +24,6 @@ angular.module('vimeoApp').controller('navBarCtrl', function ($scope, mainServic
     $scope.getUser = () => {
         $state.go('uploadVideo');
         mainService.getUser().then(res => {
-            // console.log(res.data); //res.data is the currently logged-in user's info
         })
     }
 

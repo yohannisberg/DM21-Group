@@ -13,11 +13,14 @@ angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainSe
         mainService.getId(id);
         $state.go('playvideo');
     }
+    $scope.displayWatchLaterList = () => {
+        let id = mainService.arr[0];
+        mainService.getVideoById(id).then(res => {
+            mainService.getWatchLaterList(res.data, id).then(resp => {
+                $scope.list = resp.data;
+            })
+        })
 
-    $scope.testing=function(number){
-      console.log(number)
-      var yup=number + "yup";
-      $scope.yup;
     }
-
+    $scope.displayWatchLaterList();
 });

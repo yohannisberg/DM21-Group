@@ -1,29 +1,26 @@
 <nav-bar></nav-bar>
 
-<!-- <div class='editVideoOuterWrapper'> -->
 <div class='editVideoWrapper'>
-<div class='editVideo'>
-  <div class='topVideosWrapper'>
-  <div class='videosTitle'>Videos</div>
-  <input class='editVideoSearch' placeholder="Search">
-  </div>
-  <div class='editVideoTableWrapper'>
-  <div class='titleEdit'>Title</div>
-  <div class='addedEdit'>Added</div>
-  <div class='durationEdit'>Duration</div>
-  <div class='privacyEdit'>Privacy</div>
-  </div>
-  <div class='editVideoLowerWrapper' ng-repeat="x in videos">
-    <img class='thumbnailDimensions'ng-src='{{x.pictures.sizes[5].link}}' ng-click="play(x.embed.html, x.uri)"></img>
-    <div class='videoName'>{{x.name}}</div>
-    <div class='addedEdit'>{{x.modified_time | date: 'yyyy-MM-dd'}}</div>
-    <!-- <div class='durationEdit' ng-model='test' ng-init='testing(test)'>{{x.duration}}</div> -->
-    <div class='durationEdit' ng-init='testing({{x.duration}})'>{{yup}}</div>
-    <div class='privacyEdit'>{{x.privacy.comments}}</div>
-  </div>
+	<div class='editVideo'>
+		<div class='topVideosWrapper'>
+			<div class='videosTitle'>Videos</div>
+			<input class='editVideoSearch' placeholder="Search">
+		</div>
+		<div class='editVideoTableWrapper'>
+			<div class='titleEdit'>Title</div>
+			<div class='addedEdit'>Added</div>
+			<div class='durationEdit'>Duration</div>
+			<div class='privacyEdit'>Privacy</div>
+		</div>
+		<div class='editVideoLowerWrapper' ng-repeat="x in videos">
+			<img class='thumbnailDimensions' ng-src='{{x.pictures.sizes[5].link}}'
+			     ng-click="play(x.embed.html, x.uri)"></img>
+			<div class='videoName'>{{x.name}}</div>
+			<div class='addedEdit'>{{x.modified_time | date: 'yyyy-MM-dd'}}</div>
+			<div class='privacyEdit'>{{x.privacy.comments}}</div>
+		</div>
+	</div>
+	<img src='./IMAGES/johnImages/vimeoEditVideos.jpeg' class='editVideoPic'>
 </div>
-<img src='./IMAGES/johnImages/vimeoEditVideos.jpeg' class='editVideoPic'>
-</div>
-<!-- </div> -->
 
 <footer-dir></footer-dir>
