@@ -21,6 +21,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
 
+app.get('/api/callback', mainCtrl.callback);
 app.get('/api/videos', vimeoCtrl.getVideoById);
 app.get('/api/videos/:pageNum', vimeoCtrl.getVideos);
 app.get('/api/videos/channels/:channel', vimeoCtrl.getVideoByChannels);

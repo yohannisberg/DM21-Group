@@ -17,6 +17,11 @@
 			     ng-click="play(x.embed.html, x.uri)"></img>
 			<div class='videoName'>{{x.name}}</div>
 			<div class='addedEdit'>{{x.modified_time | date: 'yyyy-MM-dd'}}</div>
+
+			<div ng-repeat='time in convertedTime'>
+			<div class='durationEdit'>{{time}}</div>
+
+
 			<div class='privacyEdit'>{{x.privacy.comments}}</div>
 		</div>
 	</div>
