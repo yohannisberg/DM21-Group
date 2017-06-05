@@ -22,7 +22,7 @@
                         {{media.app.name}}
                     </div>
                     <div class="days-ago">
-                        {{media.created_time}}
+                      {{momentTime}}
                     </div>
                 </div>
                 <div class="follow-wrapper">
@@ -47,7 +47,7 @@
                         <div>{{media.metadata.connections.comments.total}}</div>
                     </div>
 
-                
+
                     <div class="share-btn">
                         <i class="fa fa-paper-plane" aria-hidden="true"></i>
                         <div class="share">
@@ -86,7 +86,7 @@
                 <div class="previous-comments-bar">
                     + Load 100 previous comments
                 </div>
-                <div class="comment-content"ng-repeat= "data in comments"> 
+                <div class="comment-content"ng-repeat= "data in comments">
                     <img src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
                         <div class="main-comment-box">
                         <div class="comment-details">
@@ -112,7 +112,7 @@
         </div>
     </div>
     <!--==========================================================================-->
-    <!--==========================================================================--> 
+    <!--==========================================================================-->
 
     <div class="vid-lower-right">
         <div class="right-content">
@@ -143,5 +143,3 @@
 
 
 <footer-dir></footer-dir>
-
-

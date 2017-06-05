@@ -26,6 +26,7 @@ var args = process.argv[2];
 console.dir(args);
 
 
+app.get('/api/callback', mainCtrl.callback);
 app.get('/api/videos', vimeoCtrl.getVideoById);
 app.get('/api/videos/:pageNum', vimeoCtrl.getVideos);
 app.get('/api/videos/channels/:channel', vimeoCtrl.getVideoByChannels);

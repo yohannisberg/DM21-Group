@@ -17,6 +17,21 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         let id = mainService.arr[0];
         mainService.getVideoById(id).then(res => {
             $scope.media = res.data
+
+            var beforeDate=res.data.created_time;
+            function date (beforeDate){
+              var newD=beforeDate.slice(0,10);
+              var splitDate=newD.split('')
+              var noDash=splitDate.filter(function(numb){
+                return numb!=='-';
+              })
+              var forMoment=noDash.join("")
+              $scope.momentTime=moment(forMoment, "YYYYMMDD").fromNow();
+            }
+
+date("2017-05-31T14:33:14+00:00")
+
+            $scope.dateTest=moment("20170601", "YYYYMMDD").fromNow();
         })
     };
     $scope.getVideo();
