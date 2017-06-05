@@ -40,7 +40,8 @@ module.exports = {
             return lib.request({
                 path: `/videos/${req.params.id}/comments`,
                 query: {
-                    per_page: 10
+                    per_page: 10,
+                    direction: 'asc'
                 }
             }, (error, body) => {
                 return !error ? res.status(200).send(body) : console.log(error);
@@ -109,5 +110,27 @@ module.exports = {
                 makeRequest(lib);
             });
         }
+    },
+    uploadVid: (req, res) => {
+        var file_path = req.body.video;
+        var prev_percentage = -1;
+
+        lib.access_token = config.access_token;
+        lib.streamingUpload(file_path,
+            function (err, body, status, headers) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log(status);
+                console.log(headers.location);
+            },
+            function (uploaded_size, file_size) {
+                var percentage = Math.round((uploaded_size / file_size) * 100);
+
+                if (percentage != prev_percentage) {
+                    console.log(percentage + '%' + ' uploaded\n');
+                    prev_percentage = percentage;
+                }
+            })
     }
 }

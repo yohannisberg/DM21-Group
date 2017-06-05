@@ -13,8 +13,7 @@ const vimeo_module = require('./lib/vimeo'),
     lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET),
     scopes = ['public', 'private', 'purchased', 'create', 'edit', 'delete', 'interact', 'upload'],
     url = lib.buildAuthorizationEndpoint(redirect_uri, scopes, state),
-    url2 = `https://api.vimeo.com/oauth/authorize?client_id=${config.CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&state=${state}`;
-
+    VimeoUpload = require('vimeo-upload');
 
 app.set('db', massiveInstance);
 let db = app.get('db');
@@ -37,13 +36,10 @@ module.exports = {
             headers: {Authorization: "basic " + base64(config.CLIENT_ID + ":" + config.CLIENT_SECRET)}
         }).then(response => {
             req.session.user = response.data.user;
-            console.log(req.session.dude);
             let usersName = req.session.user.name;
             db.delete_all_users((err, result) => {
-                err ? console.log(err) : console.log(result);
             });
             db.add_user([usersName], (err, result) => {
-                err ? console.log(err) : console.log(result);
             })
             req.session.access_token = response.data.access_token;
             res.redirect(redirectUrl);
@@ -52,9 +48,8 @@ module.exports = {
         });
     },
     logout: (req, res) => {
-        console.log('logging out');
         req.session.destroy();
-        res.redirect(redirectUrl);
+        res.send(true);
     },
     getUser: (req, res) => {
         axios({
@@ -79,17 +74,29 @@ module.exports = {
             console.log(error);
         });
     },
-    uploadVideo: (req, response) => {
-        axios({
-            method: 'get',
-            headers: {Authorization: `Bearer ${req.session.access_token}`},
-            url: 'https://api.vimeo.com/me/videos',
-            data: {
-                type: 'POST',
-                redirect_url: `http://localhost:${config.port}`
-            }
-        }).then(resp => {
-            response.send(resp.data);
+    uploadVideo: (req, res) => {
+        console.log(req.body);
+        console.log(req.body.video);
+        db.add_video([req.body.video], (err, result) => {
+            !err ? res.status(200).send(result) : res.status(404).send(err);
+        })
+
+        // console.log('yp man');
+        // let uploader = new VimeoUpload({
+        //     file: req.body.video,
+        //     token: req.session.access_token,
+        // });
+        // uploader.upload();
+        // axios({
+        //     method: 'post',
+        //     headers: {Authorization: `Bearer ${req.session.access_token}`},
+        //     url: 'https://api.vimeo.com/me/videos',
+        //     data: {
+        //         type: 'pull',
+        //         link: req.body.video
+        //     }
+        // }).then(resp => {
+        //     console.log(resp);
             // axios({
             //     method: 'delete',
             //     url: `https://api.vimeo.com/${req.session.data}`
@@ -100,7 +107,7 @@ module.exports = {
             // }).catch(error => {
             //     console.log(error);
             // });
-        })
+        // })
         // axios({
         //     method: 'post',
         //     headers: {Authorization: `Bearer ${req.session.access_token}`},
@@ -122,6 +129,18 @@ module.exports = {
             console.log(error);
         });
     },
+    // getComments: (req, res) => {
+    //     axios({
+    //         method: 'get',
+    //         url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
+    //         headers: {Authorization: `Bearer ${req.session.access_token}`},
+    //     }).then(resp => {
+    //         res.status(200).send(resp.data);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+    // },
+
     addComments: (req, res) => {
         axios({
             method: 'post',

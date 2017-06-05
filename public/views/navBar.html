@@ -1,40 +1,41 @@
-<div class='colorRibbon'></div>
-<div class='navBarWrapper'>
-	<div class='navBarInnards'>
-		<a ui-sref='home'><img src='./IMAGES/johnImages/vimeo_logo_dark.png' class='vimeoLogo'></a>
+<div class="colorRibbon"></div>
+<div class="navBarWrapper">
+      <div class="navBarInnards">
+            <a ui-sref="home"><img src="./IMAGES/johnImages/vimeo_logo_dark.png" class="vimeoLogo"></a>
 
-		<div ng-click='login()' ng-show='logInNavBar'><a href="{{data}}" class='logInNav'>Log In</a></div>
+            <div ng-click="login()" ng-show="logInNavBar"><a href="{{data}}" class="logInNav">Log In</a></div>
 
-		<div>Manage videos <span class='arrows'>▼</span></div>
-		<div>Watch <span class='arrows'>▼</span></div>
-		<div>On Demand <span class='arrows'>▼</span></div>
-		<div>Upgrade</div>
+            <div>Manage videos <span class="arrows">▼</span></div>
+            <div>Watch <span class="arrows">▼</span></div>
+            <div>On Demand <span class="arrows">▼</span></div>
+            <div>Upgrade</div>
 
-		<form ng-submit='searchQuery(query)'>
-		<input class='searchBar' ng-model='query' placeholder='Search videos, people, and more'>
-		<img src='./IMAGES/johnImages/mag-glass.png' class='magGlass' ng-click='searchQuery(query)'>
-		</form>
+            <form ng-submit="searchQuery(query)">
+                  <input class="searchBar" ng-model="query" placeholder="Search videos, people, and more">
+                  <img src="./IMAGES/johnImages/mag-glass.png" class="magGlass" ng-click="searchQuery(query)">
+            </form>
 
-		<div class='dropDown' ng-hide='mainDropDown'>
-					<div class='navUserName'>{{userName}}</div>
-					<div class='navViewProf'>View Profile <span class='mainUserArrow'>▶</span></div>
-					<div class='mainBorderDropdown'></div>
-					<div><a ui-sref='userVideos'>Videos</a></div>
-					<div>Likes</div>
-					<div>Watch Later</div>
-					<div>Purchases</div>
-					<div>Collections</div>
-					<div>Stats</div>
-					<div class='mainBorderDropdown'></div>
-					<div>Messages</div>
-					<div>Account settings</div>
-					<div>Help</div>
-					<button ng-click="logout()">Log out</button>
-		</div>
+            <div class="dropDown" ng-hide="mainDropDown">
+                  <div class="navUserName">{{userName}}</div>
+                  <div class="navViewProf">View Profile <span class="mainUserArrow">▶</span></div>
+                  <div class="mainBorderDropdown"></div>
+                  <div><a ui-sref="userVideos">Videos</a></div>
+                  <div>Likes</div>
+                  <div>Watch Later</div>
+                  <div>Purchases</div>
+                  <div>Collections</div>
+                  <div>Stats</div>
+                  <div class="mainBorderDropdown"></div>
+                  <div>Messages</div>
+                  <div>Account settings</div>
+                  <div>Help</div>
+                  <div ng-click="logout()">Log out</div>
+            </div>
 
-		<img ng-show='profilePicAndUpload' class='profilePic' ng-src='{{profilePicture}}' ng-click='mainDropDown=false'></img>
+            <img ng-show="profilePicAndUpload" class="profilePic" ng-src="{{profilePicture}}"
+                 ng-click="mainDropDown=false"/>
 
-		<span ng-show='profilePicAndUpload' class='uploadButton' ng-click="getUser()"><span class='cloud'>☁</span>Upload</span>
+            <span ng-show="profilePicAndUpload" class="uploadButton" ng-click="getUser()"><span class="cloud">☁</span>Upload</span>
 
-	</div>
+      </div>
 </div>
