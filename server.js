@@ -20,7 +20,7 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
-var args = process.argv[2];
+var args = process.argv[1];
 
 //inspect the arguments
 console.dir(args);
