@@ -1,6 +1,6 @@
 angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainService, $state) {
 
-    function test2() {
+    let test2 = () => {
         $scope.videos = mainService.videoData;
     }
     test2();

@@ -3,11 +3,14 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     this.videoData = '';
     this.video = '';
     this.arr = [];
+    this.arr2 = [];
+
     this.searchedVideo = data => {
         this.videoData = data;
     };
     this.clickedVideo = videoLink => {
         this.video = videoLink;
+        this.arr2.push(videoLink);
     };
     this.getId = id => {
         this.arr.push(id);
@@ -55,17 +58,31 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/login'
         })
     };
+    this.logout = () => {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/logout'
+        })
+    }
     this.getUser = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/currentuser'
         })
     };
-    this.uploadVideo = () => {
+    // this.uploadVideo = (video) => {
+    //     return $http({
+    //         method: 'POST',
+    //         data: {video},
+    //         url: serverUrl + '/api/upload'
+    //     })
+    // };
+    this.uploadVid = (video) => {
         return $http({
-            method: 'POST',
-            url: serverUrl + '/api/upload'
-        })
+          method: 'POST',
+          data: {video},
+          url: serverUrl + '/api/uploadvideo'
+      })
     };
     this.userVideos = () => {
         return $http({
