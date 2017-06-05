@@ -1,2 +1,2 @@
-insert into videos(video, videoID)
-values($1, $2);
+insert into videos(video)
+values($1);
