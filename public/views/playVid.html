@@ -1,3 +1,5 @@
+<!--changes made last 1018am June5-->
+
 <nav-bar></nav-bar>
 
 <div class="video-window"></div>
@@ -14,7 +16,7 @@
                         {{media.name}}
                     </div>
                     <div class="vid-rating">
-                        VID-RATING
+                        {{media.content_rating[0]}}
                     </div>
                 </div>
                 <div class="user-info">
@@ -67,12 +69,12 @@
             <div class="category-wrapper">
                 <div class="clip-category">
                     <div class="category">
-                        2 categories
+                        {{media.tags.length}}Categories
                     </div>
 
-                    <div class="btn-wrapper">
-                        <button class="category-btn">Animation</button>
-                        <button class="category-btn">2D</button>
+                    <div class="btn-wrapper" ng-repeat="media in category">
+                        <button class="category-btn">{{media.tags.canonical}}</button>
+
                     </div>
                 </div>
             </div>
