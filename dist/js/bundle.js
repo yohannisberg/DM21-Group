@@ -164,8 +164,8 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         mainService.getVideoById(id).then(function (res) {
             $scope.media = res.data;
             var beforeDate = res.data.created_time,
-                date = function date(x) {
-                var newD = x.slice(0, 10),
+                date = function date(beforeDate) {
+                var newD = beforeDate.slice(0, 10),
                     splitDate = newD.split(''),
                     noDash = splitDate.filter(function (numb) {
                     return numb !== '-';
@@ -174,7 +174,6 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
                 $scope.momentTime = moment(forMoment, "YYYYMMDD").fromNow();
             };
             date(beforeDate);
-            date("2017-05-31T14:33:14+00:00");
             $scope.dateTest = moment("20170601", "YYYYMMDD").fromNow();
         });
     };
