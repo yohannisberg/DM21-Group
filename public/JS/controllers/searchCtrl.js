@@ -12,7 +12,9 @@ angular.module('vimeoApp').controller('searchCtrl', function ($scope, mainServic
         mainService.clickedVideo(videoLink);
         let id = uri.replace(/\D/g, '');
         mainService.getId(id);
+        mainService.changeTrue();
         $state.go('playvideo');
+
     };
     $scope.page = num => {
         mainService.searchVideos(num, mainService.query).then(res => {

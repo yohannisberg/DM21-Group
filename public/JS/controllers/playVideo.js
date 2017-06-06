@@ -5,20 +5,32 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     $scope.getChannelVideos = () => {
         mainService.getVideosByChannel('staffpicks').then(res => {
             $scope.staffpicks = res.data.data;
-            $scope.playVideo = (videoLink, uri, video) => {
+            $scope.playVideo = (videoLink, uri, video, i) => {
+                mainService.changeFalse();
                 mainService.clickedVideo(videoLink);
                 let id = uri.replace(/\D/g, ''),
                     stripDuplicates = a => [...new Set(a)];
+                let videoFromSearchCtrl = () => {
+                    let video = mainService.videoData[i];
+                    $scope.staffpicks.unshift(video);
+                    $scope.staffpicks = stripDuplicates($scope.staffpicks);
+                }
                 mainService.getId(id);
                 $scope.video = mainService.arr2[mainService.arr2.length - 1];
                 document.querySelector(".video-window").innerHTML = $scope.video;
                 $scope.getVideo();
                 $scope.getAllComments();
-                $scope.staffpicks.unshift(video);
-                $scope.staffpicks = stripDuplicates($scope.staffpicks);
+
+                if (mainService.x === true) {
+                    videoFromSearchCtrl();
+                } else {
+                    $scope.staffpicks.unshift(video);
+                    $scope.staffpicks = stripDuplicates($scope.staffpicks);
+                }
             };
         });
     };
+
     $scope.getChannelVideos();
     $scope.getVideo = () => {
         let id = mainService.arr[0];
