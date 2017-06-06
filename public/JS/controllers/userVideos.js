@@ -5,12 +5,12 @@ angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainSe
             $scope.videos = res.data.data;
             console.log($scope.videos);
 
-            var seconds=res.data.data.duration;
-            function convertTime = (seconds) => {
-              var minutes = Math.floor(seconds / 60); // 7
-              var seconds = seconds % 60; // 30
-              $scope.convertedTime=minutes+":"+seconds;
-            }
+            // var seconds=res.data.data.duration;
+            // function convertTime = (seconds) => {
+            //   var minutes = Math.floor(seconds / 60); // 7
+            //   var seconds = seconds % 60; // 30
+            //   $scope.convertedTime=minutes+":"+seconds;
+            // }
 
         })
     }
