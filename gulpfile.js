@@ -13,7 +13,6 @@ const gulp = require('gulp'),
 gulp.task('views', () => {
     return gulp.src('./public/views/**/*')
         .pipe(gulp.dest('./dist/views'))
-
 });
 
 gulp.task('build-css', () => {
@@ -52,7 +51,6 @@ gulp.task('build', ['views', 'build-css', 'build-js', 'images'], () => {
 gulp.task('watch', () => {
     return gulp.watch(['./public/index.html', './public/CSS/**/*', './public/js/**/*', './public/views/**/*'], ['build']);
 });
-
 
 gulp.task('default' , ['watch' , 'build']);
 
