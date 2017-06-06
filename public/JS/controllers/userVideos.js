@@ -3,17 +3,16 @@ angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainSe
     $scope.userVideos = () => {
         mainService.userVideos().then(res => {
             $scope.videos = res.data.data;
-            console.log($scope.videos);
 
-            // var seconds=res.data.data.duration;
-            // function convertTime = (seconds) => {
-            //   var minutes = Math.floor(seconds / 60); // 7
-            //   var seconds = seconds % 60; // 30
-            //   $scope.convertedTime=minutes+":"+seconds;
-            // }
+            // // let seconds = res.data.data.duration,
+            //    let convertTime = seconds => {
+            //         let minutes = Math.floor(seconds / 60),  // 7
+            //             seconds = seconds % 60; // 30
+            //         $scope.convertedTime = minutes + ":" + seconds;
+            //     };
 
-        })
-    }
+        });
+    };
     $scope.userVideos();
 
     $scope.play = (videoLink, uri) => {
@@ -21,15 +20,14 @@ angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainSe
         let id = uri.replace(/\D/g, '');
         mainService.getId(id);
         $state.go('playvideo');
-    }
+    };
     $scope.displayWatchLaterList = () => {
         let id = mainService.arr[0];
         mainService.getVideoById(id).then(res => {
             mainService.getWatchLaterList(res.data, id).then(resp => {
                 $scope.list = resp.data;
-            })
-        })
-
-    }
+            });
+        });
+    };
     $scope.displayWatchLaterList();
 });

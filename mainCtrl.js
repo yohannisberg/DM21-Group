@@ -10,14 +10,13 @@ const vimeo_module = require('./lib/vimeo'),
     Vimeo = vimeo_module.Vimeo,
     state = 'test',
     redirect_uri = config.redirect_uri,
+    redirectUrl = `http://localhost:${config.port}`,
     lib = new Vimeo(config.CLIENT_ID, config.CLIENT_SECRET),
     scopes = ['public', 'private', 'purchased', 'create', 'edit', 'delete', 'interact', 'upload'],
-    url = lib.buildAuthorizationEndpoint(redirect_uri, scopes, state),
-    VimeoUpload = require('vimeo-upload');
+    url = lib.buildAuthorizationEndpoint(redirect_uri, scopes, state);
 
 app.set('db', massiveInstance);
 let db = app.get('db');
-let redirectUrl = `http://localhost:${config.port}`;
 
 module.exports = {
 
@@ -97,16 +96,16 @@ module.exports = {
         //     }
         // }).then(resp => {
         //     console.log(resp);
-            // axios({
-            //     method: 'delete',
-            //     url: `https://api.vimeo.com/${req.session.data}`
-            // }).then(res1 => {
-            //     console.log(res1);
-            // })
-            // response.status(200).send(res.data.ticket_id);
-            // }).catch(error => {
-            //     console.log(error);
-            // });
+        // axios({
+        //     method: 'delete',
+        //     url: `https://api.vimeo.com/${req.session.data}`
+        // }).then(res1 => {
+        //     console.log(res1);
+        // })
+        // response.status(200).send(res.data.ticket_id);
+        // }).catch(error => {
+        //     console.log(error);
+        // });
         // })
         // axios({
         //     method: 'post',
@@ -129,18 +128,6 @@ module.exports = {
             console.log(error);
         });
     },
-    // getComments: (req, res) => {
-    //     axios({
-    //         method: 'get',
-    //         url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
-    //         headers: {Authorization: `Bearer ${req.session.access_token}`},
-    //     }).then(resp => {
-    //         res.status(200).send(resp.data);
-    //     }).catch(error => {
-    //         console.log(error);
-    //     });
-    // },
-
     addComments: (req, res) => {
         axios({
             method: 'post',

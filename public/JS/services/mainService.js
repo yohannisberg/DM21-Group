@@ -1,74 +1,74 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
-    let serverUrl = 'http://localhost:3012';
-    this.videoData = '';
-    this.video = '';
-    this.arr = [];
-    this.arr2 = [];
-
-    this.searchedVideo = data => {
-        this.videoData = data;
+    let serverUrl = 'http://localhost:3012',
+        vm = this;
+    vm.videoData = '';
+    vm.video = '';
+    vm.arr = [];
+    vm.arr2 = [];
+    vm.searchedVideo = data => {
+        vm.videoData = data;
     };
-    this.clickedVideo = videoLink => {
-        this.video = videoLink;
-        this.arr2.push(videoLink);
+    vm.clickedVideo = videoLink => {
+        vm.video = videoLink;
+        vm.arr2.push(videoLink);
     };
-    this.getId = id => {
-        this.arr.push(id);
-        if (this.arr.length > 1) {
-            while (this.arr.length > 1) {
-                this.arr.shift();
-            }
-        }
+    vm.getId = id => {
+        vm.arr.push(id);
+        if (vm.arr.length > 1) {
+            while (vm.arr.length > 1) {
+                vm.arr.shift();
+            };
+        };
     };
-    this.getVideosByChannel = channel => {
+    vm.getVideosByChannel = channel => {
         return $http({
             method: 'GET',
             url: serverUrl + `/api/videos/channels/${channel}`
-        })
+        });
     };
-    this.searchVideos = (page, query) => {
-        this.query = query;
+    vm.searchVideos = (page, query) => {
+        vm.query = query;
         return $http({
             method: 'GET',
             url: serverUrl + `/api/videos/${page}?search=${query}`
-        })
+        });
     };
-    this.getVideoById = id => {
+    vm.getVideoById = id => {
         return $http({
             method: 'GET',
             url: serverUrl + `/api/videos?id=${id}`
-        })
+        });
     };
-    this.getComments = id => {
+    vm.getComments = id => {
         return $http({
             method: 'GET',
             url: serverUrl + `/api/videos/${id}/comments`
-        })
+        });
     };
-    this.postComment = (id, text) => {
+    vm.postComment = (id, text) => {
         return $http({
             method: 'POST',
             data: {text},
             url: serverUrl + `/api/videos/${id}/comments`
-        })
+        });
     };
-    this.login = () => {
+    vm.login = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/login'
-        })
+        });
     };
-    this.logout = () => {
+    vm.logout = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/logout'
-        })
-    }
-    this.getUser = () => {
+        });
+    };
+    vm.getUser = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/currentuser'
-        })
+        });
     };
     // this.uploadVideo = (video) => {
     //     return $http({
@@ -77,36 +77,36 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     //         url: serverUrl + '/api/upload'
     //     })
     // };
-    this.uploadVid = (video) => {
+    vm.uploadVid = (video) => {
         return $http({
-          method: 'POST',
-          data: {video},
-          url: serverUrl + '/api/uploadvideo'
-      })
+            method: 'POST',
+            data: {video},
+            url: serverUrl + '/api/uploadvideo'
+        });
     };
-    this.userVideos = () => {
+    vm.userVideos = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/usersvideos'
-        })
+        });
     };
-    this.getAccessToken = () => {
+    vm.getAccessToken = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/accesstoken'
-        })
+        });
     };
-    this.addToWatchLater = (video, id) => {
+    vm.addToWatchLater = (video, id) => {
         return $http({
             method: 'POST',
             data: {video},
             url: serverUrl + `/api/videos/${id}/watchlater`
-        })
+        });
     };
-    this.getWatchLaterList = () => {
+    vm.getWatchLaterList = () => {
         return $http({
             method: 'GET',
             url: serverUrl + '/api/usersvideos'
-        })
-    }
+        });
+    };
 });

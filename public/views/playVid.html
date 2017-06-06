@@ -121,8 +121,8 @@
             <hr>
 
 
-            <div class="next-video" ng-repeat="media in staffpicks">
-                <img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0}" ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri)">
+            <div class="next-video" ng-repeat="media in staffpicks track by $index">
+                <img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0} " ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri, media)">
 
                 <div class="vid-title">
                     <h5><strong>{{media.name}}</strong></h5>

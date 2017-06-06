@@ -9,7 +9,7 @@ module.exports = {
     getVideos: (req, res) => {
         let makeRequest = lib => {
             return lib.request({
-                path: `/videos`,
+                path: `/videos?filter=content_rating&filter_content_rating=safe,unrated`,
                 query: {
                     page: req.params.pageNum,
                     per_page: 12,
@@ -62,7 +62,7 @@ module.exports = {
         }
     },
     getVideoById: (req, res) => {
-        let makeRequest = function (lib) {
+        let makeRequest = lib => {
             return lib.request({
                 path: `/videos/${req.query.id}`,
                 query: {
@@ -87,7 +87,7 @@ module.exports = {
         }
     },
     getVideoByChannels: (req, res) => {
-        let makeRequest = function (lib) {
+        let makeRequest = lib => {
             return lib.request({
                 path: `/channels/${req.params.channel}/videos`,
                 query: {
@@ -112,21 +112,19 @@ module.exports = {
         }
     },
     uploadVid: (req, res) => {
-        var file_path = req.body.video;
-        var prev_percentage = -1;
-
+        let file_path = req.body.video,
+            prev_percentage = -1;
         lib.access_token = config.access_token;
         lib.streamingUpload(file_path,
-            function (err, body, status, headers) {
+            (err, body, status, headers) => {
                 if (err) {
                     return console.log(err);
                 }
                 console.log(status);
                 console.log(headers.location);
             },
-            function (uploaded_size, file_size) {
-                var percentage = Math.round((uploaded_size / file_size) * 100);
-
+            (uploaded_size, file_size) => {
+                let percentage = Math.round((uploaded_size / file_size) * 100);
                 if (percentage != prev_percentage) {
                     console.log(percentage + '%' + ' uploaded\n');
                     prev_percentage = percentage;
