@@ -24,7 +24,7 @@
                         {{media.app.name}}
                     </div>
                     <div class="days-ago">
-                        {{media.created_time}}
+                      {{momentTime}}
                     </div>
                 </div>
                 <div class="follow-wrapper">
@@ -49,7 +49,7 @@
                         <div>{{media.metadata.connections.comments.total}}</div>
                     </div>
 
-                
+
                     <div class="share-btn">
                         <i class="fa fa-paper-plane" aria-hidden="true"></i>
                         <div class="share">
@@ -88,7 +88,7 @@
                 <div class="previous-comments-bar">
                     + Load 100 previous comments
                 </div>
-                <div class="comment-content"ng-repeat= "data in comments"> 
+                <div class="comment-content"ng-repeat= "data in comments">
                     <img src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
                         <div class="main-comment-box">
                         <div class="comment-details">
@@ -114,7 +114,7 @@
         </div>
     </div>
     <!--==========================================================================-->
-    <!--==========================================================================--> 
+    <!--==========================================================================-->
 
     <div class="vid-lower-right">
         <div class="right-content">
@@ -123,8 +123,8 @@
             <hr>
 
 
-            <div class="next-video" ng-repeat="media in staffpicks">
-                <img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0}" ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri)">
+            <div class="next-video" ng-repeat="media in staffpicks track by $index">
+                <img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0} " ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri, media)">
 
                 <div class="vid-title">
                     <h5><strong>{{media.name}}</strong></h5>
@@ -145,5 +145,3 @@
 
 
 <footer-dir></footer-dir>
-
-

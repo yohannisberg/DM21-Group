@@ -6,13 +6,13 @@ angular.module('vimeoApp').controller('loadingCtrl', function ($scope, $timeout)
 
     $timeout();
 
-    $timeout(function () {
+    $timeout(() => {
         $scope.loadG = true;
     }, 500);
 
     $timeout();
 
-    $timeout(function () {
+    $timeout(() => {
         $scope.loadR = true;
     }, 1000);
 

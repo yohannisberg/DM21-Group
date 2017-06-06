@@ -43,5 +43,5 @@ angular.module('vimeoApp', ["ui.router"])
                 url: '/watchlater',
                 templateUrl: './views/watchLater.html',
                 controller: 'userVideos'
-            })
+            });
     });

@@ -9,23 +9,22 @@ const express = require('express'),
 
 let corsOptions = {
     origin: `http://localhost:${config.port}`
-}
+};
 app.use(session({
     secret: config.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     rolling: true
-}))
+}));
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
-var args = process.argv[2];
 
-//inspect the arguments
+let args = process.argv[2];
 console.dir(args);
 
-
+app.get('/api/callback', mainCtrl.callback);
 app.get('/api/videos', vimeoCtrl.getVideoById);
 app.get('/api/videos/:pageNum', vimeoCtrl.getVideos);
 app.get('/api/videos/channels/:channel', vimeoCtrl.getVideoByChannels);
