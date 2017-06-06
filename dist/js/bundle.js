@@ -152,6 +152,7 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         var id = mainService.arr[0];
         mainService.getVideoById(id).then(function (res) {
             $scope.media = res.data;
+            console.log($scope.media);
         });
     };
     $scope.getVideo();

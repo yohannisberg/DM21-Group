@@ -508,7 +508,8 @@ a:hover, a:visited, a:link, a:active .logInNav {
             padding: 2px 8px;
             border-radius: 5px;
             height: 100%;
-            transform: translate(0%, 45%); }
+            transform: translate(0%, 45%);
+            text-transform: uppercase; }
         .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info {
           display: flex; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info .from {
