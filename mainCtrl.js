@@ -128,16 +128,17 @@ module.exports = {
             console.log(error);
         });
     },
-    addComments: (req, res) => {
+    addComments: (req, resp) => {
         axios({
             method: 'post',
             url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
             headers: {Authorization: `Bearer ${req.session.access_token}`},
             data: {
-                text: req.body.text
+                text: req.body.text,
+                scope: scopes
             }
         }).then(res => {
-            console.log(res)
+            console.log(res);
         }).catch(error => {
             console.log(error);
         });

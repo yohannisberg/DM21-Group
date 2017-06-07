@@ -26,7 +26,7 @@
 
 
 	<div class='searchRightWrapper'>
-		<div class="searchVideos" ng-repeat="stuff in videos" ng-click="playVideo(stuff.embed.html, stuff.uri)">
+		<div class="searchVideos" ng-repeat="stuff in videos" ng-click="playVideo(stuff.embed.html, stuff.uri, $index)">
 
 			<!-- <div ng-repeat='number in convertNum(stuff.stats.plays)'> -->
 

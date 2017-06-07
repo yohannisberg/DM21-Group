@@ -5,12 +5,10 @@ angular.module('vimeoApp').service('mainService', function ($http) {
     vm.video = '';
     vm.arr = [];
     vm.arr2 = [];
+    vm.arr3 = [];
+
     vm.searchedVideo = data => {
         vm.videoData = data;
-    };
-    vm.clickedVideo = videoLink => {
-        vm.video = videoLink;
-        vm.arr2.push(videoLink);
     };
     vm.getId = id => {
         vm.arr.push(id);
@@ -19,7 +17,20 @@ angular.module('vimeoApp').service('mainService', function ($http) {
                 vm.arr.shift();
             };
         };
+        console.log(vm.arr[0]);
     };
+    vm.clickedVideo = videoLink => {
+        vm.video = videoLink;
+        vm.arr2.push(videoLink);
+    };
+    vm.transferVideo = x => {
+        vm.arr3.push(x);
+        if (vm.arr3.length > 1) {
+            while (vm.arr3.length > 1) {
+                vm.arr3.shift();
+            };
+        };
+    }
     vm.getVideosByChannel = channel => {
         return $http({
             method: 'GET',

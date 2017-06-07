@@ -41,7 +41,7 @@ module.exports = {
                 path: `/videos/${req.params.id}/comments`,
                 query: {
                     per_page: 10,
-                    direction: 'asc'
+                    direction: 'desc'
                 }
             }, (error, body) => {
                 return !error ? res.status(200).send(body) : console.log(error);
