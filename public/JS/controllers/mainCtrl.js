@@ -7,8 +7,9 @@ angular.module('vimeoApp').controller('mainCtrl', function ($scope, mainService,
     }
     $scope.login();
 
-    $scope.playVideo = (videoLink, uri) => {
+    $scope.playVideo = (videoLink, uri, video) => {
         mainService.clickedVideo(videoLink);
+        mainService.transferVideo(video);
         let id = uri.replace(/\D/g, '');
         mainService.getId(id);
         $state.go('playvideo');

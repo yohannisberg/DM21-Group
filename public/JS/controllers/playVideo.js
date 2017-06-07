@@ -1,21 +1,31 @@
 angular.module('vimeoApp').controller('playVideo', function ($scope, mainService) {
-
+    let stripDuplicates = a => [...new Set(a)];
+    $scope.showButton = true;
     $scope.video = mainService.video;
-
+    mainService.getVideosByChannel('staffpicks').then(res => {
+        $scope.arr2 = res.data.data;
+    });
     $scope.getChannelVideos = () => {
-        mainService.getVideosByChannel('staffpicks').then(res => {
-            $scope.staffpicks = res.data.data;
+        mainService.getVideosByChannel('music').then(res => {
+            $scope.arr = res.data.data;
+            $scope.arr.unshift(mainService.arr3[0]);
+            $scope.arr = stripDuplicates($scope.arr);
             $scope.playVideo = (videoLink, uri, video) => {
                 mainService.clickedVideo(videoLink);
-                let id = uri.replace(/\D/g, ''),
-                    stripDuplicates = a => [...new Set(a)];
+                let id = uri.replace(/\D/g, '');
                 mainService.getId(id);
                 $scope.video = mainService.arr2[mainService.arr2.length - 1];
                 document.querySelector(".video-window").innerHTML = $scope.video;
                 $scope.getVideo();
                 $scope.getAllComments();
-                $scope.staffpicks.unshift(video);
-                $scope.staffpicks = stripDuplicates($scope.staffpicks);
+                $scope.arr.unshift(video);
+                $scope.arr = stripDuplicates($scope.arr);
+            };
+            $scope.showMore = () => {
+                $scope.showButton = false;
+                for(let i = 0; i<$scope.arr2.length; i++){
+                    $scope.arr.push($scope.arr2[i]);
+                };
             };
         });
     };
@@ -25,8 +35,8 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         mainService.getVideoById(id).then(res => {
             $scope.media = res.data;
             let beforeDate = res.data.created_time,
-                date = x => {
-                    let newD = x.slice(0, 10),
+                date = beforeDate => {
+                    let newD = beforeDate.slice(0, 10),
                         splitDate = newD.split(''),
                         noDash = splitDate.filter(numb => {
                             return numb !== '-';
@@ -35,7 +45,6 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
                     $scope.momentTime = moment(forMoment, "YYYYMMDD").fromNow();
                 };
             date(beforeDate);
-            date("2017-05-31T14:33:14+00:00");
             $scope.dateTest = moment("20170601", "YYYYMMDD").fromNow();
         });
     };
