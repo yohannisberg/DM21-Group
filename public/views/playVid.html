@@ -21,11 +21,12 @@
                 </div>
                 <div class="user-info">
                     <div class="from">
-                        {{media.app.name}}
+                        {{media.user.name}}
                     </div>
-                    <div class="days-ago">
-                      {{momentTime}}
-                    </div>
+                <div class="days-ago">
+                      {{momentTime}}  
+                </div>
+                <div>|  more</div>
                 </div>
                 <div class="follow-wrapper">
                     <img class="user-icon" ng-src="{{media.user.pictures.sizes[3].link}}">
@@ -69,12 +70,11 @@
             <div class="category-wrapper">
                 <div class="clip-category">
                     <div class="category">
-                        {{media.tags.length}}Categories
+                        {{media.tags.length}}  Categories
                     </div>
 
                     <div class="btn-wrapper" ng-repeat="media in category">
-                        <button class="category-btn">{{media.tags.canonical}}</button>
-
+                        <button class="category-btn">{{media.tags.name}}</button>
                     </div>
                 </div>
             </div>
@@ -89,11 +89,18 @@
                     + Load 100 previous comments
                 </div>
                 <div class="comment-content"ng-repeat= "data in comments">
-                    <img src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
+                    
+                    <img ng-if="data.user.pictures.sizes[3].link" ng-src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
+
+                    <img ng-if="!data.user.pictures.sizes[3].link" src="./images/default-user-img.png" class="user-pic">
+
+
+
+
                         <div class="main-comment-box">
                         <div class="comment-details">
                             <div class="user-name">{{data.user.name}}</div>
-                            <div class="post-date">created on: {{data.created_on | date :  "dd.MM.y"}}</div>
+                            <div class="post-date">{{data.created_on | date :  "MMM d, y"}}</div>
                         </div>
 
                         <div class="user-comment">
@@ -128,7 +135,7 @@
 
                 <div class="vid-title">
                     <h5><strong>{{media.name}}</strong></h5>
-                    <h6>From {{media.user.name}}</h6>
+                    <h6>{{media.user.name}}</h6>
                 </div>
 
             </div>
@@ -136,12 +143,11 @@
         </div>
 
         <div class="show-more-box">
-            <button class="more-btn" type="submit">Show More...</button>
+            <button class="more-btn" type="submit">STUPID...</button>
         </div>
 
 
     </div>
 </div>
-
 
 <footer-dir></footer-dir>

@@ -24,6 +24,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         let id = mainService.arr[0];
         mainService.getVideoById(id).then(res => {
             $scope.media = res.data;
+            console.log('$scope.media' , $scope.media)
             let beforeDate = res.data.created_time,
                 date = x => {
                     let newD = x.slice(0, 10),
