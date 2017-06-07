@@ -1,4 +1,4 @@
-angular.module('vimeoApp').controller('playVideo', function ($scope, mainService) {
+angular.module('vimeoApp').controller('playVideo', function ($scope, mainService, $state) {
     let stripDuplicates = a => [...new Set(a)];
     $scope.showButton = true;
     $scope.video = mainService.video;
@@ -23,7 +23,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
             };
             $scope.showMore = () => {
                 $scope.showButton = false;
-                for(let i = 0; i<$scope.arr2.length; i++){
+                for (let i = 0; i < $scope.arr2.length; i++) {
                     $scope.arr.push($scope.arr2[i]);
                 };
             };
@@ -50,19 +50,23 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         });
     };
     $scope.getVideo();
-    $scope.getAllComments = id => {
-        id = mainService.arr[0];
+    $scope.getAllComments = () => {
+        let id = mainService.arr[0];
         mainService.getComments(id).then(res => {
             $scope.comments = res.data.data;
+
         });
-    };
-    $scope.getAllComments();
+    }
     $scope.addComment = () => {
         let id = mainService.arr[0];
         mainService.postComment(id, $scope.text).then(res => {
-            $scope.getAllComments(id);
+            $scope.getAllComments();
         });
+
     };
+
+    $scope.getAllComments();
+
     document.querySelector(".video-window").innerHTML = $scope.video;
 });
 
