@@ -787,7 +787,8 @@ a:hover, a:visited, a:link, a:active .logInNav {
 
 .searchButtonWrapper {
   margin-bottom: 50px;
-  margin-top: 50px; }
+  margin-top: 50px;
+  width: 100%; }
 
 .searchButtonWrapper button {
   background-color: #EEF1F2;

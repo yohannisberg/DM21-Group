@@ -186,6 +186,7 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
         });
     };
     $scope.getAllComments();
+
     $scope.addComment = function () {
         var id = mainService.arr[0];
         mainService.postComment(id, $scope.text).then(function (res) {
@@ -266,18 +267,43 @@ angular.module('vimeoApp').controller('uploadVideoCtrl', ["$scope", "mainService
 }]);
 'use strict';
 
-angular.module('vimeoApp').controller('userVideosCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+angular.module('vimeoApp').filter('firstLetter', function () {
+    return function (privacy) {
 
+        var split = privacy.split("");
+        var firstCap = split[0].toUpperCase();
+        var restofWord = split.splice(0, 1);
+        var scope = firstCap + split.join("");
+
+        return scope;
+    };
+}).filter('convertedTime', function () {
+    return function (time) {
+
+        console.log(time);
+
+        var numb = parseInt(time);
+        var minutes = Math.floor(numb / 60);
+        var seconds = numb % 60;
+
+        if (minutes === 0) {
+            if (seconds.toString().length === 1) {
+                console.log(minutes);
+                return minutes + "0" + ":" + "0" + seconds;
+            }
+            console.log(minutes);
+            return minutes + "0" + ":" + seconds;
+        } else if (seconds.toString().length === 1) {
+            console.log(minutes);
+            return minutes + ":" + "0" + seconds;
+        }
+        console.log(minutes);
+        return minutes + ":" + seconds;
+    };
+}).controller('userVideosCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
     $scope.userVideos = function () {
         mainService.userVideos().then(function (res) {
             $scope.videos = res.data.data;
-
-            // // let seconds = res.data.data.duration,
-            //    let convertTime = seconds => {
-            //         let minutes = Math.floor(seconds / 60),  // 7
-            //             seconds = seconds % 60; // 30
-            //         $scope.convertedTime = minutes + ":" + seconds;
-            //     };
         });
     };
     $scope.userVideos();

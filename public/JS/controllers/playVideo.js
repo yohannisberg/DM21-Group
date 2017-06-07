@@ -47,6 +47,7 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
         });
     };
     $scope.getAllComments();
+    
     $scope.addComment = () => {
         let id = mainService.arr[0];
         mainService.postComment(id, $scope.text).then(res => {
@@ -55,4 +56,3 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
     };
     document.querySelector(".video-window").innerHTML = $scope.video;
 });
-
