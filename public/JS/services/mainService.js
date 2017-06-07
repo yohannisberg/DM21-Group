@@ -81,13 +81,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
             url: serverUrl + '/api/currentuser'
         });
     };
-    // this.uploadVideo = (video) => {
-    //     return $http({
-    //         method: 'POST',
-    //         data: {video},
-    //         url: serverUrl + '/api/upload'
-    //     })
-    // };
+
     vm.uploadVid = (video) => {
         return $http({
             method: 'POST',

@@ -86,16 +86,7 @@ module.exports = {
         //     token: req.session.access_token,
         // });
         // uploader.upload();
-        // axios({
-        //     method: 'post',
-        //     headers: {Authorization: `Bearer ${req.session.access_token}`},
-        //     url: 'https://api.vimeo.com/me/videos',
-        //     data: {
-        //         type: 'pull',
-        //         link: req.body.video
-        //     }
-        // }).then(resp => {
-        //     console.log(resp);
+
         // axios({
         //     method: 'delete',
         //     url: `https://api.vimeo.com/${req.session.data}`
@@ -138,9 +129,10 @@ module.exports = {
                 scope: scopes
             }
         }).then(res => {
-            console.log(res);
+            console.log('THEN',res);
+            resp.status(201).send('hi');
         }).catch(error => {
-            console.log(error);
+            console.log('ERROR',error);
         });
     },
     watchLater: (req, res) => {

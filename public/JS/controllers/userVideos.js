@@ -1,16 +1,41 @@
-angular.module('vimeoApp').controller('userVideosCtrl', function ($scope, mainService, $state) {
+angular.module('vimeoApp')
 
+.filter('firstLetter', function () {
+    return function(privacy){
+
+      var split=privacy.split("");
+      var firstCap=split[0].toUpperCase();
+      var restofWord=split.splice(0,1);
+      var scope=firstCap+split.join("");
+
+      return scope;
+    }
+  })
+
+  .filter('convertedTime', function() {
+    return function(time){
+            let numb=parseInt(time);
+            let minutes = Math.floor(numb / 60);
+            let seconds = numb % 60;
+
+               if(minutes===0){
+                 if(seconds.toString().length===1){
+                   return minutes+ "0" + ":" + "0"+seconds;
+                 }
+                 return minutes + "0" + ":" + seconds;
+               }
+
+              else if(seconds.toString().length===1){
+                return minutes+":"+"0"+seconds;
+               }
+               return minutes+":"+seconds;
+       }
+    })
+
+.controller('userVideosCtrl', function ($scope, mainService, $state) {
     $scope.userVideos = () => {
         mainService.userVideos().then(res => {
             $scope.videos = res.data.data;
-
-            // // let seconds = res.data.data.duration,
-            //    let convertTime = seconds => {
-            //         let minutes = Math.floor(seconds / 60),  // 7
-            //             seconds = seconds % 60; // 30
-            //         $scope.convertedTime = minutes + ":" + seconds;
-            //     };
-
         });
     };
     $scope.userVideos();

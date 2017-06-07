@@ -69,4 +69,3 @@ angular.module('vimeoApp').controller('playVideo', function ($scope, mainService
 
     document.querySelector(".video-window").innerHTML = $scope.video;
 });
-

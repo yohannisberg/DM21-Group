@@ -82,7 +82,9 @@
 		<!--==========================================================================-->
 		<!--==========================================================================-->
 
-		<div class="comments-outer-wrapper">
+		<comments-dir></comments-dir>
+
+		<!-- <div class="comments-outer-wrapper">
 			<div class="comments-wrapper">
 				<div class="comments-title">{{media.metadata.connections.comments.total}} Comments</div>
 				<div class="previous-comments-bar">
@@ -112,7 +114,7 @@
 					<button class="comment-submit" ng-click="addComment()">Add comment</button>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<!--==========================================================================-->
 	<!--==========================================================================-->
@@ -125,7 +127,7 @@
 			<hr>
 
 
-			<div class="next-video" ng-repeat="media in arr track by $index">
+			 <div class="next-video" ng-repeat="media in arr track by $index">
 				<img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0} "
 				     ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri, media)">
 
