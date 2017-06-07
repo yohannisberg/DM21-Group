@@ -74,8 +74,9 @@ angular.module('vimeoApp').controller('mainCtrl', ["$scope", "mainService", "$st
     };
     $scope.login();
 
-    $scope.playVideo = function (videoLink, uri) {
+    $scope.playVideo = function (videoLink, uri, video) {
         mainService.clickedVideo(videoLink);
+        mainService.transferVideo(video);
         var id = uri.replace(/\D/g, '');
         mainService.getId(id);
         $state.go('playvideo');
@@ -135,26 +136,36 @@ angular.module('vimeoApp').controller('navBarCtrl', ["$scope", "mainService", "$
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", function ($scope, mainService) {
-
+angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
+    var stripDuplicates = function stripDuplicates(a) {
+        return [].concat(_toConsumableArray(new Set(a)));
+    };
+    $scope.showButton = true;
     $scope.video = mainService.video;
-
+    mainService.getVideosByChannel('staffpicks').then(function (res) {
+        $scope.arr2 = res.data.data;
+    });
     $scope.getChannelVideos = function () {
-        mainService.getVideosByChannel('staffpicks').then(function (res) {
-            $scope.staffpicks = res.data.data;
+        mainService.getVideosByChannel('music').then(function (res) {
+            $scope.arr = res.data.data;
+            $scope.arr.unshift(mainService.arr3[0]);
+            $scope.arr = stripDuplicates($scope.arr);
             $scope.playVideo = function (videoLink, uri, video) {
                 mainService.clickedVideo(videoLink);
-                var id = uri.replace(/\D/g, ''),
-                    stripDuplicates = function stripDuplicates(a) {
-                    return [].concat(_toConsumableArray(new Set(a)));
-                };
+                var id = uri.replace(/\D/g, '');
                 mainService.getId(id);
                 $scope.video = mainService.arr2[mainService.arr2.length - 1];
                 document.querySelector(".video-window").innerHTML = $scope.video;
                 $scope.getVideo();
                 $scope.getAllComments();
-                $scope.staffpicks.unshift(video);
-                $scope.staffpicks = stripDuplicates($scope.staffpicks);
+                $scope.arr.unshift(video);
+                $scope.arr = stripDuplicates($scope.arr);
+            };
+            $scope.showMore = function () {
+                $scope.showButton = false;
+                for (var i = 0; i < $scope.arr2.length; i++) {
+                    $scope.arr.push($scope.arr2[i]);
+                };
             };
         });
     };
@@ -165,8 +176,8 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
             $scope.media = res.data;
             console.log('$scope.media', $scope.media);
             var beforeDate = res.data.created_time,
-                date = function date(x) {
-                var newD = x.slice(0, 10),
+                date = function date(beforeDate) {
+                var newD = beforeDate.slice(0, 10),
                     splitDate = newD.split(''),
                     noDash = splitDate.filter(function (numb) {
                     return numb !== '-';
@@ -175,47 +186,50 @@ angular.module('vimeoApp').controller('playVideo', ["$scope", "mainService", fun
                 $scope.momentTime = moment(forMoment, "YYYYMMDD").fromNow();
             };
             date(beforeDate);
-            date("2017-05-31T14:33:14+00:00");
             $scope.dateTest = moment("20170601", "YYYYMMDD").fromNow();
         });
     };
     $scope.getVideo();
-    $scope.getAllComments = function (id) {
-        id = mainService.arr[0];
+    $scope.getAllComments = function () {
+        var id = mainService.arr[0];
         mainService.getComments(id).then(function (res) {
             $scope.comments = res.data.data;
         });
     };
-    $scope.getAllComments();
     $scope.addComment = function () {
         var id = mainService.arr[0];
         mainService.postComment(id, $scope.text).then(function (res) {
-            $scope.getAllComments(id);
+            $scope.getAllComments();
         });
     };
+
+    $scope.getAllComments();
+
     document.querySelector(".video-window").innerHTML = $scope.video;
 }]);
 'use strict';
 
 angular.module('vimeoApp').controller('searchCtrl', ["$scope", "mainService", "$state", function ($scope, mainService, $state) {
 
-    var test2 = function test2() {
+    var getVideos = function getVideos() {
         $scope.videos = mainService.videoData;
     };
-    test2();
+    getVideos();
 
     $scope.getVideoID = function (id) {
         mainService.getId(id);
     };
-    $scope.playVideo = function (videoLink, uri) {
+    $scope.playVideo = function (videoLink, uri, i) {
         mainService.clickedVideo(videoLink);
         var id = uri.replace(/\D/g, '');
         mainService.getId(id);
+        mainService.transferVideo($scope.videos[i]);
         $state.go('playvideo');
     };
     $scope.page = function (num) {
         mainService.searchVideos(num, mainService.query).then(function (res) {
             $scope.videos = res.data.data;
+            console.log($scope.videos);
         });
     };
     // $scope.addToWatchLaterList = () => {
@@ -343,18 +357,29 @@ angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     vm.video = '';
     vm.arr = [];
     vm.arr2 = [];
+    vm.arr3 = [];
+
     vm.searchedVideo = function (data) {
         vm.videoData = data;
-    };
-    vm.clickedVideo = function (videoLink) {
-        vm.video = videoLink;
-        vm.arr2.push(videoLink);
     };
     vm.getId = function (id) {
         vm.arr.push(id);
         if (vm.arr.length > 1) {
             while (vm.arr.length > 1) {
                 vm.arr.shift();
+            };
+        };
+        console.log(vm.arr[0]);
+    };
+    vm.clickedVideo = function (videoLink) {
+        vm.video = videoLink;
+        vm.arr2.push(videoLink);
+    };
+    vm.transferVideo = function (x) {
+        vm.arr3.push(x);
+        if (vm.arr3.length > 1) {
+            while (vm.arr3.length > 1) {
+                vm.arr3.shift();
             };
         };
     };
