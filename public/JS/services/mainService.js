@@ -17,6 +17,7 @@ angular.module('vimeoApp').service('mainService', function ($http) {
                 vm.arr.shift();
             };
         };
+        console.log(vm.arr[0]);
     };
     vm.clickedVideo = videoLink => {
         vm.video = videoLink;
