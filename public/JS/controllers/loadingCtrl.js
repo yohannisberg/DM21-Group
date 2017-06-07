@@ -5,7 +5,7 @@ angular.module('vimeoApp').controller('loadingCtrl', function ($scope, $timeout)
     $scope.loadR = false;
 
     $timeout();
-console.log($timeout());
+
     $timeout(() => {
         $scope.loadG = true;
     }, 500);

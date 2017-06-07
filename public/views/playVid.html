@@ -123,8 +123,8 @@
             <hr>
 
 
-            <div class="next-video" ng-repeat="media in staffpicks track by $index">
-                <img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0} " ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri, media, media[$index])">
+            <div class="next-video" ng-repeat="media in arr track by $index">
+                <img class="vid-thumbnail" ng-class="{'blue-border' : $index === 0} " ng-src="{{media.pictures.sizes[5].link}}" ng-click="playVideo(media.embed.html, media.uri, media)">
 
                 <div class="vid-title">
                     <h5><strong>{{media.name}}</strong></h5>
@@ -135,8 +135,8 @@
 
         </div>
 
-        <div class="show-more-box">
-            <button class="more-btn" type="submit">Show More...</button>
+        <div class="show-more-box" ng-show="showButton">
+            <button class="more-btn" type="submit" ng-click="showMore()">Show More...</button>
         </div>
 
 

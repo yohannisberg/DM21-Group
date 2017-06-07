@@ -1,36 +1,34 @@
 angular.module('vimeoApp').controller('playVideo', function ($scope, mainService) {
-
+    let stripDuplicates = a => [...new Set(a)];
+    $scope.showButton = true;
     $scope.video = mainService.video;
-
+    mainService.getVideosByChannel('staffpicks').then(res => {
+        $scope.arr2 = res.data.data;
+    });
     $scope.getChannelVideos = () => {
-        mainService.getVideosByChannel('staffpicks').then(res => {
-            $scope.staffpicks = res.data.data;
-            $scope.playVideo = (videoLink, uri, video, i) => {
-                mainService.changeFalse();
+        mainService.getVideosByChannel('music').then(res => {
+            $scope.arr = res.data.data;
+            $scope.arr.unshift(mainService.arr3[0]);
+            $scope.arr = stripDuplicates($scope.arr);
+            $scope.playVideo = (videoLink, uri, video) => {
                 mainService.clickedVideo(videoLink);
-                let id = uri.replace(/\D/g, ''),
-                    stripDuplicates = a => [...new Set(a)];
-                let videoFromSearchCtrl = () => {
-                    let video = mainService.videoData[i];
-                    $scope.staffpicks.unshift(video);
-                    $scope.staffpicks = stripDuplicates($scope.staffpicks);
-                }
+                let id = uri.replace(/\D/g, '');
                 mainService.getId(id);
                 $scope.video = mainService.arr2[mainService.arr2.length - 1];
                 document.querySelector(".video-window").innerHTML = $scope.video;
                 $scope.getVideo();
                 $scope.getAllComments();
-
-                if (mainService.x === true) {
-                    videoFromSearchCtrl();
-                } else {
-                    $scope.staffpicks.unshift(video);
-                    $scope.staffpicks = stripDuplicates($scope.staffpicks);
-                }
+                $scope.arr.unshift(video);
+                $scope.arr = stripDuplicates($scope.arr);
+            };
+            $scope.showMore = () => {
+                $scope.showButton = false;
+                for(let i = 0; i<$scope.arr2.length; i++){
+                    $scope.arr.push($scope.arr2[i]);
+                };
             };
         });
     };
-
     $scope.getChannelVideos();
     $scope.getVideo = () => {
         let id = mainService.arr[0];
