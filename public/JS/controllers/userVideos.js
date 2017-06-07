@@ -14,27 +14,20 @@ angular.module('vimeoApp')
 
   .filter('convertedTime', function() {
     return function(time){
-
-      console.log(time)
-
             let numb=parseInt(time);
             let minutes = Math.floor(numb / 60);
             let seconds = numb % 60;
 
                if(minutes===0){
                  if(seconds.toString().length===1){
-                   console.log(minutes)
                    return minutes+ "0" + ":" + "0"+seconds;
                  }
-                 console.log(minutes)
                  return minutes + "0" + ":" + seconds;
                }
 
               else if(seconds.toString().length===1){
-                console.log(minutes)
                 return minutes+":"+"0"+seconds;
                }
-               console.log(minutes)
                return minutes+":"+seconds;
        }
     })
@@ -43,7 +36,6 @@ angular.module('vimeoApp')
     $scope.userVideos = () => {
         mainService.userVideos().then(res => {
             $scope.videos = res.data.data;
-
         });
     };
     $scope.userVideos();

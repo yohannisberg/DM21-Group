@@ -36,7 +36,6 @@ app.get('/api/callback', mainCtrl.callback);
 app.get('/api/logout', mainCtrl.logout);
 app.get('/api/accesstoken', mainCtrl.getAccessToken);
 app.get('/api/currentuser', mainCtrl.getUser);
- // app.post('/api/upload', vimeoCtrl.uploadVid);
 app.post('/api/uploadvideo', vimeoCtrl.uploadVid);
 app.get('/api/usersvideos', mainCtrl.usersVideos);
 app.post('/api/videos/:id/watchlater', mainCtrl.watchLater);

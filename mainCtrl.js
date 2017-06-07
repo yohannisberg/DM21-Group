@@ -86,16 +86,7 @@ module.exports = {
         //     token: req.session.access_token,
         // });
         // uploader.upload();
-        // axios({
-        //     method: 'post',
-        //     headers: {Authorization: `Bearer ${req.session.access_token}`},
-        //     url: 'https://api.vimeo.com/me/videos',
-        //     data: {
-        //         type: 'pull',
-        //         link: req.body.video
-        //     }
-        // }).then(resp => {
-        //     console.log(resp);
+
         // axios({
         //     method: 'delete',
         //     url: `https://api.vimeo.com/${req.session.data}`
@@ -128,18 +119,20 @@ module.exports = {
             console.log(error);
         });
     },
-    addComments: (req, res) => {
+    addComments: (req, resp) => {
         axios({
             method: 'post',
             url: `https://api.vimeo.com/videos/${req.params.id}/comments`,
             headers: {Authorization: `Bearer ${req.session.access_token}`},
             data: {
-                text: req.body.text
+                text: req.body.text,
+                scope: scopes
             }
         }).then(res => {
-            console.log(res)
+            console.log('THEN',res);
+            resp.status(201).send('hi');
         }).catch(error => {
-            console.log(error);
+            console.log('ERROR',error);
         });
     },
     watchLater: (req, res) => {
