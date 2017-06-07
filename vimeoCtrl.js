@@ -112,23 +112,16 @@ module.exports = {
         }
     },
     uploadVid: (req, res) => {
-        let file_path = req.body.video,
-            prev_percentage = -1;
-        lib.access_token = config.access_token;
-        lib.streamingUpload(file_path,
-            (err, body, status, headers) => {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log(status);
-                console.log(headers.location);
-            },
-            (uploaded_size, file_size) => {
-                let percentage = Math.round((uploaded_size / file_size) * 100);
-                if (percentage != prev_percentage) {
-                    console.log(percentage + '%' + ' uploaded\n');
-                    prev_percentage = percentage;
-                }
-            })
-    }
-}
+      axios({
+          method: 'post',
+          headers: {Authorization: `Bearer ${req.session.access_token}`},
+          url: 'https://api.vimeo.com/me/videos',
+          data: {
+              type: 'pull',
+              link: req.body.video
+          }
+      }).then(resp => {
+          res.status(200).send(res)
+          console.log(resp);
+})
+}}
