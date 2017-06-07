@@ -34,31 +34,41 @@
                 padding: 30px;
                 .title-box {
                     display: flex;
+    align-items:center;
                     .vid-title {
                         font-size: 35px;
                     }
                     .vid-rating {
-                        color: red;
+                        height: 100%;
                         display: flex;
+                        color: red;
                         justify-content: center;
                         align-items: center;
-                        margin-left: 25px;
-                        font-size: 15px;
+                        font-size: 18px;
                         border: solid red 1px;
-                        padding: 2px 8px;
+                        padding: 4px 16px;
                         border-radius: 5px;
-                        height: 100%;
-                        transform: translate(0%, 45%);
                         text-transform: uppercase;
+                        margin: 0 15px 0 15px;
                     }
                 }
                 .user-info {
                     display: flex;
+                        padding: 8px 10px 5px 0;
+                        display: flex;
+                        align-items: center;
                     .from {
-                        padding: 7px;
+                        align-items: center;
+                        font-weight: bold;
+                        font-size:20px;
+                        padding: 0 10px 5px 0;
                     }
                     .days-ago {
-                        padding: 7px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 14px;
+                        font-weight: bold;
+                        padding: 0 10px 5px 0;
                     }
                 }
                 .follow-wrapper {
@@ -69,14 +79,14 @@
                         width: 50px;
                         height: 50px;
                         background: grey;
-                        margin: 10px;
+                        margin: 10px 0 0 0;
                     }
                     .follow-btn {
                         background: white;
-                        color: #A6E2F9;
+                        color: #4FC1EC;
                         height: 40px;
                         font-size: 18px;
-                        margin:10px;
+                        margin: 10px 0 0 20px;
                         border-radius: 5px;   
                         border-color: #00adef;
                         // border:none;
@@ -158,6 +168,9 @@
         }
         .category {
             margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 18px;
+
         }
         .category-btn {
             height: 40px;
@@ -199,29 +212,45 @@
             }
             .comment-content {
                 display: flex;
+                margin:15px;
                 .user-pic {
-                    background-image: url(.dist/images/user-icon-blue-300x300.png);
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
-                    background: grey;
                     margin: 10px 15px 10px 10px;
                     border: none;
                 }
+                .default-user-img{
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    margin: 10px 15px 10px 10px;
+                    border: none;
+
+                }
                 .user-name {
                     margin-right: 10px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    padding-bottom:10px
+                }
+                .post-date{
+                    font-size:14px;
+                    font-weight: bold;
                 }
                 .main-comment-box {
                     width: 100%;
                     .comment-details {
+                        display:flex;
                         width: 100%;
-                        margin: 10px 10px 10px 0;
+                        margin: 10px 10px 0 0;
                     }
                 }
             } 
             .reply-tag {
                 text-align: right;
                 display: block;
+                border-bottom: 1px solid lightgrey;
             }
 
             .comment-box{
@@ -297,9 +326,8 @@
         }
         .vid-title{
             height: 80px;
-            width: 40%;
-            margin: 10px 0 0 15px;
-
+            width: 100%;
+            margin: 10px 0 10px 22px;
             display: flex;
             flex-direction: column;
             text-align: left;

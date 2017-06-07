@@ -91,11 +91,15 @@
 					+ Load 100 previous comments
 				</div>
 				<div class="comment-content" ng-repeat="data in comments track by $index">
-					<img src="{{data.user.pictures.sizes[3].link}}" class="user-pic">
+                    
+                    <img ng-if="data.user.pictures.sizes[3].link" ng-src="{{data.user.pictures.sizes[3].link}}"class="user-pic">
+
+                    <img ng-if="!data.user.pictures.sizes[3].link" src="./images/default-user-img.png" class="user-pic">
+
 					<div class="main-comment-box">
 						<div class="comment-details">
 							<div class="user-name">{{data.user.name}}</div>
-							<div class="post-date">created on: {{data.created_on | date : "dd.MM.y"}}</div>
+							<div class="post-date">{{data.created_on | date : "MMM d, y"}}</div>
 						</div>
 
 						<div class="user-comment">
@@ -143,6 +147,5 @@
 
 	</div>
 </div>
-
 
 <footer-dir></footer-dir>
