@@ -21,9 +21,6 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/dist'));
 
-let args = process.argv[2];
-console.dir(args);
-
 app.get('/api/callback', mainCtrl.callback);
 app.get('/api/videos', vimeoCtrl.getVideoById);
 app.get('/api/videos/:pageNum', vimeoCtrl.getVideos);

@@ -36,7 +36,7 @@
       margin-bottom: 10px; }
       .main-footer ul li a {
         text-decoration: none;
-        color: black; }
+        color: #607680; }
 
 .upper-footer {
   width: 100%;
@@ -53,7 +53,8 @@
 .subtitle {
   color: black;
   font-size: 18px;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  font-weight: bold; }
 
 .footer-left {
   display: flex;
@@ -105,7 +106,7 @@
   margin: 10px;
   font-size: 10px;
   padding: 5px;
-  width: 70%; }
+  width: 100%; }
   .lower-link-left a {
     display: flex; }
   .lower-link-left .fa {
@@ -251,14 +252,14 @@
   flex-wrap: wrap; }
 
 .mainPageVideos {
-  width: 20%; }
+  width: 20%;
+  cursor: pointer; }
 
 .placeholderVideo {
-  width: 100%;
   margin-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 120px; }
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 56%; }
 
 .vidNameMainPage {
   margin-top: 10px;
@@ -494,28 +495,38 @@ a:hover, a:visited, a:link, a:active .logInNav {
         background: white;
         padding: 30px; }
         .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .title-box {
-          display: flex; }
+          display: flex;
+          align-items: center; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .title-box .vid-title {
             font-size: 35px; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .title-box .vid-rating {
-            color: red;
+            height: 100%;
             display: flex;
+            color: red;
             justify-content: center;
             align-items: center;
-            margin-left: 25px;
-            font-size: 15px;
+            font-size: 18px;
             border: solid red 1px;
-            padding: 2px 8px;
+            padding: 4px 16px;
             border-radius: 5px;
-            height: 100%;
-            transform: translate(0%, 45%);
-            text-transform: uppercase; }
+            text-transform: uppercase;
+            margin: 0 15px 0 15px; }
         .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info {
-          display: flex; }
+          display: flex;
+          padding: 8px 10px 5px 0;
+          display: flex;
+          align-items: center; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info .from {
-            padding: 7px; }
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 0 10px 5px 0; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .user-info .days-ago {
-            padding: 7px; }
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 10px 5px 0; }
         .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper {
           display: flex;
           align-items: center; }
@@ -524,13 +535,13 @@ a:hover, a:visited, a:link, a:active .logInNav {
             width: 50px;
             height: 50px;
             background: grey;
-            margin: 10px; }
+            margin: 10px 0 0 0; }
           .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn {
             background: white;
-            color: #A6E2F9;
+            color: #4FC1EC;
             height: 40px;
             font-size: 18px;
-            margin: 10px;
+            margin: 10px 0 0 20px;
             border-radius: 5px;
             border-color: #00adef; }
             .vid-lower-wrapper .vid-lower-left .title-outer-wrapper .title-wrapper .follow-wrapper .follow-btn .fa {
@@ -589,7 +600,9 @@ a:hover, a:visited, a:link, a:active .logInNav {
       display: flex;
       flex-direction: column; }
     .vid-lower-wrapper .category-outer-wrapper .category {
-      margin-bottom: 10px; }
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 18px; }
     .vid-lower-wrapper .category-outer-wrapper .category-btn {
       height: 40px;
       width: 90px;
@@ -623,25 +636,38 @@ a:hover, a:visited, a:link, a:active .logInNav {
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-box-container {
         margin: auto; }
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content {
-        display: flex; }
+        display: flex;
+        margin: 15px; }
         .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .user-pic {
-          background-image: url(.dist/images/user-icon-blue-300x300.png);
           border-radius: 50%;
           width: 50px;
           height: 50px;
-          background: grey;
+          margin: 10px 15px 10px 10px;
+          border: none; }
+        .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .default-user-img {
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
           margin: 10px 15px 10px 10px;
           border: none; }
         .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .user-name {
-          margin-right: 10px; }
+          margin-right: 10px;
+          font-size: 16px;
+          font-weight: 700;
+          padding-bottom: 10px; }
+        .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .post-date {
+          font-size: 14px;
+          font-weight: bold; }
         .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .main-comment-box {
           width: 100%; }
           .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-content .main-comment-box .comment-details {
+            display: flex;
             width: 100%;
-            margin: 10px 10px 10px 0; }
+            margin: 10px 10px 0 0; }
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .reply-tag {
         text-align: right;
-        display: block; }
+        display: block;
+        border-bottom: 1px solid lightgrey; }
       .vid-lower-wrapper .comments-outer-wrapper .comments-wrapper .comment-box {
         height: 50px;
         width: 80%;
@@ -687,8 +713,8 @@ a:hover, a:visited, a:link, a:active .logInNav {
         margin-top: 15px; }
       .vid-lower-wrapper .vid-lower-right .next-video .vid-title {
         height: 80px;
-        width: 40%;
-        margin: 10px 0 0 15px;
+        width: 100%;
+        margin: 10px 0 10px 22px;
         display: flex;
         flex-direction: column;
         text-align: left;

@@ -7,7 +7,6 @@
     padding: 0;
     background: #F2F4F5;
 
-
     ul {
         background: #F2F4F5;
         // background:black;
@@ -16,7 +15,8 @@
             margin-bottom: 10px;
             a {
                 text-decoration: none;
-                color: black;
+                color: #607680;
+;
             }
         }
     }
@@ -37,6 +37,7 @@
     color: black;
     font-size: 18px;
     padding-bottom: 15px;
+    font-weight:bold;
 }
 .footer-left {
     display: flex;
@@ -95,7 +96,7 @@
     margin:10px;
     font-size: 10px;
     padding:5px;
-    width: 70%;
+    width: 100%;
 
     a{
     display:flex;

@@ -2,7 +2,7 @@
 
 <div id='topBannerWrapper'>
 	<div class='mainBlackBackground'>
-		<img class='topBanner' src='./IMAGES/johnImages/bannerHome.jpg'>
+		<img class='topBanner' src='./images/johnImages/bannerHome.jpg'>
 		<div class='bannerDescriptWrapper'>
 			<div class='bannerTitleMainPage'>Tall Bikes Will Save The World</div>
 			<div class='bannerUserMainPage'><img ng-src='./images/johnImages/redBull.jpg'> from Red Bull</div>
@@ -23,7 +23,7 @@
 					<div class='mainPageTopBlack'></div>
 
 					<div class='mainPageChannelPic'><img class='testImage'
-					                                     src='./IMAGES/johnImages/placeholderStaff2.svg'></div>
+					                                     src='./images/johnImages/placeholderStaff2.svg'></div>
 
 					<div class='mainPageDescriptionWrapper'>
 						<div class='mainPageChannelName'>Vimeo Staff Picks</div>
@@ -40,9 +40,14 @@
 
 			<div class='mainPageVideosWrapper'>
 				<div class='mainPageVideos' ng-repeat='picks in staffpicks' ng-click="playVideo(picks.embed.html, picks.uri, picks)">
+
 					<!-- <div class=placeholderVideoWrapper> -->
-					<img class='placeholderVideo' ng-src='{{picks.pictures.sizes[5].link}}'>
+
+					<!-- <img class='placeholderVideo' ng-src='{{picks.pictures.sizes[5].link}}'> -->
+
+					<div class='placeholderVideo' style='background:url({{picks.pictures.sizes[5].link}});    background-size: cover; background-repeat: no-repeat; background-position: center center;'></div>
 					<!-- </div> -->
+
 					<div class='vidNameMainPage'>{{picks.name}}</div>
 					<div class='userAndViewsWrapperMainPage'>
 						<span>{{picks.user.name}}</span>

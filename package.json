@@ -44,6 +44,7 @@
     "passport-vimeo": "^0.1.2",
     "req-flash": "0.0.3",
     "vimeo": "^1.2.1",
-    "vimeo-upload": "^0.1.6"
+    "vimeo-upload": "^0.1.6",
+    "yarn-install": "^0.4.1"
   }
 }
