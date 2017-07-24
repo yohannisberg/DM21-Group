@@ -40,6 +40,170 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
+angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
+    // let serverUrl = 'http://localhost:3014',
+    var serverUrl = 'http://107.170.218.43:3014',
+        vm = this;
+    vm.videoData = '';
+    vm.video = '';
+    vm.arr = [];
+    vm.arr2 = [];
+    vm.arr3 = [];
+
+    vm.searchedVideo = function (data) {
+        vm.videoData = data;
+    };
+    vm.getId = function (id) {
+        vm.arr.push(id);
+        if (vm.arr.length > 1) {
+            while (vm.arr.length > 1) {
+                vm.arr.shift();
+            };
+        };
+        console.log(vm.arr[0]);
+    };
+    vm.clickedVideo = function (videoLink) {
+        vm.video = videoLink;
+        vm.arr2.push(videoLink);
+    };
+    vm.transferVideo = function (x) {
+        vm.arr3.push(x);
+        if (vm.arr3.length > 1) {
+            while (vm.arr3.length > 1) {
+                vm.arr3.shift();
+            };
+        };
+    };
+    vm.getVideosByChannel = function (channel) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/channels/' + channel)
+        });
+    };
+    vm.searchVideos = function (page, query) {
+        vm.query = query;
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/' + page + '?search=' + query)
+        });
+    };
+    vm.getVideoById = function (id) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos?id=' + id)
+        });
+    };
+    vm.getComments = function (id) {
+        return $http({
+            method: 'GET',
+            url: serverUrl + ('/api/videos/' + id + '/comments')
+        });
+    };
+    vm.postComment = function (id, text) {
+        return $http({
+            method: 'POST',
+            data: { text: text },
+            url: serverUrl + ('/api/videos/' + id + '/comments')
+        });
+    };
+    vm.login = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/login'
+        });
+    };
+    vm.logout = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/logout'
+        });
+    };
+    vm.getUser = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/currentuser'
+        });
+    };
+
+    vm.uploadVid = function (video) {
+        return $http({
+            method: 'POST',
+            data: { video: video },
+            url: serverUrl + '/api/uploadvideo'
+        });
+    };
+    vm.userVideos = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/usersvideos'
+        });
+    };
+    vm.getAccessToken = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/accesstoken'
+        });
+    };
+    vm.addToWatchLater = function (video, id) {
+        return $http({
+            method: 'POST',
+            data: { video: video },
+            url: serverUrl + ('/api/videos/' + id + '/watchlater')
+        });
+    };
+    vm.getWatchLaterList = function () {
+        return $http({
+            method: 'GET',
+            url: serverUrl + '/api/usersvideos'
+        });
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').directive('commentsDir', function () {
+    return {
+        restrict: "AE",
+        templateUrl: "./views/commentsDir.html",
+        controller: 'commentsCtrl'
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('fileUploader', ["$parse", function ($parse) {
+    return {
+        restrict: 'A',
+        link: function link(scope, element, attrs) {
+            var model = $parse(attrs.fileUploader),
+                modelSetter = model.assign;
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').directive('footerDir', function () {
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
+  };
+});
+'use strict';
+
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
@@ -325,169 +489,5 @@ angular.module('vimeoApp').filter('firstLetter', function () {
         });
     };
     $scope.displayWatchLaterList();
-}]);
-'use strict';
-
-angular.module('vimeoApp').directive('commentsDir', function () {
-    return {
-        restrict: "AE",
-        templateUrl: "./views/commentsDir.html",
-        controller: 'commentsCtrl'
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('fileUploader', ["$parse", function ($parse) {
-    return {
-        restrict: 'A',
-        link: function link(scope, element, attrs) {
-            var model = $parse(attrs.fileUploader),
-                modelSetter = model.assign;
-            element.bind('change', function () {
-                scope.$apply(function () {
-                    modelSetter(scope, element[0].files[0]);
-                });
-            });
-        }
-    };
-}]);
-'use strict';
-
-angular.module('vimeoApp').directive('footerDir', function () {
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {},
-    controller: 'navBarCtrl'
-  };
-});
-'use strict';
-
-angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
-    // let serverUrl = 'http://localhost:3012',
-    var serverUrl = '107.170.218.43:3014',
-        vm = this;
-    vm.videoData = '';
-    vm.video = '';
-    vm.arr = [];
-    vm.arr2 = [];
-    vm.arr3 = [];
-
-    vm.searchedVideo = function (data) {
-        vm.videoData = data;
-    };
-    vm.getId = function (id) {
-        vm.arr.push(id);
-        if (vm.arr.length > 1) {
-            while (vm.arr.length > 1) {
-                vm.arr.shift();
-            };
-        };
-        console.log(vm.arr[0]);
-    };
-    vm.clickedVideo = function (videoLink) {
-        vm.video = videoLink;
-        vm.arr2.push(videoLink);
-    };
-    vm.transferVideo = function (x) {
-        vm.arr3.push(x);
-        if (vm.arr3.length > 1) {
-            while (vm.arr3.length > 1) {
-                vm.arr3.shift();
-            };
-        };
-    };
-    vm.getVideosByChannel = function (channel) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + ('/api/videos/channels/' + channel)
-        });
-    };
-    vm.searchVideos = function (page, query) {
-        vm.query = query;
-        return $http({
-            method: 'GET',
-            url: serverUrl + ('/api/videos/' + page + '?search=' + query)
-        });
-    };
-    vm.getVideoById = function (id) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + ('/api/videos?id=' + id)
-        });
-    };
-    vm.getComments = function (id) {
-        return $http({
-            method: 'GET',
-            url: serverUrl + ('/api/videos/' + id + '/comments')
-        });
-    };
-    vm.postComment = function (id, text) {
-        return $http({
-            method: 'POST',
-            data: { text: text },
-            url: serverUrl + ('/api/videos/' + id + '/comments')
-        });
-    };
-    vm.login = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/login'
-        });
-    };
-    vm.logout = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/logout'
-        });
-    };
-    vm.getUser = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/currentuser'
-        });
-    };
-
-    vm.uploadVid = function (video) {
-        return $http({
-            method: 'POST',
-            data: { video: video },
-            url: serverUrl + '/api/uploadvideo'
-        });
-    };
-    vm.userVideos = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/usersvideos'
-        });
-    };
-    vm.getAccessToken = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/accesstoken'
-        });
-    };
-    vm.addToWatchLater = function (video, id) {
-        return $http({
-            method: 'POST',
-            data: { video: video },
-            url: serverUrl + ('/api/videos/' + id + '/watchlater')
-        });
-    };
-    vm.getWatchLaterList = function () {
-        return $http({
-            method: 'GET',
-            url: serverUrl + '/api/usersvideos'
-        });
-    };
 }]);
 //# sourceMappingURL=bundle.js.map
