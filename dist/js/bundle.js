@@ -40,50 +40,6 @@ angular.module('vimeoApp', ["ui.router"]).config(["$stateProvider", "$urlRouterP
 }]);
 'use strict';
 
-angular.module('vimeoApp').directive('commentsDir', function () {
-    return {
-        restrict: "AE",
-        templateUrl: "./views/commentsDir.html",
-        controller: 'commentsCtrl'
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('fileUploader', ["$parse", function ($parse) {
-    return {
-        restrict: 'A',
-        link: function link(scope, element, attrs) {
-            var model = $parse(attrs.fileUploader),
-                modelSetter = model.assign;
-            element.bind('change', function () {
-                scope.$apply(function () {
-                    modelSetter(scope, element[0].files[0]);
-                });
-            });
-        }
-    };
-}]);
-'use strict';
-
-angular.module('vimeoApp').directive('footerDir', function () {
-    return {
-        restrict: "AE",
-        templateUrl: "./views/footerDir.html"
-    };
-});
-'use strict';
-
-angular.module('vimeoApp').directive('navBar', function () {
-
-  return {
-    restrict: 'E',
-    templateUrl: './views/navBar.html',
-    link: function link(scope) {},
-    controller: 'navBarCtrl'
-  };
-});
-'use strict';
-
 angular.module('vimeoApp').controller('accountCtrl', ["$scope", function ($scope) {}]);
 'use strict';
 
@@ -372,10 +328,54 @@ angular.module('vimeoApp').filter('firstLetter', function () {
 }]);
 'use strict';
 
+angular.module('vimeoApp').directive('commentsDir', function () {
+    return {
+        restrict: "AE",
+        templateUrl: "./views/commentsDir.html",
+        controller: 'commentsCtrl'
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('fileUploader', ["$parse", function ($parse) {
+    return {
+        restrict: 'A',
+        link: function link(scope, element, attrs) {
+            var model = $parse(attrs.fileUploader),
+                modelSetter = model.assign;
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+'use strict';
+
+angular.module('vimeoApp').directive('footerDir', function () {
+    return {
+        restrict: "AE",
+        templateUrl: "./views/footerDir.html"
+    };
+});
+'use strict';
+
+angular.module('vimeoApp').directive('navBar', function () {
+
+  return {
+    restrict: 'E',
+    templateUrl: './views/navBar.html',
+    link: function link(scope) {},
+    controller: 'navBarCtrl'
+  };
+});
+'use strict';
+
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
     // let serverUrl = 'http://localhost:3014',
     // let serverUrl = 'http://107.170.218.43:3014',
-    var serverUrl = 'vimeoclone.jdagostino.com',
+    var serverUrl = 'http://vimeoclone.jdagostino.com',
         vm = this;
     vm.videoData = '';
     vm.video = '';
