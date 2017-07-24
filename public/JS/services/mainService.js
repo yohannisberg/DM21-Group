@@ -1,5 +1,6 @@
 angular.module('vimeoApp').service('mainService', function ($http) {
-    let serverUrl = 'http://localhost:3012',
+    // let serverUrl = 'http://localhost:3012',
+    let serverUrl = '107.170.218.43:3014',
         vm = this;
     vm.videoData = '';
     vm.video = '';

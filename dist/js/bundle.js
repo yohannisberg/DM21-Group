@@ -373,7 +373,8 @@ angular.module('vimeoApp').directive('navBar', function () {
 'use strict';
 
 angular.module('vimeoApp').service('mainService', ["$http", function ($http) {
-    var serverUrl = 'http://localhost:3012',
+    // let serverUrl = 'http://localhost:3012',
+    var serverUrl = '107.170.218.43:3014',
         vm = this;
     vm.videoData = '';
     vm.video = '';
